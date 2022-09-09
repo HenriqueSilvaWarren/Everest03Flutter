@@ -59,33 +59,6 @@ class _WalletScreenState extends State<WalletScreen> {
               ),
             ),
           ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.7,
-            child: ListView(
-              children: [
-                ListTile(
-                  leading: const CircleAvatar(
-                    backgroundColor: Color.fromARGB(255, 47, 47, 51),
-                  ),
-                  title: Text(
-                    "ETH",
-                    style: GoogleFonts.sourceSansPro(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20,
-                    ),
-                  ),
-                  subtitle: Text(
-                    "Ethereum",
-                    style: GoogleFonts.sourceSansPro(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 15,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          )
         ],
       ),
     );
