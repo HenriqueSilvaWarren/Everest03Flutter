@@ -17,10 +17,10 @@ class _WalletScreenState extends State<WalletScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: const Color.fromARGB(255, 224, 43, 87,),
+        selectedItemColor: const Color.fromARGB(255, 224, 43, 87),
         onTap: (value) {
           setState(() {
-          curIndex = value;
+            curIndex = value;
           });
         },
         currentIndex: curIndex,
@@ -32,7 +32,7 @@ class _WalletScreenState extends State<WalletScreen> {
                 "assets/icons/warren_inactive.png",
               ),
             ),
-            activeIcon:  ImageIcon(
+            activeIcon: ImageIcon(
               AssetImage(
                 "assets/icons/warren_active.png",
               ),
@@ -79,7 +79,7 @@ class _WalletScreenState extends State<WalletScreen> {
                       ),
                       IconButton(
                         tooltip: "Esconder valores monetários",
-                        padding: EdgeInsets.zero,
+                        padding: const EdgeInsets.only(left: 17),
                         onPressed: () {
                           setState(() {
                             isHidden = !isHidden;
