@@ -1,3 +1,4 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -100,7 +101,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     duration: const Duration(milliseconds: 250),
                     child: !isHidden
                         ? Text(
-                            "R\$ 14.798,00",
+                            UtilBrasilFields.obterReal(14798),
                             style: GoogleFonts.montserrat(
                               fontSize: 32,
                               fontWeight: FontWeight.w700,
@@ -159,7 +160,7 @@ class _WalletScreenState extends State<WalletScreen> {
                             duration: const Duration(milliseconds: 250),
                             child: !isHidden
                                 ? Text(
-                                    "R\$ 6.557,00",
+                                  UtilBrasilFields.obterReal(6557),
                                     style: GoogleFonts.sourceSansPro(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w400,
@@ -259,7 +260,7 @@ class _WalletScreenState extends State<WalletScreen> {
                             duration: const Duration(milliseconds: 250),
                             child: !isHidden
                                 ? Text(
-                                    "R\$ 7.996,00",
+                                    UtilBrasilFields.obterReal(7996),
                                     style: GoogleFonts.sourceSansPro(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w400,
@@ -362,7 +363,7 @@ class _WalletScreenState extends State<WalletScreen> {
                             duration: const Duration(milliseconds: 250),
                             child: !isHidden
                                 ? Text(
-                                    "R\$ 245,00",
+                                  UtilBrasilFields.obterReal(245),
                                     style: GoogleFonts.sourceSansPro(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w400,
