@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 
-import 'presenter/wallet/wallet_screen.dart';
+import 'presenter/ui/splash/splash_screen.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const WalletScreen(),
+      home: const SplashScreen(),
     );
   }
 }

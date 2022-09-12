@@ -11,21 +11,44 @@ class WalletScreen extends StatefulWidget {
 class _WalletScreenState extends State<WalletScreen> {
   bool isHidden = false;
 
+  int curIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: const Color.fromARGB(255, 224, 43, 87,),
+        onTap: (value) {
+          setState(() {
+          curIndex = value;
+          });
+        },
+        currentIndex: curIndex,
         items: const [
           BottomNavigationBarItem(
             label: 'Portfólio',
             icon: ImageIcon(
-              AssetImage("assets/icons/warren_active.png"),
+              AssetImage(
+                "assets/icons/warren_inactive.png",
+              ),
+            ),
+            activeIcon:  ImageIcon(
+              AssetImage(
+                "assets/icons/warren_active.png",
+              ),
             ),
           ),
           BottomNavigationBarItem(
             label: "Movimentações",
             icon: ImageIcon(
-              AssetImage("assets/icons/warren_inactive.png"),
+              AssetImage(
+                "assets/icons/mov_inactive.png",
+              ),
+            ),
+            activeIcon: ImageIcon(
+              AssetImage(
+                "assets/icons/mov_active.png",
+              ),
             ),
           ),
         ],
@@ -55,6 +78,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         ),
                       ),
                       IconButton(
+                        tooltip: "Esconder valores monetários",
                         padding: EdgeInsets.zero,
                         onPressed: () {
                           setState(() {
@@ -113,7 +137,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Image.asset(
-                        "assets/icons/bitcoin.png",
+                        "assets/images/bitcoin.png",
                         height: 48,
                       ),
                     ),
@@ -201,7 +225,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Image.asset(
-                        "assets/icons/ethereum.png",
+                        "assets/images/ethereum.png",
                         height: 48,
                       ),
                     ),
@@ -292,7 +316,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Image.asset(
-                        "assets/icons/litecoin.png",
+                        "assets/images/litecoin.png",
                         height: 48,
                       ),
                     ),
