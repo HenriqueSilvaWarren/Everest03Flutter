@@ -125,9 +125,7 @@ class _WalletScreenState extends State<WalletScreen> {
                 ],
               ),
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.65,
+            Expanded(
               child: ListView(
                 physics: const BouncingScrollPhysics(),
                 children: [
