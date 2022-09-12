@@ -191,12 +191,24 @@ class _WalletScreenState extends State<WalletScreen> {
                               fontSize: 15,
                             ),
                           ),
-                          Text(
-                            "0.65 BTC",
-                            style: GoogleFonts.sourceSansPro(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                            ),
+                          AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 250),
+                            child: !isHidden
+                                ? Text(
+                                    "0.65 BTC",
+                                    style: GoogleFonts.sourceSansPro(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  )
+                                : Container(
+                                    height: 15,
+                                    width: 54,
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey.shade500,
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                  ),
                           )
                         ],
                       ),
@@ -282,13 +294,25 @@ class _WalletScreenState extends State<WalletScreen> {
                               fontSize: 15,
                             ),
                           ),
-                          Text(
-                            "0.94 ETH",
-                            style: GoogleFonts.sourceSansPro(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          )
+                          AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 250),
+                            child: !isHidden
+                                ? Text(
+                                    "0.94 ETH",
+                                    style: GoogleFonts.sourceSansPro(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  )
+                                : Container(
+                                    height: 15,
+                                    width: 55,
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey.shade500,
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                  ),
+                          ),
                         ],
                       ),
                     ),
@@ -348,7 +372,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                   )
                                 : Container(
                                     height: 20,
-                                    width: 79,
+                                    width: 80,
                                     decoration: BoxDecoration(
                                       color: Colors.grey.shade500,
                                       borderRadius: BorderRadius.circular(5),
@@ -370,13 +394,25 @@ class _WalletScreenState extends State<WalletScreen> {
                               fontSize: 15,
                             ),
                           ),
-                          Text(
-                            "0.82 LTC",
-                            style: GoogleFonts.sourceSansPro(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          )
+                          AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 250),
+                            child: !isHidden
+                                ? Text(
+                                    "0.82 LTC",
+                                    style: GoogleFonts.sourceSansPro(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  )
+                                : Container(
+                                    height: 15,
+                                    width: 51,
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey.shade500,
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                  ),
+                          ),
                         ],
                       ),
                     ),
