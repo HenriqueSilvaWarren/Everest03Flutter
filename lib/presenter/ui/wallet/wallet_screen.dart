@@ -66,31 +66,35 @@ class _WalletScreenState extends State<WalletScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Cripto",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 32,
-                          color: const Color.fromARGB(255, 224, 43, 87),
-                          fontWeight: FontWeight.w700,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Cripto",
+                          style: GoogleFonts.montserrat(
+                            fontSize: 32,
+                            color: const Color.fromARGB(255, 224, 43, 87),
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
-                      ),
-                      IconButton(
-                        tooltip: "Esconder valores monetários",
-                        padding: const EdgeInsets.only(left: 17),
-                        onPressed: () {
-                          setState(() {
-                            isHidden = !isHidden;
-                          });
-                        },
-                        icon: Icon(
-                          !isHidden ? Icons.visibility : Icons.visibility_off,
-                          size: 22,
+                        IconButton(
+                          tooltip: "Esconder valores monetários",
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
+                          onPressed: () {
+                            setState(() {
+                              isHidden = !isHidden;
+                            });
+                          },
+                          icon: Icon(
+                            !isHidden ? Icons.visibility : Icons.visibility_off,
+                            size: 22,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   AnimatedSwitcher(
                     duration: const Duration(milliseconds: 250),
