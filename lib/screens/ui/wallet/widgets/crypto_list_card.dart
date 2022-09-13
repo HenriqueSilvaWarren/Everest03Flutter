@@ -1,4 +1,5 @@
 import 'package:brasil_fields/brasil_fields.dart';
+import 'package:card_02_listagem_crypto/use_cases/models/crypto_coin_model.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,19 +10,10 @@ import 'animated_hide_text_value.dart';
 class CryptoListCard extends HookConsumerWidget {
   const CryptoListCard({
     Key? key,
-    required this.shortName,
-    required this.longName,
-    required this.imagePath,
-    required this.totalCurrencyOfCrypto,
-    required this.totalAmountOfCrypto,
+    required this.cryptoCoinModel,
   }) : super(key: key);
 
-  final String shortName;
-  final String longName;
-  final String imagePath;
-
-  final double totalCurrencyOfCrypto;
-  final double totalAmountOfCrypto;
+  final CryptoCoinModel cryptoCoinModel;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -35,7 +27,7 @@ class CryptoListCard extends HookConsumerWidget {
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(100),
         child: Image.asset(
-          imagePath,
+          cryptoCoinModel.imagePath,
           height: 48,
         ),
       ),
@@ -43,7 +35,7 @@ class CryptoListCard extends HookConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            shortName,
+            cryptoCoinModel.abbreviation,
             style: GoogleFonts.sourceSansPro(
               fontWeight: FontWeight.w400,
               fontSize: 20,
@@ -51,7 +43,7 @@ class CryptoListCard extends HookConsumerWidget {
           ),
           AnimatedHideTextValue(
             text: UtilBrasilFields.obterReal(
-              Decimal.parse("${6557}").toDouble(),
+              Decimal.parse("${cryptoCoinModel.value}").toDouble(),
             ),
             style: GoogleFonts.sourceSansPro(
               fontSize: 20,
@@ -66,14 +58,14 @@ class CryptoListCard extends HookConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              longName,
+              cryptoCoinModel.name,
               style: GoogleFonts.sourceSansPro(
                 fontWeight: FontWeight.w400,
                 fontSize: 15,
               ),
             ),
             AnimatedHideTextValue(
-              text: "$totalAmountOfCrypto $shortName",
+              text: "${cryptoCoinModel.cryptoAmount} ${cryptoCoinModel.abbreviation}",
               style: GoogleFonts.sourceSansPro(
                 fontSize: 15,
                 fontWeight: FontWeight.w400,
@@ -102,4 +94,3 @@ class CryptoListCard extends HookConsumerWidget {
     );
   }
 }
-  

@@ -24,11 +24,11 @@ class _WalletScreenState extends State<WalletScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: const BodyWalletScreen(),
       bottomNavigationBar: CustomBottomNavigationBar(
         curIndex: curIndex,
         onTap: _onItemTapped,
       ),
-      body: const BodyWalletScreen(),
     );
   }
 }

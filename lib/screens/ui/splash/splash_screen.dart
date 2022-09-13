@@ -1,6 +1,7 @@
-import 'package:card_02_listagem_crypto/core/route_definitions.dart';
-import 'package:card_02_listagem_crypto/screens/ui/wallet/wallet_screen.dart';
+
 import 'package:flutter/material.dart';
+
+import '../wallet/wallet_screen.dart';
 
 
 class SplashScreen extends StatefulWidget {

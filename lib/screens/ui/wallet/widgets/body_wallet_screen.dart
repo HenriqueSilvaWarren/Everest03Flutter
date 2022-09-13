@@ -1,7 +1,7 @@
+import 'package:card_02_listagem_crypto/data_sources/database/get_all_crypto_coin_database.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../core/app_assets.dart';
 import 'crypto_list_card.dart';
 import 'total_currency_card.dart';
 
@@ -15,38 +15,23 @@ class BodyWalletScreen extends StatefulHookConsumerWidget {
 }
 
 class _BodyWalletScreenState extends ConsumerState<BodyWalletScreen> {
+  final getAllCryptoCoinDatabase = GetAllCryptoCoinDatabase();
   @override
   Widget build(BuildContext context) {
+    final cryptoCoinList = getAllCryptoCoinDatabase.getAllCryptoCoin();
     return SafeArea(
       child: Column(
         children: [
           const TotalCurrencyCard(),
           Expanded(
-            child: ListView(
+            child: ListView.builder(
               physics: const BouncingScrollPhysics(),
-              children: [
-                CryptoListCard(
-                  shortName: "BTC",
-                  longName: "Bitcoin",
-                  imagePath: bitcoinImage,
-                  totalCurrencyOfCrypto: 6557,
-                  totalAmountOfCrypto: 0.65,
-                ),
-                CryptoListCard(
-                  shortName: "ETH",
-                  longName: "Ethereum",
-                  imagePath: ethereumImage,
-                  totalCurrencyOfCrypto: 7996,
-                  totalAmountOfCrypto: 0.94,
-                ),
-                CryptoListCard(
-                  shortName: "LTC",
-                  longName: "Litcoin",
-                  imagePath: litecoinImage,
-                  totalCurrencyOfCrypto: 245,
-                  totalAmountOfCrypto: 0.82,
-                ),
-              ],
+              itemCount: cryptoCoinList.length,
+              itemBuilder: (context, index) {
+                return CryptoListCard(
+                  cryptoCoinModel: cryptoCoinList[index],
+                );
+              },
             ),
           ),
         ],
@@ -54,4 +39,3 @@ class _BodyWalletScreenState extends ConsumerState<BodyWalletScreen> {
     );
   }
 }
-

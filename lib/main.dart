@@ -1,4 +1,4 @@
-import 'package:card_02_listagem_crypto/core/route_definitions.dart';
+import 'core/route_definitions.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
