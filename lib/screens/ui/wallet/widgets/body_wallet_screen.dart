@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../shared/app_assets.dart';
+import '../../../../core/app_assets.dart';
 import 'crypto_list_card.dart';
 import 'total_currency_card.dart';
 

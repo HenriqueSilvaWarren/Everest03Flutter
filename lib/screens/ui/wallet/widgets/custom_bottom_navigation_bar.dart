@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../shared/app_assets.dart';
+import '../../../../core/app_assets.dart';
 import 'icon_from_asset_widget.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {

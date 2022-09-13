@@ -6,6 +6,8 @@ import 'widgets/custom_bottom_navigation_bar.dart';
 class WalletScreen extends StatefulWidget {
   const WalletScreen({super.key});
 
+  static String route = '/wallet-screen';
+
   @override
   State<WalletScreen> createState() => _WalletScreenState();
 }
