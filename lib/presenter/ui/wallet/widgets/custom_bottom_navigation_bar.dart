@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../shared/app_assets.dart';
+import 'icon_from_asset_widget.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar(
@@ -40,20 +41,3 @@ class CustomBottomNavigationBar extends StatelessWidget {
   }
 }
 
-class IconFromAssetWidget extends StatelessWidget {
-  const IconFromAssetWidget({
-    Key? key,
-    required this.asset,
-  }) : super(key: key);
-
-  final String asset;
-
-  @override
-  Widget build(BuildContext context) {
-    return ImageIcon(
-      AssetImage(
-        asset,
-      ),
-    );
-  }
-}
