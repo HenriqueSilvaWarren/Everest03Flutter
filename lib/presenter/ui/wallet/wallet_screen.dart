@@ -1,4 +1,5 @@
 import 'package:brasil_fields/brasil_fields.dart';
+import 'package:card_02_listagem_crypto/shared/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,17 +26,17 @@ class _WalletScreenState extends State<WalletScreen> {
           });
         },
         currentIndex: curIndex,
-        items: const [
+        items: [
           BottomNavigationBarItem(
             label: 'Portfólio',
             icon: ImageIcon(
               AssetImage(
-                "assets/icons/warren_inactive.png",
+                warrenInactiveIcon,
               ),
             ),
             activeIcon: ImageIcon(
               AssetImage(
-                "assets/icons/warren_active.png",
+                warrenActiveIcon,
               ),
             ),
           ),
@@ -43,12 +44,12 @@ class _WalletScreenState extends State<WalletScreen> {
             label: "Movimentações",
             icon: ImageIcon(
               AssetImage(
-                "assets/icons/mov_inactive.png",
+                movInactiveIcon,
               ),
             ),
             activeIcon: ImageIcon(
               AssetImage(
-                "assets/icons/mov_active.png",
+                movActiveIcon,
               ),
             ),
           ),
@@ -140,7 +141,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Image.asset(
-                        "assets/images/bitcoin.png",
+                        bitcoinImage,
                         height: 48,
                       ),
                     ),
@@ -160,7 +161,7 @@ class _WalletScreenState extends State<WalletScreen> {
                             duration: const Duration(milliseconds: 250),
                             child: !isHidden
                                 ? Text(
-                                  UtilBrasilFields.obterReal(6557),
+                                    UtilBrasilFields.obterReal(6557),
                                     style: GoogleFonts.sourceSansPro(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w400,
@@ -240,7 +241,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Image.asset(
-                        "assets/images/ethereum.png",
+                        ethereumImage,
                         height: 48,
                       ),
                     ),
@@ -343,7 +344,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Image.asset(
-                        "assets/images/litecoin.png",
+                        litecoinImage,
                         height: 48,
                       ),
                     ),
@@ -363,7 +364,7 @@ class _WalletScreenState extends State<WalletScreen> {
                             duration: const Duration(milliseconds: 250),
                             child: !isHidden
                                 ? Text(
-                                  UtilBrasilFields.obterReal(245),
+                                    UtilBrasilFields.obterReal(245),
                                     style: GoogleFonts.sourceSansPro(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w400,
