@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'widgets/body_wallet_screen.dart';
 import 'widgets/custom_bottom_navigation_bar.dart';
 
-class WalletScreen extends StatefulWidget {
-  const WalletScreen({super.key});
+class PortfolioScreen extends StatefulWidget {
+  const PortfolioScreen({super.key});
 
   static String route = '/wallet-screen';
 
   @override
-  State<WalletScreen> createState() => _WalletScreenState();
+  State<PortfolioScreen> createState() => _PortfolioScreenState();
 }
 
-class _WalletScreenState extends State<WalletScreen> {
+class _PortfolioScreenState extends State<PortfolioScreen> {
   int curIndex = 0;
 
   void _onItemTapped(int value) {
@@ -24,7 +24,7 @@ class _WalletScreenState extends State<WalletScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const BodyWalletScreen(),
+      body: const BodyPortfolioScreen(),
       bottomNavigationBar: CustomBottomNavigationBar(
         curIndex: curIndex,
         onTap: _onItemTapped,

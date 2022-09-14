@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../wallet/wallet_screen.dart';
+import '../portfolio/portfolio_screen.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
       (value) {
         Navigator.pushReplacementNamed(
           context,
-          WalletScreen.route
+          PortfolioScreen.route
         );
       },
     );
