@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
       (value) {
         Navigator.pushReplacementNamed(
           context,
-          InitialScreen.route
+          PortfolioScreen.route
         );
       },
     );
