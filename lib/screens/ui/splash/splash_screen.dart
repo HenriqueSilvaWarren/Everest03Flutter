@@ -1,9 +1,13 @@
-import 'package:card_02_listagem_crypto/presenter/ui/wallet/wallet_screen.dart';
+
 import 'package:flutter/material.dart';
+
+import '../wallet/wallet_screen.dart';
 
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  static String route = '/';
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -15,13 +19,9 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(const Duration(seconds: 3)).then(
       (value) {
-        Navigator.pushReplacement(
+        Navigator.pushReplacementNamed(
           context,
-          MaterialPageRoute(
-            builder: (context) {
-              return const WalletScreen();
-            },
-          ),
+          WalletScreen.route
         );
       },
     );
