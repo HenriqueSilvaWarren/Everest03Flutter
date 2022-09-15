@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/app_assets.dart';
 import 'icon_from_asset_widget.dart';
+import 'icon_from_svg_widget.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar(
@@ -20,19 +21,19 @@ class CustomBottomNavigationBar extends StatelessWidget {
       items: [
         BottomNavigationBarItem(
           label: 'Portfólio',
-          icon: IconFromAssetWidget(
+          icon: IconFromSvgWidget(
             asset: warrenInactiveIcon,
           ),
-          activeIcon: IconFromAssetWidget(
+          activeIcon: IconFromSvgWidget(
             asset: warrenActiveIcon,
           ),
         ),
         BottomNavigationBarItem(
           label: "Movimentações",
-          icon: IconFromAssetWidget(
+          icon: IconFromSvgWidget(
             asset: movInactiveIcon,
           ),
-          activeIcon: IconFromAssetWidget(
+          activeIcon: IconFromSvgWidget(
             asset: movActiveIcon,
           ),
         ),

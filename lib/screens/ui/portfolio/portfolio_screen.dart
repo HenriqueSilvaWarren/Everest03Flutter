@@ -1,35 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/body_wallet_screen.dart';
-import 'widgets/custom_bottom_navigation_bar.dart';
+import 'widgets/body_portfolio_screen.dart';
 
-class PortfolioScreen extends StatefulWidget {
+class PortfolioScreen extends StatelessWidget {
   const PortfolioScreen({super.key});
 
-  static String route = '/wallet-screen';
-
-  @override
-  State<PortfolioScreen> createState() => _PortfolioScreenState();
-}
-
-class _PortfolioScreenState extends State<PortfolioScreen> {
-  int curIndex = 0;
-
-  void _onItemTapped(int value) {
-    setState(() {
-      curIndex = value;
-    });
-  }
+  static String route = '/portfolio-screen';
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: const BodyPortfolioScreen(),
-      bottomNavigationBar: CustomBottomNavigationBar(
-        curIndex: curIndex,
-        onTap: _onItemTapped,
-      ),
-    );
+    return BodyPortfolioScreen();
   }
 }
-

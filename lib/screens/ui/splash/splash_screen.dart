@@ -1,4 +1,5 @@
 
+import 'package:card_02_listagem_crypto/screens/ui/initial/initial_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../portfolio/portfolio_screen.dart';
@@ -21,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
       (value) {
         Navigator.pushReplacementNamed(
           context,
-          PortfolioScreen.route
+          InitialScreen.route
         );
       },
     );
