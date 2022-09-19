@@ -1,5 +1,3 @@
-
-import 'package:card_02_listagem_crypto/screens/ui/initial/initial_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../portfolio/portfolio_screen.dart';

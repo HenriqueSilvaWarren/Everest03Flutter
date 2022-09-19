@@ -1,5 +1,6 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:card_02_listagem_crypto/use_cases/models/crypto_coin_model.dart';
+import 'package:card_02_listagem_crypto/screens/ui/splash/splash_screen.dart';
+import '../../../../use_cases/models/crypto_coin_model.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,6 +19,7 @@ class CryptoListCard extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
+      onTap: () => Navigator.pushNamed(context, SplashScreen.route),
       horizontalTitleGap: 8,
       shape: const Border(
         top: BorderSide(
@@ -65,7 +67,8 @@ class CryptoListCard extends HookConsumerWidget {
               ),
             ),
             AnimatedHideTextValue(
-              text: "${cryptoCoinModel.cryptoAmount} ${cryptoCoinModel.abbreviation}",
+              text:
+                  "${cryptoCoinModel.cryptoAmount} ${cryptoCoinModel.abbreviation}",
               style: GoogleFonts.sourceSansPro(
                 fontSize: 15,
                 fontWeight: FontWeight.w400,

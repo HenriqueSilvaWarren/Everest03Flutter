@@ -1,4 +1,4 @@
-import 'package:card_02_listagem_crypto/data_sources/database/get_all_crypto_coin_database.dart';
+import '../../../../data_sources/database/get_all_crypto_coin_database.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

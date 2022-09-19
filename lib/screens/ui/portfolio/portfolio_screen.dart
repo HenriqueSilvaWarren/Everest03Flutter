@@ -1,9 +1,9 @@
-import 'package:card_02_listagem_crypto/core/route_definitions.dart';
-import 'package:card_02_listagem_crypto/screens/ui/transactions/transactions_screen.dart';
+import '../../../core/route_definitions.dart';
+import '../transactions/transactions_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/body_portfolio_screen.dart';
-import 'widgets/custom_bottom_navigation_bar.dart';
+import '../../../core/utils/custom_bottom_navigation_bar.dart';
 
 class PortfolioScreen extends StatelessWidget {
   const PortfolioScreen({super.key});
@@ -20,22 +20,15 @@ class PortfolioScreen extends StatelessWidget {
         onTap: (value) {
           switch (value) {
             case 0:
-              print(routeDefinitions[PortfolioScreen.route]);
-              Navigator.pushReplacement(
+              Navigator.pushReplacementNamed(
                 context,
-                PageRouteBuilder(
-                  pageBuilder: (context, animation, secondaryAnimation) =>
-                      routeDefinitions[PortfolioScreen.route]!(context),
-                ),
+                PortfolioScreen.route
               );
               break;
             case 1:
-              Navigator.pushReplacement(
+              Navigator.pushReplacementNamed(
                 context,
-                PageRouteBuilder(
-                  pageBuilder: (context, animation, secondaryAnimation) =>
-                      routeDefinitions[TransactionsScreen.route]!(context),
-                ),
+                TransactionsScreen.route
               );
               break;
             default:
