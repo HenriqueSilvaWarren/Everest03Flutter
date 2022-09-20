@@ -30,8 +30,6 @@ class PortfolioScreen extends StatelessWidget {
                 TransactionsScreen.route
               );
               break;
-            default:
-              break;
           }
         },
       ),

@@ -1,5 +1,5 @@
-import 'package:card_02_listagem_crypto/use_cases/coin_in_portfolio_model.dart';
-import 'package:card_02_listagem_crypto/use_cases/models/portfolio_model.dart';
+import '../../use_cases/models/coin_in_portfolio_model.dart';
+import '../../use_cases/models/portfolio_model.dart';
 import 'package:decimal/decimal.dart';
 
 class GetPortfolioDatabase {
@@ -9,7 +9,7 @@ class GetPortfolioDatabase {
         CoinInPortfolioModel(
           symbol: "BTC",
           name: "Bitcoin",
-          quantity: Decimal.parse("0.65"),
+          quantity: Decimal.parse("0.65554321"),
         ),
         CoinInPortfolioModel(
           symbol: "ETH",

@@ -1,27 +1,51 @@
+import 'package:brasil_fields/brasil_fields.dart';
+import 'package:decimal/decimal.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class DetailsScreen extends StatefulWidget {
-  const DetailsScreen({Key? key}) : super(key: key);
+import '../../../core/utils/animated_hide_text_value.dart';
+import '../../../core/utils/hide_values_button.dart';
+import '../../../use_cases/models/coin_in_portfolio_model.dart';
+import '../../../use_cases/models/crypto_coin_model.dart';
+import '../../riverpod/portfolio.dart';
+import 'widgets/custom_line_chart.dart';
+import 'widgets/details_item.dart';
+import 'widgets/details_screen_card_variation.dart';
+import 'widgets/details_top_card_widget.dart';
+
+class DetailsScreen extends StatefulHookConsumerWidget {
+  const DetailsScreen({Key? key, required this.cryptoCoinModel})
+      : super(key: key);
 
   static String route = '/details-screen';
-
+  final CryptoCoinModel cryptoCoinModel;
   @override
-  State<DetailsScreen> createState() => _DetailsScreenState();
+  ConsumerState<DetailsScreen> createState() => _DetailsScreenState();
 }
 
-class _DetailsScreenState extends State<DetailsScreen> {
+class _DetailsScreenState extends ConsumerState<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> detailsArgs =
-        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-
+    CryptoCoinModel cryptoCoin = widget.cryptoCoinModel;
+    List<FlSpot> latestPrices = cryptoCoin.prices['5D']!;
+    CoinInPortfolioModel coin =
+        ref.watch(portfolioStateProvider).coins.firstWhere(
+              (coin) => coin.name == cryptoCoin.name,
+            );
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
         title: const Text(
           'Detalhes',
         ),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: HideValuesButton(),
+          )
+        ],
         backgroundColor: Colors.white,
         elevation: 0,
         shape: Border(
@@ -40,28 +64,31 @@ class _DetailsScreenState extends State<DetailsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  detailsArgs['cryptoName'],
-                  style: GoogleFonts.sourceSansPro(
-                      fontWeight: FontWeight.w700, fontSize: 32),
-                ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: Image.network(
-                    detailsArgs['cryptoImage'],
-                    height: 48,
-                  ),
-                ),
-              ],
+            DetailsTopCardWidget(cryptoCoin: cryptoCoin),
+            CustomLineChart(
+              spotsMap: widget.cryptoCoinModel.prices,
             ),
-            Text(
-              detailsArgs['cryptoSymbol'],
-              style: GoogleFonts.sourceSansPro(
-                  color: Colors.grey,
-                  fontSize: 18
+            DetailsItem(
+              title: 'Preço Atual:',
+              value: UtilBrasilFields.obterReal(
+                double.parse(
+                  Decimal.parse(
+                    latestPrices.last.y.toString(),
+                  ).toString(),
+                ),
+              ),
+            ),
+            DetailsScreenCardVariation(latestPrices: latestPrices),
+            DetailsItem(
+              title: "Quantidade",
+              value: '${coin.quantity} ${cryptoCoin.abbreviation}',
+            ),
+            DetailsItem(
+              title: "Valor",
+              value: UtilBrasilFields.obterReal(
+                (Decimal.parse(
+                        '${latestPrices.last.y * coin.quantity.toDouble()}')
+                    .toDouble()),
               ),
             ),
           ],
@@ -70,3 +97,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
     );
   }
 }
+
+
+
+

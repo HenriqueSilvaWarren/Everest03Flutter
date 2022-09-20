@@ -1,6 +1,3 @@
-import 'package:decimal/decimal.dart';
-import 'package:fl_chart/fl_chart.dart';
-
 import '../../core/app_assets.dart';
 import '../../use_cases/models/crypto_coin_model.dart';
 
