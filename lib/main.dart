@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       initialRoute: SplashScreen.route,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blue
       ),
       onGenerateRoute: (settings) {
         if (settings.name == PortfolioScreen.route ||
