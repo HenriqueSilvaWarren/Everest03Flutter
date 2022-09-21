@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.card_02_listagem_crypto">
-   <application
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application
         android:label="card_02_listagem_crypto"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

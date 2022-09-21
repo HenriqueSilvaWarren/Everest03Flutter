@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../riverpod/hide_values.dart';
+import '../../screens/riverpod/hide_values.dart';
 
 class HideValuesButton extends HookConsumerWidget {
   const HideValuesButton({
@@ -21,6 +21,7 @@ class HideValuesButton extends HookConsumerWidget {
       icon: Icon(
         !isHidden ? Icons.visibility : Icons.visibility_off,
         size: 22,
+        color: Colors.black,
       ),
     );
   }

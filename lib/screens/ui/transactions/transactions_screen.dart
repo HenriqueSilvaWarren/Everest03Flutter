@@ -1,11 +1,11 @@
-import '../../../core/app_assets.dart';
-import '../portfolio/portfolio_screen.dart';
-import '../../../core/utils/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../core/route_definitions.dart';
+import '../../../core/app_assets.dart';
+import '../../../core/utils/custom_bottom_navigation_bar.dart';
+import '../portfolio/portfolio_screen.dart';
+
 
 class TransactionsScreen extends StatelessWidget {
   const TransactionsScreen({Key? key}) : super(key: key);
@@ -42,7 +42,10 @@ class TransactionsScreen extends StatelessWidget {
               Navigator.pushReplacementNamed(context, PortfolioScreen.route);
               break;
             case 1:
-              Navigator.pushReplacementNamed(context, TransactionsScreen.route);
+              Navigator.pushReplacementNamed(
+                context,
+                TransactionsScreen.route
+              );
               break;
           }
         },

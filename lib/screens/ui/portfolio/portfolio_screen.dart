@@ -1,3 +1,5 @@
+import '../transactions/transactions_screen.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/custom_bottom_navigation_bar.dart';
@@ -22,7 +24,10 @@ class PortfolioScreen extends StatelessWidget {
               Navigator.pushReplacementNamed(context, PortfolioScreen.route);
               break;
             case 1:
-              Navigator.pushReplacementNamed(context, TransactionsScreen.route);
+              Navigator.pushReplacementNamed(
+                context,
+                TransactionsScreen.route
+              );
               break;
           }
         },
