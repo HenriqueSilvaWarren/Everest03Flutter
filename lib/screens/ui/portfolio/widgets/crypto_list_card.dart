@@ -3,6 +3,7 @@ import '../../../../use_cases/models/coin_in_portfolio_model.dart';
 import '../../../riverpod/portfolio.dart';
 import '../../details/details_screen.dart';
 import '../../../../use_cases/models/portfolio_model.dart';
+
 import '../../../../use_cases/models/crypto_coin_model.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
