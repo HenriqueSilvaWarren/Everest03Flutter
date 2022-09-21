@@ -20,9 +20,7 @@ class GetCryptoByIdWebService {
         validateStatus: (status) {
           return status! < 500;
         },
-        headers: {
-          "Accept" : "application/json"
-        },
+        headers: {"Accept": "application/json"},
       ),
     );
 
@@ -31,7 +29,7 @@ class GetCryptoByIdWebService {
     Map<String, List<FlSpot>> prices = await getHistoricalPrices(id);
 
     return CryptoCoinModel(
-        abbreviation: data["symbol"].toUpperCase(),
+        symbol: data["symbol"].toUpperCase(),
         name: data["name"],
         imagePath: data["image"]["large"],
         prices: prices);

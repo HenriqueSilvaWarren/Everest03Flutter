@@ -34,7 +34,7 @@ class DetailsTopCardWidget extends StatelessWidget {
           ],
         ),
         Text(
-          cryptoCoin.abbreviation,
+          cryptoCoin.symbol,
           style:
               GoogleFonts.sourceSansPro(color: Colors.grey, fontSize: 18),
         ),

@@ -1,19 +1,14 @@
-import 'package:brasil_fields/brasil_fields.dart';
-import 'package:decimal/decimal.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../core/utils/animated_hide_text_value.dart';
 import '../../../core/utils/hide_values_button.dart';
 import '../../../use_cases/models/coin_in_portfolio_model.dart';
 import '../../../use_cases/models/crypto_coin_model.dart';
+import '../../riverpod/get_price_from_chart.dart';
 import '../../riverpod/portfolio.dart';
-import 'widgets/custom_line_chart.dart';
-import 'widgets/details_item.dart';
-import 'widgets/details_screen_card_variation.dart';
-import 'widgets/details_top_card_widget.dart';
+import 'widgets/body_details_screen.dart';
 
 class DetailsScreen extends StatefulHookConsumerWidget {
   const DetailsScreen({Key? key, required this.cryptoCoinModel})
@@ -28,12 +23,15 @@ class DetailsScreen extends StatefulHookConsumerWidget {
 class _DetailsScreenState extends ConsumerState<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
+    String values = ref.watch(getPriceFromChartStateProvider);
     CryptoCoinModel cryptoCoin = widget.cryptoCoinModel;
     List<FlSpot> latestPrices = cryptoCoin.prices['5D']!;
-    CoinInPortfolioModel coin =
-        ref.watch(portfolioStateProvider).coins.firstWhere(
-              (coin) => coin.symbol.toLowerCase() == cryptoCoin.abbreviation.toLowerCase(),
-            );
+    List<CoinInPortfolioModel> coins = ref.watch(portfolioStateProvider).coins;
+    CoinInPortfolioModel coin = coins.firstWhere(
+      (coin) {
+        return coin.symbol.toLowerCase() == cryptoCoin.symbol.toLowerCase();
+      },
+    );
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
@@ -59,45 +57,12 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
           fontSize: 22,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            DetailsTopCardWidget(cryptoCoin: cryptoCoin),
-            CustomLineChart(
-              spotsMap: widget.cryptoCoinModel.prices,
-            ),
-            DetailsItem(
-              title: 'Preço Atual:',
-              value: UtilBrasilFields.obterReal(
-                double.parse(
-                  Decimal.parse(
-                    latestPrices.last.y.toString(),
-                  ).toString(),
-                ),
-              ),
-            ),
-            DetailsScreenCardVariation(latestPrices: latestPrices),
-            DetailsItem(
-              title: "Quantidade",
-              value: '${coin.quantity} ${cryptoCoin.abbreviation}',
-            ),
-            DetailsItem(
-              title: "Valor",
-              value: UtilBrasilFields.obterReal(
-                (Decimal.parse(
-                        '${latestPrices.last.y * coin.quantity.toDouble()}')
-                    .toDouble()),
-              ),
-            ),
-          ],
-        ),
-      ),
+      body: BodyDetailsScreen(
+          cryptoCoin: cryptoCoin,
+          values: values,
+          latestPrices: latestPrices,
+          widget: widget,
+          coin: coin),
     );
   }
 }
-
-
-
-

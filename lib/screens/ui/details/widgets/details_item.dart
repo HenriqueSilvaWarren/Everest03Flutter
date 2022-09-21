@@ -13,7 +13,29 @@ class DetailsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListTile(
+      title: Text(
+        title,
+        style: GoogleFonts.sourceSansPro(
+          fontSize: 19,
+          color: Colors.grey,
+        ),
+      ),
+      trailing: AnimatedHideTextValue(
+        text: value,
+        style: GoogleFonts.sourceSansPro(
+          fontSize: 23,
+        ),
+      ),
+      contentPadding: EdgeInsets.zero,
+      shape: const Border(
+        top: BorderSide(
+          color: Color.fromRGBO(227, 228, 235, 1),
+        ),
+      ),
+    );
+
+    Column(
       children: [
         const CustomDivider(),
         Padding(

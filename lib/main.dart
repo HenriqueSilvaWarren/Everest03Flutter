@@ -1,8 +1,8 @@
-import 'core/utils/generate_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'core/route_definitions.dart';
+import 'core/utils/generate_route.dart';
 import 'screens/ui/splash/splash_screen.dart';
 
 void main() {

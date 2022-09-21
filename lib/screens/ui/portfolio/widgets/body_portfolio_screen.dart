@@ -1,5 +1,5 @@
-import 'package:card_02_listagem_crypto/screens/riverpod/get_all_crypto_coins_from_portfolio.dart';
-import 'package:card_02_listagem_crypto/use_cases/models/crypto_coin_model.dart';
+import '../../../riverpod/get_all_crypto_coins_from_portfolio.dart';
+import '../../../../use_cases/models/crypto_coin_model.dart';
 
 import '../../../../data_sources/web_services/get_crypto_by_id_web_service.dart';
 import '../../../riverpod/portfolio.dart';

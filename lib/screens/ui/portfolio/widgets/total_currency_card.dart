@@ -1,10 +1,8 @@
-import 'package:brasil_fields/brasil_fields.dart';
-import 'package:card_02_listagem_crypto/screens/riverpod/get_all_crypto_coins_from_portfolio.dart';
-import 'package:card_02_listagem_crypto/screens/riverpod/portfolio.dart';
-import 'package:card_02_listagem_crypto/use_cases/models/coin_in_portfolio_model.dart';
-import 'package:card_02_listagem_crypto/use_cases/models/crypto_coin_model.dart';
-import 'package:card_02_listagem_crypto/use_cases/models/portfolio_model.dart';
-import 'package:decimal/decimal.dart';
+import '../../../../core/utils/get_real.dart';
+import '../../../riverpod/get_all_crypto_coins_from_portfolio.dart';
+import '../../../riverpod/portfolio.dart';
+import '../../../../use_cases/models/crypto_coin_model.dart';
+import '../../../../use_cases/models/portfolio_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -51,18 +49,17 @@ class TotalCurrencyCard extends HookConsumerWidget {
             ),
           ),
           AnimatedHideTextValue(
-            text: UtilBrasilFields.obterReal(
-              cryptoList.fold(
-                  0,
-                  (previousValue, element) =>
-                      previousValue +
-                      element.prices['5D']!.last.y *
-                          portfolio.coins
-                              .firstWhere(
-                                (coin) => coin.symbol == element.abbreviation,
-                              )
-                              .quantity
-                              .toDouble()),
+            text: getReal(
+              cryptoList.fold(0, (prevPrice, model) {
+                return prevPrice +
+                    model.prices['5D']!.last.y *
+                        portfolio.coins
+                            .firstWhere(
+                              (coin) => coin.symbol == model.symbol,
+                            )
+                            .quantity
+                            .toDouble();
+              }),
             ),
             style: GoogleFonts.montserrat(
               fontSize: 32,

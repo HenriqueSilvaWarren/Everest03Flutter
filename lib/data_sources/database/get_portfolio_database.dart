@@ -1,6 +1,7 @@
+import 'package:decimal/decimal.dart';
+
 import '../../use_cases/models/coin_in_portfolio_model.dart';
 import '../../use_cases/models/portfolio_model.dart';
-import 'package:decimal/decimal.dart';
 
 class GetPortfolioDatabase {
   static PortfolioModel getPortfolio() {

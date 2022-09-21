@@ -1,4 +1,6 @@
-import 'package:brasil_fields/brasil_fields.dart';
+import 'package:card_02_listagem_crypto/screens/riverpod/get_price_from_chart.dart';
+
+import '../../../../core/utils/get_real.dart';
 import '../../../../use_cases/models/coin_in_portfolio_model.dart';
 import '../../../riverpod/portfolio.dart';
 import '../../details/details_screen.dart';
@@ -24,14 +26,17 @@ class CryptoListCard extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     PortfolioModel portfolio = ref.watch(portfolioStateProvider);
     CoinInPortfolioModel coin = portfolio.coins.firstWhere(
-      (coin) => coin.symbol == cryptoCoinModel.abbreviation,
+      (coin) => coin.symbol == cryptoCoinModel.symbol,
     );
     return ListTile(
-      onTap: () async => Navigator.pushNamed(
-        context,
-        DetailsScreen.route,
-        arguments: cryptoCoinModel,
-      ),
+      onTap: () {
+        ref.read(getPriceFromChartStateProvider.state).state = "";
+        Navigator.pushNamed(
+          context,
+          DetailsScreen.route,
+          arguments: cryptoCoinModel,
+        );
+      },
       horizontalTitleGap: 8,
       shape: const Border(
         top: BorderSide(
@@ -49,14 +54,14 @@ class CryptoListCard extends HookConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            cryptoCoinModel.abbreviation,
+            cryptoCoinModel.symbol,
             style: GoogleFonts.sourceSansPro(
               fontWeight: FontWeight.w400,
               fontSize: 20,
             ),
           ),
           AnimatedHideTextValue(
-            text: UtilBrasilFields.obterReal(
+            text: getReal(
               Decimal.parse(
                 "${cryptoCoinModel.prices["5D"]!.last.y * double.parse(
                       '${coin.quantity}',
@@ -84,7 +89,7 @@ class CryptoListCard extends HookConsumerWidget {
             ),
             AnimatedHideTextValue(
               text:
-                  "${coin.quantity.toStringAsFixed(2)} ${cryptoCoinModel.abbreviation}",
+                  "${coin.quantity.toStringAsFixed(2)} ${cryptoCoinModel.symbol}",
               style: GoogleFonts.sourceSansPro(
                 fontSize: 15,
                 fontWeight: FontWeight.w400,

@@ -3,7 +3,6 @@ import '../transactions/transactions_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/custom_bottom_navigation_bar.dart';
-import '../transactions/transactions_screen.dart';
 import 'widgets/body_portfolio_screen.dart';
 
 class PortfolioScreen extends StatelessWidget {
