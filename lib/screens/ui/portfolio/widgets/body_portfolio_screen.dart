@@ -1,20 +1,20 @@
-import 'package:card_02_listagem_crypto/data_sources/database/get_all_crypto_coin_database.dart';
+import '../../../../data_sources/database/get_all_crypto_coin_database.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'crypto_list_card.dart';
 import 'total_currency_card.dart';
 
-class BodyWalletScreen extends StatefulHookConsumerWidget {
-  const BodyWalletScreen({
+class BodyPortfolioScreen extends StatefulHookConsumerWidget {
+  const BodyPortfolioScreen({
     Key? key,
   }) : super(key: key);
 
   @override
-  ConsumerState<BodyWalletScreen> createState() => _BodyWalletScreenState();
+  ConsumerState<BodyPortfolioScreen> createState() => _BodyWalletScreenState();
 }
 
-class _BodyWalletScreenState extends ConsumerState<BodyWalletScreen> {
+class _BodyWalletScreenState extends ConsumerState<BodyPortfolioScreen> {
   final getAllCryptoCoinDatabase = GetAllCryptoCoinDatabase();
   @override
   Widget build(BuildContext context) {
