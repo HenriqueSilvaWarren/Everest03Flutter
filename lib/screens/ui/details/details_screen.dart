@@ -58,11 +58,11 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
         ),
       ),
       body: BodyDetailsScreen(
-          cryptoCoin: cryptoCoin,
-          values: values,
-          latestPrices: latestPrices,
-          widget: widget,
-          coin: coin),
+        cryptoCoin: cryptoCoin,
+        values: values,
+        latestPrices: latestPrices,
+        coin: coin,
+      ),
     );
   }
 }

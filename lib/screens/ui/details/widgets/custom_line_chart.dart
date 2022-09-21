@@ -8,7 +8,6 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/utils/get_real.dart';
-import '../utils/line_chart_min_max_values.dart';
 import 'day_button.dart';
 
 class CustomLineChart extends StatefulHookConsumerWidget {
@@ -23,14 +22,13 @@ class _CustomLineChartState extends ConsumerState<CustomLineChart> {
   late String values;
 
   late List<FlSpot> spotsList;
-  late LineChartMinMaxValues lineChartData;
+
   List<bool> selectedIndex = [true, false, false, false, false];
 
   @override
   void initState() {
     super.initState();
     spotsList = widget.spotsMap['5D']!;
-    lineChartData = LineChartMinMaxValues(selectedList: spotsList.toList());
   }
 
   @override
@@ -57,9 +55,7 @@ class _CustomLineChartState extends ConsumerState<CustomLineChart> {
                   LineChartData(
                     lineTouchData: LineTouchData(
                       touchCallback: (p0, p1) {
-                        if (p0.runtimeType == FlTapUpEvent ||
-                            p0.runtimeType == FlPanEndEvent ||
-                            p0.runtimeType == FlLongPressEnd) {
+                        if (!p0.isInterestedForInteractions) {
                           setState(
                             () {
                               stateGetPrice.state = getReal(spotsList.last.y);
@@ -142,10 +138,6 @@ class _CustomLineChartState extends ConsumerState<CustomLineChart> {
                         },
                       ),
                     ),
-                    minY: lineChartData.minY,
-                    minX: lineChartData.minX,
-                    maxX: lineChartData.maxX,
-                    maxY: lineChartData.maxY,
                     lineBarsData: [
                       LineChartBarData(
                         color: const Color.fromRGBO(238, 46, 93, 1),
@@ -195,9 +187,6 @@ class _CustomLineChartState extends ConsumerState<CustomLineChart> {
                             selectedIndex[i] = i == index;
                           }
                           spotsList = widget.spotsMap[daysButtons[index].text]!;
-                          lineChartData = LineChartMinMaxValues(
-                            selectedList: spotsList.toList(),
-                          );
                         },
                       );
                     },

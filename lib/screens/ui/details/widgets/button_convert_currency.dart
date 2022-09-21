@@ -20,7 +20,7 @@ class ButtonConvertCurrency extends StatelessWidget {
           alignment: Alignment.center,
           width: MediaQuery.of(context).size.width,
           height: 56,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
           child: Text(
             "Converter moeda",
             style: GoogleFonts.sourceSansPro(

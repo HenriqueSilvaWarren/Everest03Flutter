@@ -8,7 +8,6 @@ import '../../../../core/utils/animated_hide_text_value.dart';
 import '../../../../core/utils/get_real.dart';
 import '../../../../use_cases/models/coin_in_portfolio_model.dart';
 import '../../../../use_cases/models/crypto_coin_model.dart';
-import '../details_screen.dart';
 import 'button_convert_currency.dart';
 import 'custom_line_chart.dart';
 import 'details_item.dart';
@@ -21,14 +20,13 @@ class BodyDetailsScreen extends StatelessWidget {
     required this.cryptoCoin,
     required this.values,
     required this.latestPrices,
-    required this.widget,
     required this.coin,
   }) : super(key: key);
 
   final CryptoCoinModel cryptoCoin;
   final String values;
   final List<FlSpot> latestPrices;
-  final DetailsScreen widget;
+
   final CoinInPortfolioModel coin;
 
   @override
@@ -49,16 +47,14 @@ class BodyDetailsScreen extends StatelessWidget {
               ),
             ),
             CustomLineChart(
-              spotsMap: widget.cryptoCoinModel.prices,
+              spotsMap: cryptoCoin.prices,
             ),
             DetailsItem(
               title: 'Preço Atual:',
               value: UtilBrasilFields.obterReal(
-                double.parse(
-                  Decimal.parse(
-                    latestPrices.last.y.toString(),
-                  ).toString(),
-                ),
+                Decimal.parse(
+                  latestPrices.last.y.toString(),
+                ).toDouble(),
               ),
             ),
             DetailsScreenCardVariation(latestPrices: latestPrices),
@@ -68,7 +64,7 @@ class BodyDetailsScreen extends StatelessWidget {
             ),
             DetailsItem(
               title: "Valor",
-              value: UtilBrasilFields.obterReal(
+              value: getReal(
                 Decimal.parse(
                         '${latestPrices.last.y * coin.quantity.toDouble()}')
                     .toDouble(),
