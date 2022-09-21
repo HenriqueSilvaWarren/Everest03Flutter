@@ -32,7 +32,7 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
     List<FlSpot> latestPrices = cryptoCoin.prices['5D']!;
     CoinInPortfolioModel coin =
         ref.watch(portfolioStateProvider).coins.firstWhere(
-              (coin) => coin.name == cryptoCoin.name,
+              (coin) => coin.symbol.toLowerCase() == cryptoCoin.abbreviation.toLowerCase(),
             );
     return Scaffold(
       appBar: AppBar(

@@ -22,6 +22,11 @@ class GetPortfolioDatabase {
           quantity: Decimal.parse("0.82"),
         ),
         CoinInPortfolioModel(
+          symbol: "MATIC",
+          name: "matic-network",
+          quantity: Decimal.parse("0.82"),
+        ),
+        CoinInPortfolioModel(
           symbol: "DOGE",
           name: "Dogecoin",
           quantity: Decimal.parse("100.25"),
