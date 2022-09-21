@@ -1,5 +1,5 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:card_02_listagem_crypto/screens/ui/splash/splash_screen.dart';
+import '../../splash/splash_screen.dart';
 import '../../../../use_cases/models/crypto_coin_model.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';

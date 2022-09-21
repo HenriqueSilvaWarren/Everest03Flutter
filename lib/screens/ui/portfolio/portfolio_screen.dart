@@ -1,9 +1,8 @@
-import '../../../core/route_definitions.dart';
-import '../transactions/transactions_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/body_portfolio_screen.dart';
 import '../../../core/utils/custom_bottom_navigation_bar.dart';
+import '../transactions/transactions_screen.dart';
+import 'widgets/body_portfolio_screen.dart';
 
 class PortfolioScreen extends StatelessWidget {
   const PortfolioScreen({super.key});
@@ -20,18 +19,10 @@ class PortfolioScreen extends StatelessWidget {
         onTap: (value) {
           switch (value) {
             case 0:
-              Navigator.pushReplacementNamed(
-                context,
-                PortfolioScreen.route
-              );
+              Navigator.pushReplacementNamed(context, PortfolioScreen.route);
               break;
             case 1:
-              Navigator.pushReplacementNamed(
-                context,
-                TransactionsScreen.route
-              );
-              break;
-            default:
+              Navigator.pushReplacementNamed(context, TransactionsScreen.route);
               break;
           }
         },

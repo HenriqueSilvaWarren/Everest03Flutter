@@ -1,5 +1,5 @@
-import 'package:card_02_listagem_crypto/screens/ui/portfolio/portfolio_screen.dart';
-import 'package:card_02_listagem_crypto/screens/ui/transactions/transactions_screen.dart';
+import 'screens/ui/portfolio/portfolio_screen.dart';
+import 'screens/ui/transactions/transactions_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
