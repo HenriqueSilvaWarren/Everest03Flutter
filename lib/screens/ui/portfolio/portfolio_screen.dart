@@ -23,10 +23,7 @@ class PortfolioScreen extends StatelessWidget {
               Navigator.pushReplacementNamed(context, PortfolioScreen.route);
               break;
             case 1:
-              Navigator.pushReplacementNamed(
-                context,
-                TransactionsScreen.route
-              );
+              Navigator.pushReplacementNamed(context, TransactionsScreen.route);
               break;
           }
         },

@@ -7,7 +7,6 @@ import '../../use_cases/models/crypto_coin_model.dart';
 import '../route_definitions.dart';
 
 Route<dynamic>? generateRoute(RouteSettings settings) {
-  
   if (settings.name == PortfolioScreen.route ||
       settings.name == TransactionsScreen.route) {
     return PageRouteBuilder(
@@ -19,7 +18,7 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
     );
   }
   if (settings.name == DetailsScreen.route) {
-    final args = settings.arguments as CryptoCoinModel;
+    
     return PageRouteBuilder(
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         animation = CurvedAnimation(
@@ -37,9 +36,7 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
       transitionDuration: const Duration(milliseconds: 500),
       settings: settings,
       pageBuilder: (context, animation, secondaryAnimation) {
-        return DetailsScreen(
-          cryptoCoinModel: args,
-        );
+        return const DetailsScreen();
       },
     );
   }

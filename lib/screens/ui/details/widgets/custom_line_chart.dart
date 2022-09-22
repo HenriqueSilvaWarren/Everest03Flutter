@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:brasil_fields/brasil_fields.dart';
+import 'package:card_02_listagem_crypto/screens/riverpod/get_crypto_model_for_details_screen.dart';
 import 'package:card_02_listagem_crypto/screens/riverpod/get_price_from_chart.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -11,14 +12,15 @@ import '../../../../core/utils/get_real.dart';
 import 'day_button.dart';
 
 class CustomLineChart extends StatefulHookConsumerWidget {
-  const CustomLineChart({Key? key, required this.spotsMap}) : super(key: key);
-  final Map<String, List<FlSpot>> spotsMap;
+  const CustomLineChart({Key? key}) : super(key: key);
 
   @override
   ConsumerState<CustomLineChart> createState() => _CustomLineChartState();
 }
 
 class _CustomLineChartState extends ConsumerState<CustomLineChart> {
+  late Map<String, List<FlSpot>> spotsMap;
+  
   late String values;
 
   late List<FlSpot> spotsList;
@@ -27,8 +29,8 @@ class _CustomLineChartState extends ConsumerState<CustomLineChart> {
 
   @override
   void initState() {
-    super.initState();
-    spotsList = widget.spotsMap['5D']!;
+    spotsMap = ref.read(getCryptoModelForDetailsScreen).prices;
+    spotsList = spotsMap['5D']!;
   }
 
   @override
@@ -186,7 +188,7 @@ class _CustomLineChartState extends ConsumerState<CustomLineChart> {
                           for (int i = 0; i < selectedIndex.length; i++) {
                             selectedIndex[i] = i == index;
                           }
-                          spotsList = widget.spotsMap[daysButtons[index].text]!;
+                          spotsList = spotsMap[daysButtons[index].text]!;
                         },
                       );
                     },

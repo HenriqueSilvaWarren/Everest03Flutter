@@ -1,3 +1,4 @@
+import 'package:card_02_listagem_crypto/screens/riverpod/get_crypto_model_for_details_screen.dart';
 import 'package:card_02_listagem_crypto/screens/riverpod/get_price_from_chart.dart';
 
 import '../../../../core/utils/get_real.dart';
@@ -31,10 +32,11 @@ class CryptoListCard extends HookConsumerWidget {
     return ListTile(
       onTap: () {
         ref.read(getPriceFromChartStateProvider.state).state = "";
+        ref.read(getCryptoModelForDetailsScreen.state).state = cryptoCoinModel;
         Navigator.pushNamed(
           context,
           DetailsScreen.route,
-          arguments: cryptoCoinModel,
+         
         );
       },
       horizontalTitleGap: 8,
