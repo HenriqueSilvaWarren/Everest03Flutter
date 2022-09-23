@@ -1,19 +1,17 @@
-import 'package:card_02_listagem_crypto/screens/riverpod/get_crypto_model_for_details_screen.dart';
-import 'package:card_02_listagem_crypto/screens/riverpod/get_price_from_chart.dart';
-
-import '../../../../core/utils/get_real.dart';
-import '../../../../use_cases/models/coin_in_portfolio_model.dart';
-import '../../../riverpod/portfolio.dart';
-import '../../details/details_screen.dart';
-import '../../../../use_cases/models/portfolio_model.dart';
-
-import '../../../../use_cases/models/crypto_coin_model.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/utils/animated_hide_text_value.dart';
+import '../../../../core/utils/get_real.dart';
+import '../../../../use_cases/models/coin_in_portfolio_model.dart';
+import '../../../../use_cases/models/crypto_coin_model.dart';
+import '../../../../use_cases/models/portfolio_model.dart';
+import '../../../riverpod/get_crypto_model_for_details_screen.dart';
+import '../../../riverpod/get_price_from_chart.dart';
+import '../../../riverpod/portfolio.dart';
+import '../../details/details_screen.dart';
 
 class CryptoListCard extends HookConsumerWidget {
   const CryptoListCard({
@@ -36,7 +34,6 @@ class CryptoListCard extends HookConsumerWidget {
         Navigator.pushNamed(
           context,
           DetailsScreen.route,
-         
         );
       },
       horizontalTitleGap: 8,

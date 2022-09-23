@@ -29,6 +29,7 @@ class _CustomLineChartState extends ConsumerState<CustomLineChart> {
 
   @override
   void initState() {
+    super.initState();
     spotsMap = ref.read(getCryptoModelForDetailsScreen).prices;
     spotsList = spotsMap['5D']!;
   }

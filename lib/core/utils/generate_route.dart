@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../screens/ui/details/details_screen.dart';
 import '../../screens/ui/portfolio/portfolio_screen.dart';
 import '../../screens/ui/transactions/transactions_screen.dart';
-import '../../use_cases/models/crypto_coin_model.dart';
 import '../route_definitions.dart';
 
 Route<dynamic>? generateRoute(RouteSettings settings) {
