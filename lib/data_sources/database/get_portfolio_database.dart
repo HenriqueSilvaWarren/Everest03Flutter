@@ -1,6 +1,7 @@
+import 'package:decimal/decimal.dart';
+
 import '../../use_cases/models/coin_in_portfolio_model.dart';
 import '../../use_cases/models/portfolio_model.dart';
-import 'package:decimal/decimal.dart';
 
 class GetPortfolioDatabase {
   static PortfolioModel getPortfolio() {
@@ -19,6 +20,11 @@ class GetPortfolioDatabase {
         CoinInPortfolioModel(
           symbol: "LTC",
           name: "Litecoin",
+          quantity: Decimal.parse("0.82"),
+        ),
+        CoinInPortfolioModel(
+          symbol: "MATIC",
+          name: "matic-network",
           quantity: Decimal.parse("0.82"),
         ),
         CoinInPortfolioModel(

@@ -7,6 +7,7 @@ import '../../use_cases/models/crypto_coin_model.dart';
 import '../route_definitions.dart';
 
 Route<dynamic>? generateRoute(RouteSettings settings) {
+  
   if (settings.name == PortfolioScreen.route ||
       settings.name == TransactionsScreen.route) {
     return PageRouteBuilder(

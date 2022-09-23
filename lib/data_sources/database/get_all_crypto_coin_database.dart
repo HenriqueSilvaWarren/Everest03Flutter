@@ -5,19 +5,19 @@ class GetAllCryptoCoinDatabase {
   List<CryptoCoinModel> getAllCryptoCoin() {
     return [
       CryptoCoinModel(
-        abbreviation: 'BTC',
+        symbol: 'BTC',
         name: "Bitcoin",
         imagePath: bitcoinImage,
         prices: {},
       ),
       CryptoCoinModel(
-        abbreviation: 'ETH',
+        symbol: 'ETH',
         name: "Ethereum",
         imagePath: ethereumImage,
         prices: {},
       ),
       CryptoCoinModel(
-        abbreviation: 'LTC',
+        symbol: 'LTC',
         name: "Litecoin",
         imagePath: litecoinImage,
         prices: {},
