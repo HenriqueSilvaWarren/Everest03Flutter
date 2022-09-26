@@ -2,12 +2,12 @@
 
 import 'package:decimal/decimal.dart';
 
-class CoinInPortfolioModel {
+class CoinInPortfolioViewData {
   String symbol;
   String name;
   Decimal quantity;
 
-  CoinInPortfolioModel({
+  CoinInPortfolioViewData({
     required this.symbol,
     required this.name,
     required this.quantity,

@@ -1,3 +1,5 @@
+import '../../../../../core/utils/loading_monetary_value.dart';
+import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -5,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../core/utils/animated_hide_text_value.dart';
 import '../../../../../core/utils/get_real.dart';
 import '../../../../../core/utils/hide_values_button.dart';
-import '../../../riverpod/api/coin_gecko/screens/crypto_coin_based_on_portfolio_provider.dart';
+import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_coin_based_on_portfolio_provider.dart';
 
 class TotalCurrencyCard extends HookConsumerWidget {
   const TotalCurrencyCard({
@@ -14,7 +16,6 @@ class TotalCurrencyCard extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cryptoList = ref.watch(cryptoCoinBasedOnPortfolioProvider);
     return Container(
       margin: const EdgeInsets.only(
         top: 10,
@@ -42,23 +43,45 @@ class TotalCurrencyCard extends HookConsumerWidget {
               ],
             ),
           ),
-          cryptoList.when(
-              data: (cryptoList) => AnimatedHideTextValue(
-                    text: getReal(
-                      cryptoList.listCrypto.fold(
-                        0,
-                        (prevPrice, model) {
-                          return prevPrice + model.currentPrice.toDouble();
-                        },
-                      ),
-                    ),
-                    style: GoogleFonts.montserrat(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w700,
+          ref.watch(portfolioProvider).when(
+            data: (portfolio) {
+              final cryptoList =
+                  ref.watch(cryptoCoinBasedOnPortfolioProvider(portfolio));
+              return cryptoList.when(
+                data: (cryptoList) => AnimatedHideTextValue(
+                  text: getReal(
+                    cryptoList.listCrypto.fold(
+                      0,
+                      (prevPrice, model) {
+                        return prevPrice +
+                            model.currentPrice.toDouble() *
+                                portfolio.coins
+                                    .firstWhere(
+                                      (coin) =>
+                                          coin.symbol.toLowerCase() ==
+                                          model.symbol.toLowerCase(),
+                                    )
+                                    .quantity
+                                    .toDouble();
+                      },
                     ),
                   ),
-              error: (error, stackTrace) =>  Text(''),
-              loading: () => const Text('')),
+                  style: GoogleFonts.montserrat(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                error: (error, stackTrace) => const Text(''),
+                loading: () => const LoadingMonetaryValue(),
+              );
+            },
+            error: (error, stackTrace) {
+              return const SizedBox.shrink();
+            },
+            loading: () {
+              return const LoadingMonetaryValue();
+            },
+          ),
           Text(
             "Valor total de moedas",
             style: GoogleFonts.sourceSansPro(

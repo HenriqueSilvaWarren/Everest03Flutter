@@ -2,7 +2,6 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/get_spots_map_state_notifier_provider.dart';
 import 'package:decimal/decimal.dart';
-
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -10,7 +9,6 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../core/utils/get_real.dart';
-import '../../../riverpod/view/crypto_prices_list_provider.dart';
 import '../../../riverpod/view/get_price_from_chart.dart';
 import 'day_button.dart';
 
@@ -164,20 +162,7 @@ class _CustomLineChartState extends ConsumerState<CustomLineChart> {
                       ),
                     ),
                     gridData: FlGridData(show: false),
-                    titlesData: FlTitlesData(
-                      topTitles: AxisTitles(
-                        sideTitles: SideTitles(showTitles: false),
-                      ),
-                      rightTitles: AxisTitles(
-                        sideTitles: SideTitles(showTitles: false),
-                      ),
-                      bottomTitles: AxisTitles(
-                        sideTitles: SideTitles(showTitles: false),
-                      ),
-                      leftTitles: AxisTitles(
-                        sideTitles: SideTitles(showTitles: false),
-                      ),
-                    ),
+                    titlesData: FlTitlesData(show: false),
                   ),
                   swapAnimationDuration: const Duration(milliseconds: 0),
                   swapAnimationCurve: Curves.easeIn,

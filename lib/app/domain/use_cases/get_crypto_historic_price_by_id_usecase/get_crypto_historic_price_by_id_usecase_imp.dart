@@ -5,7 +5,7 @@ import 'get_crypto_historic_price_by_id_usecase.dart';
 
 class GetCryptoHistoricPriceByIdUsecaseImp
     implements GetCryptoHistoricPriceByIdUsecase {
-  @override
+
   final CryptoCoinRepository repository;
   GetCryptoHistoricPriceByIdUsecaseImp(this.repository);
 

@@ -1,4 +1,3 @@
-import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/crypto_prices_list_provider.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

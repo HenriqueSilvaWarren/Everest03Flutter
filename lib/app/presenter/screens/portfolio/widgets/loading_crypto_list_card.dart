@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class CryptoListReplacementCard extends StatelessWidget {
-  const CryptoListReplacementCard({
+class LoadingCryptoListCard extends StatelessWidget {
+  const LoadingCryptoListCard({
     Key? key,
   }) : super(key: key);
 

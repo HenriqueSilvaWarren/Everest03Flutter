@@ -1,3 +1,4 @@
+import '../../domain/view_datas/portfolio_view_data.dart';
 import 'package:decimal/decimal.dart';
 
 import '../../domain/repositories/crypto_coin_repository.dart';
@@ -13,8 +14,8 @@ class CryptoCoinRepositoryImp implements CryptoCoinRepository {
 
   @override
   Future<List<GetCryptoCoinBasedOnPortfolioResponse>>
-      getCryptoCoinBasedOnPortfolio() async {
-    final result = await cryptoCoinDatasource.getCryptoCoinBasedOnPortfolio();
+      getCryptoCoinBasedOnPortfolio(PortfolioViewData portfolio) async {
+    final result = await cryptoCoinDatasource.getCryptoCoinBasedOnPortfolio(portfolio);
 
     return List<GetCryptoCoinBasedOnPortfolioResponse>.from(
       result.data
