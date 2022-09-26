@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../screens/riverpod/hide_values.dart';
+import '../../app/presenter/riverpod/view/hide_values.dart';
+
+
 
 class AnimatedHideTextValue extends HookConsumerWidget {
   const AnimatedHideTextValue({

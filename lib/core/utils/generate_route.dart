@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../screens/ui/details/details_screen.dart';
-import '../../screens/ui/portfolio/portfolio_screen.dart';
-import '../../screens/ui/transactions/transactions_screen.dart';
+
+import '../../app/presenter/screens/details/details_screen.dart';
+import '../../app/presenter/screens/portfolio/portfolio_screen.dart';
+import '../../app/presenter/screens/transactions/transactions_screen.dart';
 import '../route_definitions.dart';
 
 Route<dynamic>? generateRoute(RouteSettings settings) {
@@ -17,7 +18,6 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
     );
   }
   if (settings.name == DetailsScreen.route) {
-    
     return PageRouteBuilder(
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         animation = CurvedAnimation(

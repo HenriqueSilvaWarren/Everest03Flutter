@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../screens/ui/portfolio/widgets/icon_from_svg_widget.dart';
+import '../../app/presenter/screens/portfolio/widgets/icon_from_svg_widget.dart';
 import '../app_assets.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
