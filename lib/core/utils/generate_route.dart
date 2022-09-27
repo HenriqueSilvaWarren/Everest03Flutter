@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import '../../app/presenter/screens/details/details_screen.dart';
 import '../../app/presenter/screens/portfolio/portfolio_screen.dart';
 import '../../app/presenter/screens/transactions/transactions_screen.dart';

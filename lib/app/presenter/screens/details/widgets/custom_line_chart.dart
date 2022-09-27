@@ -76,8 +76,8 @@ class _CustomLineChartState extends ConsumerState<CustomLineChart> {
                             setState(
                               () {
                                 stateGetPrice.state = getReal(
-                                    spotsList[p1!.lineBarSpots![0].spotIndex]
-                                        .y);
+                                  spotsList[p1!.lineBarSpots![0].spotIndex].y,
+                                );
                               },
                             );
                           }

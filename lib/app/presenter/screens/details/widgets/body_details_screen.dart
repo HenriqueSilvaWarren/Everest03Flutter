@@ -33,7 +33,8 @@ class BodyDetailsScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue<CryptoHistoricPriceViewData> cryptoPrices = ref.watch(
       cryptoHistoricPriceByIdProvider(
-          ref.read(getCryptoIdStateProvider.state).state),
+        ref.read(getCryptoIdStateProvider.state).state,
+      ),
     );
 
     String values = ref.watch(getPriceFromChartStateProvider);
@@ -122,7 +123,8 @@ class BodyDetailsScreen extends HookConsumerWidget {
                     ),
                     DetailsItem(
                       title: "Quantidade",
-                      value: '${coin.quantity} ${cryptoCoin.symbol.toUpperCase()}',
+                      value:
+                          '${coin.quantity} ${cryptoCoin.symbol.toUpperCase()}',
                     ),
                     DetailsItem(
                       title: "Valor",
@@ -149,4 +151,3 @@ class BodyDetailsScreen extends HookConsumerWidget {
     );
   }
 }
-
