@@ -2,7 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-import 'day_button.dart';
+import '../widgets/day_button.dart';
 
 class LoadingChart extends StatelessWidget {
   const LoadingChart({

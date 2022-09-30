@@ -1,6 +1,7 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:card_02_listagem_crypto/app/presenter/screens/conversion/widgets/dropdown_button_right.dart';
 import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
+import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
 import '../utils/is_valid_method.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
@@ -16,17 +17,10 @@ class ConversionFormWidget extends StatefulHookConsumerWidget {
   }) : super(key: key);
 
   @override
-  ConsumerState<ConversionFormWidget> createState() =>
-      _ConversionFormWidgetState();
+  ConsumerState<ConversionFormWidget> createState() {
+    return _ConversionFormWidgetState();
+  }
 }
-
-final conversionControllerTextStateProvider = StateProvider(
-  (ref) => '',
-);
-
-final isValidProvider = StateProvider(
-  (ref) => false,
-);
 
 class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
   TextEditingController controller = TextEditingController();
@@ -57,9 +51,11 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
     crypto = ref.watch(cryptoDropdownLeftProvider);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 23.5,
-        vertical: 16,
+      padding: const EdgeInsets.only(
+        left: 23.5,
+        right: 23.5,
+        top: 16,
+       
       ),
       child: FormField(
         key: _formKey,
@@ -105,6 +101,8 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
                   ConversionFormatter(crypto),
                 ],
                 decoration: InputDecoration(
+                  helperText:getValueHelperText(),
+                  
                   hintText: '${crypto.symbol.toUpperCase()} 0,00',
                 ),
                 style: const TextStyle(),
@@ -112,9 +110,7 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
               const SizedBox(
                 height: 8,
               ),
-              Text(
-                getValueHelperText(),
-              ),
+             
             ],
           );
         },

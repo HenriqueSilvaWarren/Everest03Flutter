@@ -1,4 +1,5 @@
 import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
+import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
 import 'dropdown_button_right.dart';
 import 'package:decimal/decimal.dart';
 
@@ -9,7 +10,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../domain/view_datas/crypto_coin_view_data.dart';
 import '../../../riverpod/view/crypto_drop_down_left_provider.dart';
 import '../utils/is_valid_method.dart';
-import 'conversion_form_widget.dart';
 
 // ignore: must_be_immutable
 class ConversionScreenBottomAppBar extends HookConsumerWidget {
@@ -22,13 +22,11 @@ class ConversionScreenBottomAppBar extends HookConsumerWidget {
   late String controllerText;
   late bool isValidBool;
   String exchangedCurrency() {
-    // if (cryptoRight) {
-    //   return 'Moeda não selecionada';
-    // }
     if (controllerText.isEmpty ||
         controllerText == '${cryptoLeft.symbol.toUpperCase()} ') {
       return 'Valor não informado';
     }
+
     String quantity = controllerText.split(' ')[1];
     quantity = quantity.replaceAll(',', '.');
     Decimal decimalQuantity = Decimal.parse(quantity);
@@ -50,7 +48,7 @@ class ConversionScreenBottomAppBar extends HookConsumerWidget {
       ref.watch(portfolioProvider).value!,
       text: controllerText,
       cryptoLeft: cryptoLeft,
-      cryptoRight: cryptoRight
+      cryptoRight: cryptoRight,
     );
     return BottomAppBar(
       elevation: 0,

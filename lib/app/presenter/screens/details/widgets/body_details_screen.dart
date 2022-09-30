@@ -15,13 +15,13 @@ import '../../../../domain/view_datas/crypto_coin_view_data.dart';
 import '../../../riverpod/view/get_crypto_state_provider.dart';
 import '../../../riverpod/view/get_price_from_chart.dart';
 
+import '../loading_widgets/loading_chart.dart';
+import '../loading_widgets/loading_details_variation.dart';
 import 'button_convert_currency.dart';
 import 'custom_line_chart.dart';
 import 'details_item.dart';
 import 'details_item_variation.dart';
 import 'details_top_card_widget.dart';
-import 'loading_chart.dart';
-import 'loading_details_variation.dart';
 
 class BodyDetailsScreen extends HookConsumerWidget {
   const BodyDetailsScreen({

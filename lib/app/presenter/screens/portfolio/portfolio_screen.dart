@@ -1,4 +1,4 @@
-import 'widgets/loading_portfolio_screen.dart';
+import 'loading_widgets/loading_portfolio_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/utils/custom_bottom_navigation_bar.dart';
