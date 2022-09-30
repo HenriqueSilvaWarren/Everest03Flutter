@@ -1,6 +1,6 @@
-import '../screens/ui/portfolio/portfolio_screen.dart';
-import '../screens/ui/splash/splash_screen.dart';
-import '../screens/ui/transactions/transactions_screen.dart';
+import '../app/presenter/screens/portfolio/portfolio_screen.dart';
+import '../app/presenter/screens/splash/splash_screen.dart';
+import '../app/presenter/screens/transactions/transactions_screen.dart';
 
 var routeDefinitions = {
   SplashScreen.route: (context) => const SplashScreen(),
