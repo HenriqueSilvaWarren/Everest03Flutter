@@ -96,10 +96,13 @@ class ConversionScreenBottomAppBar extends HookConsumerWidget {
                 ],
               ),
             ),
-            MaterialButton(
+            FloatingActionButton(
               shape: const CircleBorder(),
-              color: const Color.fromRGBO(224, 43, 87, 1),
-              disabledColor: const Color.fromRGBO(201, 202, 212, 1),
+              foregroundColor: Colors.white,
+              disabledElevation: 0,
+              backgroundColor: isValidBool
+                  ? const Color.fromRGBO(224, 43, 87, 1)
+                  : Colors.grey,
               onPressed: isValidBool ? () {} : null,
               child: Container(
                 height: 50,
@@ -109,7 +112,6 @@ class ConversionScreenBottomAppBar extends HookConsumerWidget {
                 ),
                 child: const Icon(
                   Icons.arrow_forward,
-                  color: Colors.white,
                   size: 20,
                 ),
               ),
