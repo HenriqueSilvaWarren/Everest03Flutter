@@ -1,10 +1,10 @@
+import 'loading_portfolio_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../domain/view_datas/portfolio_view_data.dart';
 import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_coin_based_on_portfolio_provider.dart';
-import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
 import 'crypto_list_card.dart';
-import 'loading_crypto_list.dart';
 import 'total_currency_card.dart';
 
 class BodyPortfolioScreen extends HookConsumerWidget {
@@ -50,5 +50,6 @@ class BodyPortfolioScreen extends HookConsumerWidget {
         ],
       ),
     );
+
   }
 }

@@ -1,25 +1,18 @@
-import '../../../../domain/view_datas/list_crypto_view_data.dart';
-import '../../../../domain/view_datas/portfolio_view_data.dart';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/utils/animated_hide_text_value.dart';
 import '../../../../../core/utils/get_real.dart';
 import '../../../../../core/utils/hide_values_button.dart';
 
-class TotalCurrencyCard extends HookConsumerWidget {
-  const TotalCurrencyCard({
+class LoadingPortfolioTopCard extends StatelessWidget {
+  const LoadingPortfolioTopCard({
     Key? key,
-    required this.cryptoList,
-    required this.portfolio,
   }) : super(key: key);
 
-  final ListCryptoViewData cryptoList;
-  final PortfolioViewData portfolio;
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(
         top: 10,
@@ -47,27 +40,15 @@ class TotalCurrencyCard extends HookConsumerWidget {
               ],
             ),
           ),
-          AnimatedHideTextValue(
-            text: getReal(
-              cryptoList.listCrypto.fold(
-                0,
-                (prevPrice, model) {
-                  return prevPrice +
-                      model.currentPrice.toDouble() *
-                          portfolio.coins
-                              .firstWhere(
-                                (coin) =>
-                                    coin.symbol.toLowerCase() ==
-                                    model.symbol.toLowerCase(),
-                              )
-                              .quantity
-                              .toDouble();
-                },
+          Shimmer.fromColors(
+            baseColor: Colors.grey.shade300,
+            highlightColor: Colors.grey.shade200,
+            child: AnimatedHideTextValue(
+              text: getReal(0),
+              style: GoogleFonts.montserrat(
+                fontSize: 32,
+                fontWeight: FontWeight.w700,
               ),
-            ),
-            style: GoogleFonts.montserrat(
-              fontSize: 32,
-              fontWeight: FontWeight.w700,
             ),
           ),
           Text(

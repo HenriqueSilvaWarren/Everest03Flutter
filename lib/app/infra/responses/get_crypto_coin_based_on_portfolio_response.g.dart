@@ -6,10 +6,10 @@ part of 'get_crypto_coin_based_on_portfolio_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetCryptoCoinBasedOnPortfolioResponse
-    _$GetCryptoCoinBasedOnPortfolioResponseFromJson(
+GetCryptoCoinResponse
+    _$GetCryptoCoinResponseFromJson(
             Map<String, dynamic> json) =>
-        GetCryptoCoinBasedOnPortfolioResponse(
+        GetCryptoCoinResponse(
           id: json['id'] as String,
           symbol: json['symbol'] as String,
           name: json['name'] as String,
@@ -19,8 +19,8 @@ GetCryptoCoinBasedOnPortfolioResponse
               Decimal.fromJson(json['price_change_percentage_24h'].toString()),
         );
 
-Map<String, dynamic> _$GetCryptoCoinBasedOnPortfolioResponseToJson(
-        GetCryptoCoinBasedOnPortfolioResponse instance) =>
+Map<String, dynamic> _$GetCryptoCoinResponseToJson(
+        GetCryptoCoinResponse instance) =>
     <String, dynamic>{
       'id': instance.id,
       'symbol': instance.symbol,

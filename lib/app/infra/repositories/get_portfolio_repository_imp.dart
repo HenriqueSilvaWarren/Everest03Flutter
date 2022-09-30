@@ -1,7 +1,6 @@
-import '../responses/get_portfolio_by_id_response.dart';
-
 import '../../domain/repositories/get_portfolio_repository.dart';
 import '../data_sources/get_portfolio_datasource.dart';
+import '../responses/get_portfolio_by_id_response.dart';
 
 class GetPortfolioRepositoryImp implements GetPortfolioRepository {
   GetPortfolioDatasource database;

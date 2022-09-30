@@ -1,3 +1,4 @@
+import '../../../../domain/view_datas/list_crypto_view_data.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -7,7 +8,7 @@ import '../../../../../core/utils/get_real.dart';
 import '../../../../domain/view_datas/coin_in_portfolio_view_data.dart';
 import '../../../../domain/view_datas/crypto_coin_view_data.dart';
 import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
-import '../../../riverpod/view/get_crypto_id_state_provider.dart';
+import '../../../riverpod/view/get_crypto_state_provider.dart';
 import '../../../riverpod/view/get_price_from_chart.dart';
 import '../../details/details_screen.dart';
 
@@ -15,8 +16,10 @@ class CryptoListCard extends HookConsumerWidget {
   const CryptoListCard({
     Key? key,
     required this.cryptoCoinViewData,
+    required this.listCryptosFromPortfolio,
   }) : super(key: key);
 
+  final ListCryptoViewData listCryptosFromPortfolio;
   final CryptoCoinViewData cryptoCoinViewData;
 
   @override
@@ -31,8 +34,8 @@ class CryptoListCard extends HookConsumerWidget {
         return ListTile(
           onTap: () {
             ref.read(getPriceFromChartStateProvider.state).state = "";
-            ref.read(getCryptoIdStateProvider.state).state =
-                cryptoCoinViewData.id;
+            ref.read(getCryptoStateProvider.state).state = cryptoCoinViewData;
+            
             Navigator.pushNamed(
               context,
               DetailsScreen.route,

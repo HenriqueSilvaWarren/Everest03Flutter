@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
-
 import '../../../../core/app_assets.dart';
 import '../../../../core/utils/custom_bottom_navigation_bar.dart';
 import '../portfolio/portfolio_screen.dart';

@@ -44,11 +44,13 @@ dependencies:
   fl_chart: ^0.55.1
   dio: ^4.0.6
   intl: ^0.17.0
-
+  json_annotation: ^4.7.0
+  mask_text_input_formatter: ^2.4.0
+  pattern_formatter: ^2.0.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  json_annotation: ^4.7.0
   json_serializable: ^6.4.0
   build_runner: ^2.2.1
 
