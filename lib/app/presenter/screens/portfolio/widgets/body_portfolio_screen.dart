@@ -8,21 +8,16 @@ import '../../../../domain/view_datas/portfolio_view_data.dart';
 import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_coin_based_on_portfolio_provider.dart';
 import 'total_currency_card.dart';
 
-class BodyPortfolioScreen extends StatefulHookConsumerWidget {
-  const BodyPortfolioScreen({Key? key, required this.portfolio})
-      : super(key: key);
-
+class BodyPortfolioScreen extends HookConsumerWidget {
+  const BodyPortfolioScreen({
+    Key? key,
+    required this.portfolio,
+  }) : super(key: key);
   final PortfolioViewData portfolio;
 
   @override
-  ConsumerState<BodyPortfolioScreen> createState() =>
-      _BodyPortfolioScreenState();
-}
-
-class _BodyPortfolioScreenState extends ConsumerState<BodyPortfolioScreen> {
-  @override
-  Widget build(BuildContext context) {
-    final coins = widget.portfolio.coins;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final coins = portfolio.coins;
     return ref
         .watch(
           cryptoCoinBasedOnPortfolioProvider,
@@ -33,7 +28,7 @@ class _BodyPortfolioScreenState extends ConsumerState<BodyPortfolioScreen> {
               children: [
                 TotalCurrencyCard(
                   cryptoList: allCryptoFromPortfolio,
-                  portfolio: widget.portfolio,
+                  portfolio: portfolio,
                 ),
                 CryptoListPortfolio(
                   coins: coins,

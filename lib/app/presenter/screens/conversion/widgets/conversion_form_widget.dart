@@ -55,7 +55,6 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
         left: 23.5,
         right: 23.5,
         top: 16,
-       
       ),
       child: FormField(
         key: _formKey,
@@ -101,8 +100,7 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
                   ConversionFormatter(crypto),
                 ],
                 decoration: InputDecoration(
-                  helperText:getValueHelperText(),
-                  
+                  helperText: getValueHelperText(),
                   hintText: '${crypto.symbol.toUpperCase()} 0,00',
                 ),
                 style: const TextStyle(),
@@ -110,7 +108,6 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
               const SizedBox(
                 height: 8,
               ),
-             
             ],
           );
         },
