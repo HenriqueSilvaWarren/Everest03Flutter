@@ -7,19 +7,13 @@ import 'crypto_list_card.dart';
 import 'loading_crypto_list.dart';
 import 'total_currency_card.dart';
 
-class BodyPortfolioScreen extends StatefulHookConsumerWidget {
+class BodyPortfolioScreen extends HookConsumerWidget {
   const BodyPortfolioScreen({
     Key? key,
   }) : super(key: key);
 
   @override
-  ConsumerState<BodyPortfolioScreen> createState() => _BodyWalletScreenState();
-}
-
-class _BodyWalletScreenState extends ConsumerState<BodyPortfolioScreen> {
-  // GetCryptoByIdWebService getCryptoByIdWebService = GetCryptoByIdWebService();
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
       child: Column(
         children: [
