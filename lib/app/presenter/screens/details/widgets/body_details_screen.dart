@@ -2,7 +2,6 @@ import 'package:brasil_fields/brasil_fields.dart';
 import '../../../../domain/view_datas/crypto_historic_price_view_data.dart';
 import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_historic_price_by_id_provider.dart';
 import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
-import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -103,11 +102,43 @@ class BodyDetailsScreen extends HookConsumerWidget {
                         color: Colors.grey,
                       ),
                     ),
-                    trailing: const LoadingDetailsItemVariation(),
-                    contentPadding: EdgeInsets.zero,
-                    shape: const Border(
-                      top: BorderSide(
-                        color: Color.fromRGBO(227, 228, 235, 1),
+                    cryptoPrices.when(
+                      data: (data) {
+                        return CustomLineChart(
+                          cryptoPricesList: data.cryptoPricesList,
+                        );
+                      },
+                      error: (error, stackTrace) => const Text('Deu erro'),
+                      loading: () => const LoadingChart(),
+                    ),
+                    DetailsItem(
+                      title: 'Preço Atual:',
+                      value: UtilBrasilFields.obterReal(
+                        cryptoCoin.currentPrice.toDouble(),
+                      ),
+                    ),
+                    cryptoPrices.when(
+                      data: (data) {
+                        return DetailsItemVariation(
+                          cryptoPricesList: data.cryptoPricesList,
+                        );
+                      },
+                      error: (error, stackTrace) => const Text('Deu erro'),
+                      loading: () => ListTile(
+                        title: Text(
+                          'Variação 24H',
+                          style: GoogleFonts.sourceSansPro(
+                            fontSize: 19,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        trailing: const LoadingDetailsItemVariation(),
+                        contentPadding: EdgeInsets.zero,
+                        shape: const Border(
+                          top: BorderSide(
+                            color: Color.fromRGBO(227, 228, 235, 1),
+                          ),
+                        ),
                       ),
                     ),
                   ),
