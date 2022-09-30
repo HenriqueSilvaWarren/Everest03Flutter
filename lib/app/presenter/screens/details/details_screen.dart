@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'widgets/body_details_screen.dart';
-import 'widgets/details_app_bar.dart';
+import '../../../../core/utils/custom_app_bar.dart';
 
 class DetailsScreen extends StatefulHookConsumerWidget {
   const DetailsScreen({Key? key}) : super(key: key);
@@ -17,7 +17,11 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: DetailsAppBar(),
+      backgroundColor: Colors.white,
+      appBar: CustomAppBar(
+        text: 'Detalhes',
+        doesHide: true,
+      ),
       body: BodyDetailsScreen(),
     );
   }

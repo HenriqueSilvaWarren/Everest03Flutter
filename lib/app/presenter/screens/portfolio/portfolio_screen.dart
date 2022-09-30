@@ -1,21 +1,35 @@
+import 'widgets/loading_portfolio_screen.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import '../../../../core/utils/custom_bottom_navigation_bar.dart';
+import '../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
 import '../transactions/transactions_screen.dart';
 
 import 'package:flutter/material.dart';
 
-
 import 'widgets/body_portfolio_screen.dart';
 
-class PortfolioScreen extends StatelessWidget {
+class PortfolioScreen extends HookConsumerWidget {
   const PortfolioScreen({super.key});
 
   static String route = '/portfolio-screen';
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     int curIndex = 0;
     return Scaffold(
-      body: const BodyPortfolioScreen(),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: ref.watch(portfolioProvider).when(
+                data: (portfolio) => BodyPortfolioScreen(
+                  portfolio: portfolio,
+                ),
+                error: (error, stackTrace) => const SizedBox.shrink(),
+                loading: () => const LoadingPortfolioScreen(),
+              ),
+        ),
+      ),
       bottomNavigationBar: CustomBottomNavigationBar(
         curIndex: curIndex,
         onTap: (value) {

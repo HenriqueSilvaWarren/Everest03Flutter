@@ -1,3 +1,4 @@
+import '../../app/presenter/screens/conversion/conversion_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/presenter/screens/details/details_screen.dart';
@@ -34,9 +35,32 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
       transitionDuration: const Duration(milliseconds: 500),
       settings: settings,
       pageBuilder: (context, animation, secondaryAnimation) {
-        return const DetailsScreen();
+        return routeDefinitions[settings.name]!(context);
       },
     );
   }
+  if (settings.name == ConversionScreen.route) {
+    return PageRouteBuilder(
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        animation = CurvedAnimation(
+          curve: Curves.easeOut,
+          parent: animation,
+        );
+        return SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: child,
+        );
+      },
+      transitionDuration: const Duration(milliseconds: 500),
+      settings: settings,
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return const ConversionScreen();
+      },
+    );
+  }
+
   return null;
 }

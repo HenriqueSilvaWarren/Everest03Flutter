@@ -6,7 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'get_crypto_coin_based_on_portfolio_response.g.dart';
 
 @JsonSerializable()
-class GetCryptoCoinBasedOnPortfolioResponse {
+class GetCryptoCoinResponse {
   final String id;
   final String symbol;
   final String name;
@@ -14,7 +14,7 @@ class GetCryptoCoinBasedOnPortfolioResponse {
   final Decimal current_price;
   final Decimal price_change_percentage_24h;
 
-  GetCryptoCoinBasedOnPortfolioResponse({
+  GetCryptoCoinResponse({
     required this.id,
     required this.symbol,
     required this.name,
@@ -23,12 +23,12 @@ class GetCryptoCoinBasedOnPortfolioResponse {
     required this.price_change_percentage_24h,
   });
 
-  factory GetCryptoCoinBasedOnPortfolioResponse.fromJson(
+  factory GetCryptoCoinResponse.fromJson(
       Map<String, dynamic> json) {
   
-    return _$GetCryptoCoinBasedOnPortfolioResponseFromJson(json);
+    return _$GetCryptoCoinResponseFromJson(json);
   }
 
   Map<String, dynamic> toJson() =>
-      _$GetCryptoCoinBasedOnPortfolioResponseToJson(this);
+      _$GetCryptoCoinResponseToJson(this);
 }

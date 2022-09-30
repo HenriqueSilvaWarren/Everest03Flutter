@@ -5,23 +5,40 @@ import 'package:dio/dio.dart';
 
 import '../crypto_coin_datasource.dart';
 
-class CryptoCoinEndPoint  implements CryptoCoinDatasource {
+class CryptoCoinEndPoint implements CryptoCoinDatasource {
   final Dio _dio;
   CryptoCoinEndPoint(
     this._dio,
-
   );
+
+  int count = 0;
 
   @override
   Future<Response> getCryptoCoinBasedOnPortfolio(PortfolioViewData portfolio) {
+    String? ids = portfolio.coins
+        .map(
+          (coin) => coin.name.toLowerCase(),
+        )
+        .toList()
+        .join(',');
     return _dio.get(
       '/coins/markets',
       queryParameters: {
         'vs_currency': 'brl',
-        'ids': portfolio.coins.map((coin) => coin.name.toLowerCase()).toList().join(','),
+        'ids': ids,
       },
     );
   }
+
+  // @override
+  // Future<Response> getCryptoCoinsFromApi() {
+  //   return _dio.get(
+  //     '/coins/markets',
+  //     queryParameters: {
+  //       'vs_currency': 'brl',
+  //     },
+  //   );
+  // }
 
   @override
   Future<Response> getCryptoHistoricPriceById(String id) {

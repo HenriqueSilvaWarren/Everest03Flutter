@@ -1,26 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../../core/utils/hide_values_button.dart';
+import 'hide_values_button.dart';
 
-
-
-class DetailsAppBar extends StatelessWidget implements PreferredSizeWidget{
-  const DetailsAppBar({
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const CustomAppBar({
     Key? key,
+    required this.doesHide,
+    required this.text,
   }) : super(key: key);
+
+  final String text;
+  final bool doesHide;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       iconTheme: const IconThemeData(color: Colors.black),
-      title: const Text(
-        'Detalhes',
+      title: Text(
+        text,
       ),
-      actions: const [
-        Padding(
-          padding: EdgeInsets.only(right: 20),
-          child: HideValuesButton(),
+      actions: [
+        Visibility(
+          visible: doesHide,
+          replacement: const SizedBox.shrink(),
+          child: const Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: HideValuesButton(),
+          ),
         )
       ],
       backgroundColor: Colors.white,
@@ -33,11 +40,11 @@ class DetailsAppBar extends StatelessWidget implements PreferredSizeWidget{
       titleTextStyle: GoogleFonts.sourceSansPro(
         color: Colors.black,
         fontWeight: FontWeight.w700,
-        fontSize: 22,
+        fontSize: 20,
       ),
     );
   }
-  
+
   @override
   Size get preferredSize => const Size(double.maxFinite, 56);
 }

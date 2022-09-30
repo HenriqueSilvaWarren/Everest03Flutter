@@ -1,7 +1,7 @@
-import 'app/presenter/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'app/presenter/screens/splash/splash_screen.dart';
 import 'core/route_definitions.dart';
 import 'core/utils/generate_route.dart';
 
