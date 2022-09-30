@@ -1,7 +1,4 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import '../../../../domain/view_datas/crypto_historic_price_view_data.dart';
-import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_historic_price_by_id_provider.dart';
-import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,12 +6,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../core/utils/animated_hide_text_value.dart';
 import '../../../../../core/utils/get_real.dart';
-
 import '../../../../domain/view_datas/coin_in_portfolio_view_data.dart';
 import '../../../../domain/view_datas/crypto_coin_view_data.dart';
+import '../../../../domain/view_datas/crypto_historic_price_view_data.dart';
+import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_historic_price_by_id_provider.dart';
+import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
 import '../../../riverpod/view/get_crypto_state_provider.dart';
 import '../../../riverpod/view/get_price_from_chart.dart';
-
 import '../loading_widgets/loading_chart.dart';
 import '../loading_widgets/loading_details_variation.dart';
 import 'button_convert_currency.dart';

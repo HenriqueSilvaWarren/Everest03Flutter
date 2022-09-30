@@ -1,5 +1,5 @@
-import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/coin_gecko/screens/crypto_coin_from_api_provider.dart';
-import 'package:card_02_listagem_crypto/app/presenter/screens/conversion/widgets/dropdown_button_right.dart';
+import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_coin_from_api_provider.dart';
+import '../../conversion/widgets/dropdown_button_right.dart';
 
 import '../../../../domain/view_datas/list_crypto_view_data.dart';
 import '../../../riverpod/view/conversion_controller_text_state_provider.dart';

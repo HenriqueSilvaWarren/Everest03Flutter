@@ -1,5 +1,5 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:card_02_listagem_crypto/app/presenter/screens/conversion/widgets/dropdown_button_right.dart';
+import 'dropdown_button_right.dart';
 import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
 import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
 import '../utils/is_valid_method.dart';

@@ -1,4 +1,4 @@
-import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
+import '../../../local/portfolio/screen/portfolio_provider.dart';
 
 
 import '../usecases/get_crypto_coin_based_on_portfolio_use_case_provider.dart';
