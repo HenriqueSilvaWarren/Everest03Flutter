@@ -7,20 +7,20 @@ import 'widgets/conversion_screen_bottom_app_bar.dart';
 class ConversionScreen extends StatelessWidget {
   const ConversionScreen({
     Key? key,
-    // required this.listCryptoViewData,
   }) : super(key: key);
   static String route = '/conversion-screen';
-  // final ListCryptoViewData listCryptoViewData;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: ConversionScreenBottomAppBar(),
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(
         text: 'Converter',
         doesHide: false,
       ),
-      body: const BodyConversionScreen(),
-      bottomNavigationBar: ConversionScreenBottomAppBar(),
+      body: BodyConversionScreen(),
     );
   }
 }

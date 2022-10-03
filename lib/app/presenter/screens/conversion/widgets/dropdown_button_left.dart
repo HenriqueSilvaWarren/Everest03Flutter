@@ -1,5 +1,6 @@
 import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_coin_based_on_portfolio_provider.dart';
 import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_coin_from_api_provider.dart';
+import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
 import 'conversion_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -27,11 +28,10 @@ class _DropdownButtonLeftState extends ConsumerState<DropdownButtonLeft> {
 
   @override
   Widget build(BuildContext context) {
-   
-
     List<CryptoCoinViewData> listCoins = [];
 
-    for (CryptoCoinViewData crypto in ref.watch(cryptoCoinBasedOnPortfolioProvider).value!.listCrypto) {
+    for (CryptoCoinViewData crypto
+        in ref.watch(cryptoCoinBasedOnPortfolioProvider).value!.listCrypto) {
       listCoins.add(crypto);
     }
     return SizedBox(

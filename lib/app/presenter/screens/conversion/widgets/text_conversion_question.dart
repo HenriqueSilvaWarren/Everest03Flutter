@@ -13,7 +13,7 @@ class TextConversionQuestion extends StatelessWidget {
         left: 16.0,
         bottom: 16.0,
         right: 18.0,
-        top: 24.0,
+        top: 8.0,
       ),
       child: Text(
         'Quanto você gostaria de converter?',

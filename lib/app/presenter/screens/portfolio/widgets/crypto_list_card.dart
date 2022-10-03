@@ -35,7 +35,6 @@ class CryptoListCard extends HookConsumerWidget {
           onTap: () {
             ref.read(getPriceFromChartStateProvider.state).state = "";
             ref.read(getCryptoStateProvider.state).state = cryptoCoinViewData;
-            
             Navigator.pushNamed(
               context,
               DetailsScreen.route,
