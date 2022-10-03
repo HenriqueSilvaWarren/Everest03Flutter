@@ -18,9 +18,8 @@ class ReviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      appBar: const CustomAppBar(
+    return const Scaffold(
+      appBar: CustomAppBar(
         text: 'Revisar',
         doesHide: false,
       ),

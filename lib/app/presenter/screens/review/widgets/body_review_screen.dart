@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../core/utils/screens_item.dart';
-import '../../exchanged/exchanged_screen.dart';
+
 import '../utils/get_exchange_rate.dart';
 import 'finish_conversion_button.dart';
 import 'review_text.dart';
