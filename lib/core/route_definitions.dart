@@ -14,4 +14,5 @@ var routeDefinitions = {
   DetailsScreen.route: (context) => const DetailsScreen(),
   ConversionScreen.route: (context) => const ConversionScreen(),
   ExchangedScreen.route: (context) => const ExchangedScreen(),
+  ReviewScreen.route: (context) => const ReviewScreen(),
 };

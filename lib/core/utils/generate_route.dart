@@ -21,8 +21,9 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
     );
   }
   if (settings.name == DetailsScreen.route ||
-      settings.name == ConversionScreen.route || 
-      settings.name == ExchangedScreen.route) {
+      settings.name == ConversionScreen.route ||
+      settings.name == ExchangedScreen.route ||
+      settings.name == ReviewScreen.route) {
     return PageRouteBuilder(
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         animation = CurvedAnimation(
@@ -41,32 +42,6 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
       settings: settings,
       pageBuilder: (context, animation, secondaryAnimation) {
         return routeDefinitions[settings.name]!(context);
-      },
-    );
-  }
-  if (settings.name == ReviewScreen.route) {
-    final Map<String, List<String>> args =
-        settings.arguments as Map<String, List<String>>;
-    return PageRouteBuilder(
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        animation = CurvedAnimation(
-          curve: Curves.easeOut,
-          parent: animation,
-        );
-        return SlideTransition(
-          position: Tween<Offset>(
-            begin: const Offset(1, 0),
-            end: Offset.zero,
-          ).animate(animation),
-          child: child,
-        );
-      },
-      transitionDuration: const Duration(milliseconds: 500),
-      settings: settings,
-      pageBuilder: (context, animation, secondaryAnimation) {
-        return ReviewScreen(
-          dataFromConversion: args,
-        );
       },
     );
   }

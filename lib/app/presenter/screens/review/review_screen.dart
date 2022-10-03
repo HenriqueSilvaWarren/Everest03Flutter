@@ -12,10 +12,8 @@ import 'widgets/review_text.dart';
 class ReviewScreen extends StatelessWidget {
   const ReviewScreen({
     Key? key,
-    required this.dataFromConversion,
   }) : super(key: key);
 
-  final Map<String, List<String>> dataFromConversion;
   static String route = '/review-screen';
 
   @override
@@ -26,7 +24,7 @@ class ReviewScreen extends StatelessWidget {
         text: 'Revisar',
         doesHide: false,
       ),
-      body: BodyReviewScreen(dataFromConversion: dataFromConversion),
+      body: BodyReviewScreen(),
     );
   }
 }

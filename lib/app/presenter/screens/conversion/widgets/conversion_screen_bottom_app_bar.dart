@@ -13,6 +13,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../riverpod/view/crypto_drop_down_left_provider.dart';
 import '../utils/is_valid_method.dart';
 
+final conversionDataStateProvider = StateProvider<Map<String, List<String>>?>(
+  (ref) => null,
+);
+
 // ignore: must_be_immutable
 class ConversionScreenBottomAppBar extends HookConsumerWidget {
   const ConversionScreenBottomAppBar({
@@ -90,16 +94,17 @@ class ConversionScreenBottomAppBar extends HookConsumerWidget {
                   : Colors.grey,
               onPressed: isValidBool
                   ? () {
+                      ref.read(conversionDataStateProvider.state).state =
+                          getConversionData(
+                        controllerText,
+                        exchangedCurrency(
+                          controllerText: controllerText,
+                          cryptoLeft: cryptoLeft,
+                          cryptoRight: cryptoRight,
+                        ),
+                      );
                       Navigator.of(context).pushNamed(
                         ReviewScreen.route,
-                        arguments: getConversionData(
-                          controllerText,
-                          exchangedCurrency(
-                            controllerText: controllerText,
-                            cryptoLeft: cryptoLeft,
-                            cryptoRight: cryptoRight,
-                          ),
-                        ),
                       );
                     }
                   : null,
