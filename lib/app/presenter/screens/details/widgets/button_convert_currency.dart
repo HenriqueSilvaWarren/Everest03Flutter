@@ -5,7 +5,6 @@ import '../../../../domain/view_datas/list_crypto_view_data.dart';
 import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
 import '../../../riverpod/view/get_crypto_state_provider.dart';
 import '../../conversion/conversion_screen.dart';
-import '../../conversion/widgets/conversion_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

@@ -1,3 +1,6 @@
+import 'package:card_02_listagem_crypto/app/presenter/screens/exchanged/exchanged_screen.dart';
+import 'package:card_02_listagem_crypto/app/presenter/screens/review/review_screen.dart';
+
 import '../../app/presenter/screens/conversion/conversion_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +20,9 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
       },
     );
   }
-  if (settings.name == DetailsScreen.route) {
+  if (settings.name == DetailsScreen.route ||
+      settings.name == ConversionScreen.route || 
+      settings.name == ExchangedScreen.route) {
     return PageRouteBuilder(
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         animation = CurvedAnimation(
@@ -39,7 +44,9 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
       },
     );
   }
-  if (settings.name == ConversionScreen.route) {
+  if (settings.name == ReviewScreen.route) {
+    final Map<String, List<String>> args =
+        settings.arguments as Map<String, List<String>>;
     return PageRouteBuilder(
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         animation = CurvedAnimation(
@@ -57,7 +64,9 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
       transitionDuration: const Duration(milliseconds: 500),
       settings: settings,
       pageBuilder: (context, animation, secondaryAnimation) {
-        return const ConversionScreen();
+        return ReviewScreen(
+          dataFromConversion: args,
+        );
       },
     );
   }
