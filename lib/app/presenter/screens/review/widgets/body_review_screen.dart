@@ -1,6 +1,5 @@
 import 'package:card_02_listagem_crypto/app/presenter/screens/conversion/widgets/conversion_screen_bottom_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../core/utils/screens_item.dart';

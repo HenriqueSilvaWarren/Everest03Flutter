@@ -38,7 +38,7 @@ class ConversionAnimation extends StatelessWidget {
           color: const Color.fromRGBO(214, 255, 223, 1), //Colors.black,
           borderRadius: BorderRadius.circular(50),
           border: Border.all(
-            color: Color.fromARGB(255, 186, 255, 202),
+            color: const Color.fromARGB(255, 186, 255, 202),
             width: 5,
           ),
         ),
@@ -56,7 +56,7 @@ class ConversionAnimation extends StatelessWidget {
         color: const Color.fromRGBO(214, 255, 223, 1), //Colors.black,
         borderRadius: BorderRadius.circular(50),
         border: Border.all(
-          color: Color.fromARGB(255, 186, 255, 202),
+          color: const Color.fromARGB(255, 186, 255, 202),
           width: 5,
         ),
       ),
