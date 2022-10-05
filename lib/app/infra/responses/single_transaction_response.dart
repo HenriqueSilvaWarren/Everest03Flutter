@@ -17,10 +17,10 @@ class SingleTransactionResponse extends TransactionsViewData {
     required this.date_of_exchange,
     required this.value_of_transaction,
   }) : super(
-          converted_crypto_amount: converted_crypto_amount,
-          received_crypto_amount: received_crypto_amount,
-          date_of_exchange: date_of_exchange,
-          value_of_transaction: value_of_transaction,
+          convertedCryptoAmount: converted_crypto_amount,
+          receivedCryptoAmount: received_crypto_amount,
+          dateOfExchange: date_of_exchange,
+          valueOfTransaction: value_of_transaction,
         );
 
   factory SingleTransactionResponse.fromJson(Map<String, dynamic> json) {

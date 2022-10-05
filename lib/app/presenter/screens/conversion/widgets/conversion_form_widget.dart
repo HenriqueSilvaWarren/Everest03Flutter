@@ -1,5 +1,6 @@
-import '../utils/get_value_helper_text.dart';
-import 'dropdown_button_right.dart';
+
+import '../../../../../core/utils/get_value_helper_text.dart';
+import '../../../riverpod/view/crypto_drop_down_right_provider.dart';
 import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
 import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
 import '../utils/is_valid_method.dart';
@@ -33,7 +34,6 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
       offset: ref.read(conversionControllerTextStateProvider).length,
     );
     crypto = ref.watch(cryptoDropdownLeftProvider);
-    
 
     return Padding(
       padding: const EdgeInsets.only(
@@ -85,7 +85,7 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
                 ],
                 decoration: InputDecoration(
                   helperText: getValueHelperText(
-                    controller: controller,
+                    controllerText: controller.text,
                     crypto: crypto,
                   ),
                   hintText: '${crypto.symbol.toUpperCase()} 0,00',

@@ -12,6 +12,7 @@ class ExchangedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     timeDilation = 1;
+
     return const Scaffold(
       appBar: ExchangedAppBar(),
       body: BodyExchangedScreen(),

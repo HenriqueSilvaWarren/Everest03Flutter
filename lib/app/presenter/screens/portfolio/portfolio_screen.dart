@@ -12,11 +12,10 @@ class PortfolioScreen extends HookConsumerWidget {
 
   static String route = '/portfolio-screen';
 
-  
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     int curIndex = 0;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(

@@ -1,3 +1,4 @@
+
 import '../../repositories/transactions_repository.dart';
 import '../../view_datas/list_transactions_view_data.dart';
 
@@ -9,8 +10,7 @@ class GetAllTransactionsUseCaseImp implements GetAllTransactionsUseCase {
   @override
   Future<ListTransactionsViewData> execute() async {
     var response = await repository.getAllTransactions();
-    return ListTransactionsViewData(
-      listTransactions: response.list_transactions,
-    );
+
+    return response.toViewData();
   }
 }

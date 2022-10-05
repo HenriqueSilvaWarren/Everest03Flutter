@@ -5,12 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/view_datas/crypto_coin_view_data.dart';
-
-final cryptoDropdownRightProvider = StateProvider<CryptoCoinViewData>(
-  (ref) {
-    return ref.watch(cryptoCoinFromApiProvider).value!.listCrypto.first;
-  },
-);
+import '../../../riverpod/view/crypto_drop_down_right_provider.dart';
 
 class DropdownButtonRight extends HookConsumerWidget {
   const DropdownButtonRight({Key? key}) : super(key: key);
