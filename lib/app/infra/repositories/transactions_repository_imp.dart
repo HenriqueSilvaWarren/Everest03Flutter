@@ -1,7 +1,6 @@
+import '../../domain/repositories/transactions_repository.dart';
 import '../data_sources/transactions_datasource.dart';
 import '../responses/get_all_transactions_response.dart';
-
-import '../../domain/repositories/transactions_repository.dart';
 
 class TransactionsRepositoryImp implements TransactionsRepository {
   final TransactionsDatasource datasource;

@@ -1,4 +1,4 @@
-import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/local/transactions/screen/transactions_provider.dart';
+import '../../riverpod/datasources/local/transactions/screen/transactions_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

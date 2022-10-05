@@ -1,15 +1,15 @@
 
-import '../../../../../core/utils/get_value_helper_text.dart';
-import '../../../riverpod/view/crypto_drop_down_right_provider.dart';
-import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
-import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
-import '../utils/is_valid_method.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../core/utils/get_value_helper_text.dart';
 import '../../../../domain/view_datas/crypto_coin_view_data.dart';
+import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
+import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
 import '../../../riverpod/view/crypto_drop_down_left_provider.dart';
+import '../../../riverpod/view/crypto_drop_down_right_provider.dart';
 import '../utils/conversion_formatter.dart';
+import '../utils/is_valid_method.dart';
 
 class ConversionFormWidget extends StatefulHookConsumerWidget {
   const ConversionFormWidget({

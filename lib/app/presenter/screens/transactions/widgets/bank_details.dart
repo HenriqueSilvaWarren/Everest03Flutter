@@ -1,10 +1,7 @@
-import 'package:card_02_listagem_crypto/app/presenter/screens/transactions/widgets/dialog_transaction_details.dart';
-import 'package:card_02_listagem_crypto/app/presenter/screens/transactions/widgets/dialog_transaction_details_row.dart';
+import 'dialog_transaction_details_row.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'dialog_named_section.dart';
-import 'transactions_dialog.dart';
 import 'transactions_row_item.dart';
 
 class BankDetails extends StatelessWidget {

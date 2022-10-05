@@ -1,10 +1,5 @@
-import 'package:card_02_listagem_crypto/app/domain/view_datas/crypto_coin_view_data.dart';
-import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/date_time_formatter_provider.dart';
-import 'package:card_02_listagem_crypto/app/presenter/screens/transactions/widgets/dialog_named_section.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../domain/view_datas/transactions_view_data.dart';
 import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_coin_from_api_provider.dart';

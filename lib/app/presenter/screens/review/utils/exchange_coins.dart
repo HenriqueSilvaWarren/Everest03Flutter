@@ -1,6 +1,7 @@
 import 'package:decimal/decimal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../core/utils/get_value_helper_text.dart';
 import '../../../../domain/view_datas/coin_in_portfolio_view_data.dart';
 import '../../../../domain/view_datas/crypto_coin_view_data.dart';
 import '../../../../domain/view_datas/list_crypto_view_data.dart';
@@ -12,7 +13,6 @@ import '../../../riverpod/datasources/local/transactions/screen/transactions_pro
 import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
 import '../../../riverpod/view/conversion_data_state_provider.dart';
 import '../../../riverpod/view/crypto_drop_down_left_provider.dart';
-import '../../../../../core/utils/get_value_helper_text.dart';
 
 void exchangeCoins(
   WidgetRef ref,

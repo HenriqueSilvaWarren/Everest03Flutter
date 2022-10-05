@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -30,7 +31,7 @@ class DialogTransactionDetails extends HookConsumerWidget {
         children: [
           DialogTransactionDetailsRow(
             firstText: 'Moeda Convertida:',
-            secondText: '${leftCrypto.name}',
+            secondText: leftCrypto.name,
           ),
           DialogTransactionDetailsRow(
             firstText: 'Quantidade Convertida:',
@@ -38,7 +39,7 @@ class DialogTransactionDetails extends HookConsumerWidget {
           ),
           DialogTransactionDetailsRow(
             firstText: 'Moeda Recebida:',
-            secondText: '${rightCrypto.name}',
+            secondText: rightCrypto.name,
           ),
           DialogTransactionDetailsRow(
             firstText: 'Quantidade Recebida:',
