@@ -30,16 +30,6 @@ class CryptoCoinEndPoint implements CryptoCoinDatasource {
     );
   }
 
-  // @override
-  // Future<Response> getCryptoCoinsFromApi() {
-  //   return _dio.get(
-  //     '/coins/markets',
-  //     queryParameters: {
-  //       'vs_currency': 'brl',
-  //     },
-  //   );
-  // }
-
   @override
   Future<Response> getCryptoHistoricPriceById(String id) {
     return _dio.get(

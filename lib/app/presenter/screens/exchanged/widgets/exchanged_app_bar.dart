@@ -1,4 +1,3 @@
-import 'package:card_02_listagem_crypto/app/presenter/screens/portfolio/portfolio_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,17 +10,6 @@ class ExchangedAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       iconTheme: const IconThemeData(color: Colors.black),
-      leading: IconButton(
-        onPressed: () {
-          Navigator.popUntil(
-            context,
-            ModalRoute.withName(PortfolioScreen.route),
-          );
-        },
-        icon: const Icon(
-          Icons.close,
-        ),
-      ),
       backgroundColor: Colors.white,
       elevation: 0,
       shape: Border(

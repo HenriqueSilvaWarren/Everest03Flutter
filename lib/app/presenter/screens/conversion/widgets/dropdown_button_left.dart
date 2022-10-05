@@ -1,14 +1,12 @@
-import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_coin_based_on_portfolio_provider.dart';
-import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_coin_from_api_provider.dart';
-import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/view_datas/crypto_coin_view_data.dart';
+import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_coin_based_on_portfolio_provider.dart';
+import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
 import '../../../riverpod/view/crypto_drop_down_left_provider.dart';
 import '../../../riverpod/view/get_crypto_state_provider.dart';
-import 'dropdown_button_right.dart';
 
 class DropdownButtonLeft extends StatefulHookConsumerWidget {
   const DropdownButtonLeft({Key? key}) : super(key: key);
@@ -110,13 +108,6 @@ class _DropdownButtonLeftState extends ConsumerState<DropdownButtonLeft> {
         onChanged: (value) {
           setState(() {
             ref.read(cryptoDropdownLeftProvider.state).state = value!;
-            ref.read(cryptoDropdownRightProvider.state).state = ref
-                .watch(cryptoCoinFromApiProvider)
-                .value!
-                .listCrypto
-                .firstWhere(
-                  (coin) => coin.id != ref.watch(cryptoDropdownLeftProvider).id,
-                );
             ref.read(conversionControllerTextStateProvider.state).state = '';
           });
         },

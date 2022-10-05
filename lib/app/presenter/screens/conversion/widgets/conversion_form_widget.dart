@@ -28,10 +28,12 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
 
   @override
   Widget build(BuildContext context) {
-    controller.text = ref.read(conversionControllerTextStateProvider);
+    controller.text = ref.watch(conversionControllerTextStateProvider);
     controller.selection = TextSelection.collapsed(
-        offset: ref.read(conversionControllerTextStateProvider).length);
+      offset: ref.read(conversionControllerTextStateProvider).length,
+    );
     crypto = ref.watch(cryptoDropdownLeftProvider);
+    
 
     return Padding(
       padding: const EdgeInsets.only(
@@ -50,7 +52,6 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
                 onChanged: (value) {
                   ref.read(conversionControllerTextStateProvider.state).state =
                       value;
-                  setState(() {});
                 },
                 onTap: () {
                   if (controller.text.isEmpty) {

@@ -38,7 +38,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
 
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
-      child: ref.read(portfolioProvider).when(
+      child: ref.watch(portfolioProvider).when(
         data: (portfolio) {
           final CryptoCoinViewData cryptoCoin =
               ref.read(getCryptoStateProvider);

@@ -15,7 +15,7 @@ class DetailsTopCardWidget extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final cryptoCoin = ref.read(getCryptoStateProvider);
 
-    return ref.read(portfolioProvider).when(
+    return ref.watch(portfolioProvider).when(
       data: (portfolio) {
         return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(

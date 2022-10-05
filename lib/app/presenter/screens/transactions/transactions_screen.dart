@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 
-import '../../../../core/app_assets.dart';
 import '../../../../core/utils/custom_bottom_navigation_bar.dart';
 import '../portfolio/portfolio_screen.dart';
-
+import 'widgets/body_transactions_screen.dart';
 
 class TransactionsScreen extends StatelessWidget {
   const TransactionsScreen({Key? key}) : super(key: key);
@@ -16,24 +13,7 @@ class TransactionsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     int curIndex = 1;
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Página não implementada ainda",
-              textAlign: TextAlign.center,
-              style: GoogleFonts.sourceCodePro(
-                fontSize: 32,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            Lottie.asset(
-              notFoundAnimation,
-            ),
-          ],
-        ),
-      ),
+      body: const BodyTransactionsScreen(),
       bottomNavigationBar: CustomBottomNavigationBar(
         curIndex: curIndex,
         onTap: (value) {
@@ -42,10 +22,7 @@ class TransactionsScreen extends StatelessWidget {
               Navigator.pushReplacementNamed(context, PortfolioScreen.route);
               break;
             case 1:
-              Navigator.pushReplacementNamed(
-                context,
-                TransactionsScreen.route
-              );
+              Navigator.pushReplacementNamed(context, TransactionsScreen.route);
               break;
           }
         },

@@ -9,11 +9,11 @@ part of 'get_crypto_historic_price_by_id_response.dart';
 GetCryptoHistoricPriceByIdResponse _$GetCryptoHistoricPriceByIdResponseFromJson(
         Map<String, dynamic> json) =>
     GetCryptoHistoricPriceByIdResponse(
-      prices: json['prices']
+      prices: const ListDecimalConverter().fromJson(json['prices'] as List),
     );
 
 Map<String, dynamic> _$GetCryptoHistoricPriceByIdResponseToJson(
         GetCryptoHistoricPriceByIdResponse instance) =>
     <String, dynamic>{
-      'prices': instance.prices,
+      'prices': const ListDecimalConverter().toJson(instance.prices),
     };

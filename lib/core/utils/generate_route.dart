@@ -1,5 +1,5 @@
-import 'package:card_02_listagem_crypto/app/presenter/screens/exchanged/exchanged_screen.dart';
-import 'package:card_02_listagem_crypto/app/presenter/screens/review/review_screen.dart';
+import '../../app/presenter/screens/exchanged/exchanged_screen.dart';
+import '../../app/presenter/screens/review/review_screen.dart';
 
 import '../../app/presenter/screens/conversion/conversion_screen.dart';
 import 'package:flutter/material.dart';

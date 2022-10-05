@@ -11,7 +11,7 @@ GetPortfolioByIdResponse _$GetPortfolioByIdResponseFromJson(
     GetPortfolioByIdResponse(
       symbol: json['symbol'] as String,
       name: json['name'] as String,
-      quantity: Decimal.fromJson(json['quantity'].toString()),
+      quantity: const DecimalConverter().fromJson(json['quantity'] as num),
     );
 
 Map<String, dynamic> _$GetPortfolioByIdResponseToJson(
@@ -19,5 +19,5 @@ Map<String, dynamic> _$GetPortfolioByIdResponseToJson(
     <String, dynamic>{
       'symbol': instance.symbol,
       'name': instance.name,
-      'quantity': instance.quantity,
+      'quantity': const DecimalConverter().toJson(instance.quantity),
     };
