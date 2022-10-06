@@ -1,14 +1,15 @@
-import '../utils/get_value_helper_text.dart';
-import 'dropdown_button_right.dart';
-import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
-import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
-import '../utils/is_valid_method.dart';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../core/utils/get_value_helper_text.dart';
 import '../../../../domain/view_datas/crypto_coin_view_data.dart';
+import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
+import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
 import '../../../riverpod/view/crypto_drop_down_left_provider.dart';
+import '../../../riverpod/view/crypto_drop_down_right_provider.dart';
 import '../utils/conversion_formatter.dart';
+import '../utils/is_valid_method.dart';
 
 class ConversionFormWidget extends StatefulHookConsumerWidget {
   const ConversionFormWidget({
@@ -28,9 +29,10 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
 
   @override
   Widget build(BuildContext context) {
-    controller.text = ref.read(conversionControllerTextStateProvider);
+    controller.text = ref.watch(conversionControllerTextStateProvider);
     controller.selection = TextSelection.collapsed(
-        offset: ref.read(conversionControllerTextStateProvider).length);
+      offset: ref.read(conversionControllerTextStateProvider).length,
+    );
     crypto = ref.watch(cryptoDropdownLeftProvider);
 
     return Padding(
@@ -50,7 +52,6 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
                 onChanged: (value) {
                   ref.read(conversionControllerTextStateProvider.state).state =
                       value;
-                  setState(() {});
                 },
                 onTap: () {
                   if (controller.text.isEmpty) {
@@ -84,7 +85,7 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
                 ],
                 decoration: InputDecoration(
                   helperText: getValueHelperText(
-                    controller: controller,
+                    controllerText: controller.text,
                     crypto: crypto,
                   ),
                   hintText: '${crypto.symbol.toUpperCase()} 0,00',

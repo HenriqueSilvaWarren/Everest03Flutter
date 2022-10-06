@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../exchanged/exchanged_screen.dart';
+import '../../portfolio/portfolio_screen.dart';
+import '../utils/exchange_coins.dart';
 
-class FinishConversionButton extends StatelessWidget {
+class FinishConversionButton extends StatefulHookConsumerWidget {
   const FinishConversionButton({
     Key? key,
   }) : super(key: key);
 
+  @override
+  ConsumerState<FinishConversionButton> createState() =>
+      _FinishConversionButtonState();
+}
+
+class _FinishConversionButtonState
+    extends ConsumerState<FinishConversionButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24.0),
       child: InkWell(
         onTap: () {
-          Navigator.of(context).pushNamed(
+          exchangeCoins(ref);
+          Navigator.of(context).pushNamedAndRemoveUntil(
             ExchangedScreen.route,
+            ModalRoute.withName(PortfolioScreen.route),
           );
         },
         child: Container(
