@@ -16,7 +16,9 @@ class ConversionFormatter extends TextInputFormatter {
     if (text.length < crypto.symbol.length + 1) {
       return TextEditingValue(
         text: '${crypto.symbol.toUpperCase()} ',
-        selection: TextSelection.collapsed(offset: crypto.symbol.length + 1),
+        selection: TextSelection.collapsed(
+          offset: crypto.symbol.length + 1,
+        ),
       );
     }
     if (text.length > crypto.symbol.length + 1) {
@@ -30,8 +32,7 @@ class ConversionFormatter extends TextInputFormatter {
           );
       }
     }
-    if (text.contains(',', text.indexOf(',') + 1) ||
-        text.contains('.')) {
+    if (text.contains(',', text.indexOf(',') + 1) || text.contains('.')) {
       return TextEditingValue(
         text: oldValue.text,
         selection: TextSelection.collapsed(offset: oldValue.text.length),

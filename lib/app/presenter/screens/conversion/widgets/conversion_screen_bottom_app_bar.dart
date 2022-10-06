@@ -1,3 +1,4 @@
+import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -28,6 +29,7 @@ class ConversionScreenBottomAppBar extends HookConsumerWidget {
       text: controllerText,
       cryptoLeft: cryptoLeft,
       cryptoRight: cryptoRight,
+      context: context,
     );
     return BottomAppBar(
       elevation: 0,
@@ -54,7 +56,7 @@ class ConversionScreenBottomAppBar extends HookConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Total Estimado',
+                    CryptoAppStrings.of(context)!.estimatedTotal,
                     style: GoogleFonts.sourceSansPro(
                       fontSize: 15,
                       fontWeight: FontWeight.w400,

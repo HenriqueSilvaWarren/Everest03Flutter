@@ -1,4 +1,5 @@
 import 'package:brasil_fields/brasil_fields.dart';
+import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -79,7 +80,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
                   loading: () => const LoadingChart(),
                 ),
                 ScreensItem(
-                  title: 'Preço Atual:',
+                  title: CryptoAppStrings.of(context)!.currentPrice,
                   value: UtilBrasilFields.obterReal(
                     Decimal.parse(
                       cryptoCoin.currentPrice.toString(),
@@ -95,7 +96,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
                   error: (error, stackTrace) => const Text('Deu erro'),
                   loading: () => ListTile(
                     title: Text(
-                      'Variação 24H',
+                      CryptoAppStrings.of(context)!.variation24,
                       style: GoogleFonts.sourceSansPro(
                         fontSize: 19,
                         color: Colors.grey,
@@ -111,11 +112,11 @@ class BodyDetailsScreen extends HookConsumerWidget {
                   ),
                 ),
                 ScreensItem(
-                  title: "Quantidade",
+                  title: CryptoAppStrings.of(context)!.quantity,
                   value: '${coin.quantity} ${cryptoCoin.symbol.toUpperCase()}',
                 ),
                 ScreensItem(
-                  title: "Valor",
+                  title: CryptoAppStrings.of(context)!.value,
                   value: getReal(
                     (cryptoCoin.currentPrice * coin.quantity).toDouble(),
                   ),

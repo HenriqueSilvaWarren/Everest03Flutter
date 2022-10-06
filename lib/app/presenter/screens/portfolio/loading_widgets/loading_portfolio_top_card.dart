@@ -6,6 +6,8 @@ import '../../../../../core/utils/animated_hide_text_value.dart';
 import '../../../../../core/utils/get_real.dart';
 import '../../../../../core/utils/hide_values_button.dart';
 
+import '../../../../../l10n/app_localizations.dart';
+
 class LoadingPortfolioTopCard extends StatelessWidget {
   const LoadingPortfolioTopCard({
     Key? key,
@@ -29,7 +31,7 @@ class LoadingPortfolioTopCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Cripto",
+                  CryptoAppStrings.of(context)!.crypto,
                   style: GoogleFonts.montserrat(
                     fontSize: 32,
                     color: const Color.fromARGB(255, 224, 43, 87),
@@ -52,7 +54,7 @@ class LoadingPortfolioTopCard extends StatelessWidget {
             ),
           ),
           Text(
-            "Valor total de moedas",
+            CryptoAppStrings.of(context)!.amountOfCoin,
             style: GoogleFonts.sourceSansPro(
                 fontSize: 17,
                 fontWeight: FontWeight.w400,

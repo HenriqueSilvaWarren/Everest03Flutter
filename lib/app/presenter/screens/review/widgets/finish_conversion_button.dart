@@ -1,3 +1,4 @@
+import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -24,7 +25,7 @@ class _FinishConversionButtonState
       padding: const EdgeInsets.symmetric(vertical: 24.0),
       child: InkWell(
         onTap: () {
-          exchangeCoins(ref);
+          buttonExchangeCoins(ref);
           Navigator.of(context).pushNamedAndRemoveUntil(
             ExchangedScreen.route,
             ModalRoute.withName(PortfolioScreen.route),
@@ -39,7 +40,7 @@ class _FinishConversionButtonState
             borderRadius: BorderRadius.circular(8),
           ),
           child: Text(
-            'Concluir conversão',
+            CryptoAppStrings.of(context)!.finishExchange,
             style: GoogleFonts.sourceSansPro(
               fontSize: 17,
               fontWeight: FontWeight.w700,

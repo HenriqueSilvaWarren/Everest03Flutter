@@ -1,3 +1,4 @@
+import '../../../../../l10n/app_localizations.dart';
 import '../../../../domain/view_datas/list_crypto_view_data.dart';
 import '../../../../domain/view_datas/portfolio_view_data.dart';
 
@@ -36,7 +37,7 @@ class TotalCurrencyCard extends HookConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Cripto",
+                  CryptoAppStrings.of(context)!.crypto,
                   style: GoogleFonts.montserrat(
                     fontSize: 32,
                     color: const Color.fromARGB(255, 224, 43, 87),
@@ -71,7 +72,7 @@ class TotalCurrencyCard extends HookConsumerWidget {
             ),
           ),
           Text(
-            "Valor total de moedas",
+            CryptoAppStrings.of(context)!.amountOfCoin,
             style: GoogleFonts.sourceSansPro(
                 fontSize: 17,
                 fontWeight: FontWeight.w400,

@@ -1,3 +1,4 @@
+import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -50,7 +51,7 @@ class ButtonConvertCurrency extends HookConsumerWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  "Converter moeda",
+                  CryptoAppStrings.of(context)!.buttonExchangeCoin,
                   style: GoogleFonts.sourceSansPro(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,

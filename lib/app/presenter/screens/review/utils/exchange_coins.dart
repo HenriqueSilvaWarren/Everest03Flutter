@@ -14,7 +14,7 @@ import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
 import '../../../riverpod/view/conversion_data_state_provider.dart';
 import '../../../riverpod/view/crypto_drop_down_left_provider.dart';
 
-void exchangeCoins(
+void buttonExchangeCoins(
   WidgetRef ref,
 ) {
   Map<String, List<String>> dataFromConversion =

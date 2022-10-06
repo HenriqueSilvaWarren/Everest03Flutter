@@ -65,6 +65,7 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
                     cryptoLeft: crypto,
                     cryptoRight: ref.watch(cryptoDropdownRightProvider),
                     isCalledFromTextField: true,
+                    context: context,
                   );
                 },
                 onFieldSubmitted: (value) {

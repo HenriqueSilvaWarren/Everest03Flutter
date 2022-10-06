@@ -1,3 +1,4 @@
+import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -29,15 +30,15 @@ class BodyReviewScreen extends HookConsumerWidget {
                 Column(
                   children: [
                     ScreensItem(
-                      title: 'Converter',
+                      title: CryptoAppStrings.of(context)!.convert,
                       value: dataFromConversion['convertingCrypto']!.join(' '),
                     ),
                     ScreensItem(
-                      title: 'Receber',
+                      title: CryptoAppStrings.of(context)!.get,
                       value: dataFromConversion['receivingCrypto']!.join(' '),
                     ),
                     ScreensItem(
-                      title: 'Câmbio',
+                      title: CryptoAppStrings.of(context)!.exchange,
                       value: getExchangeRate(
                         dataFromConversion['convertingCrypto']!,
                         dataFromConversion['receivingCrypto']!,
