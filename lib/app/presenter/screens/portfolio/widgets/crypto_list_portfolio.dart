@@ -15,8 +15,7 @@ class CryptoListPortfolio extends StatelessWidget {
   final ListCryptoViewData allCryptoFromPortfolio;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.66,
+    return Expanded(
       child: ListView.builder(
         itemExtent: 73,
         physics: const BouncingScrollPhysics(),
