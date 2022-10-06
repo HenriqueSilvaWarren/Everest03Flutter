@@ -26,9 +26,8 @@ class _FinishConversionButtonState
       child: InkWell(
         onTap: () {
           buttonExchangeCoins(ref);
-          Navigator.of(context).pushNamedAndRemoveUntil(
+          Navigator.of(context).pushNamed(
             ExchangedScreen.route,
-            ModalRoute.withName(PortfolioScreen.route),
           );
         },
         child: Container(
