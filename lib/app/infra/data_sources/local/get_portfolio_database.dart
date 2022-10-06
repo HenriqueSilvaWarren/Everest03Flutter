@@ -1,5 +1,6 @@
-import '../get_portfolio_datasource.dart';
 import 'package:decimal/decimal.dart';
+
+import '../get_portfolio_datasource.dart';
 
 class GetPortfolioDatabase implements GetPortfolioDatasource {
   @override

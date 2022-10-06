@@ -1,12 +1,10 @@
-import 'loading_widgets/loading_portfolio_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/utils/custom_bottom_navigation_bar.dart';
 import '../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
 import '../transactions/transactions_screen.dart';
-
-import 'package:flutter/material.dart';
-
+import 'loading_widgets/loading_portfolio_screen.dart';
 import 'widgets/body_portfolio_screen.dart';
 
 class PortfolioScreen extends HookConsumerWidget {

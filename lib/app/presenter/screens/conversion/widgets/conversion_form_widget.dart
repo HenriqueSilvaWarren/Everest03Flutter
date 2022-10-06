@@ -1,9 +1,8 @@
-import 'package:brasil_fields/brasil_fields.dart';
-import 'package:card_02_listagem_crypto/app/presenter/screens/conversion/widgets/dropdown_button_right.dart';
+import '../utils/get_value_helper_text.dart';
+import 'dropdown_button_right.dart';
 import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
 import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
 import '../utils/is_valid_method.dart';
-import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -26,22 +25,6 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
   TextEditingController controller = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   late CryptoCoinViewData crypto;
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  String getValueHelperText() {
-    if (controller.text.isEmpty ||
-        controller.text == '${crypto.symbol.toUpperCase()} ') {
-      return 'R\$ 0,00';
-    }
-    String quantity = controller.text.split(' ')[1];
-    quantity = quantity.replaceAll(',', '.');
-    Decimal decimalQuantity = Decimal.parse(quantity);
-    Decimal actualValue = decimalQuantity * crypto.currentPrice;
-    return UtilBrasilFields.obterReal(actualValue.toDouble());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +83,10 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
                   ConversionFormatter(crypto),
                 ],
                 decoration: InputDecoration(
-                  helperText: getValueHelperText(),
+                  helperText: getValueHelperText(
+                    controller: controller,
+                    crypto: crypto,
+                  ),
                   hintText: '${crypto.symbol.toUpperCase()} 0,00',
                 ),
                 style: const TextStyle(),

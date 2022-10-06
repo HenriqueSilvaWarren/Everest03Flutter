@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../../core/utils/animated_hide_text_value.dart';
+import 'animated_hide_text_value.dart';
 
 
-class DetailsItem extends StatelessWidget {
-  const DetailsItem({Key? key, required this.title, required this.value})
+class ScreensItem extends StatelessWidget {
+  const ScreensItem({Key? key, required this.title, required this.value})
       : super(key: key);
 
   final String title;
@@ -24,7 +24,7 @@ class DetailsItem extends StatelessWidget {
       trailing: AnimatedHideTextValue(
         text: value,
         style: GoogleFonts.sourceSansPro(
-          fontSize: 23,
+          fontSize: 19,
         ),
       ),
       contentPadding: EdgeInsets.zero,

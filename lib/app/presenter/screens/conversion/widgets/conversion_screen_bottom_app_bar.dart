@@ -1,50 +1,34 @@
+import 'package:card_02_listagem_crypto/app/presenter/screens/conversion/utils/get_conversion_data.dart';
+import 'package:card_02_listagem_crypto/app/presenter/screens/review/review_screen.dart';
+
 import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
 import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
+import '../utils/exchanged_currency.dart';
 import 'dropdown_button_right.dart';
-import 'package:decimal/decimal.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../domain/view_datas/crypto_coin_view_data.dart';
 import '../../../riverpod/view/crypto_drop_down_left_provider.dart';
 import '../utils/is_valid_method.dart';
 
+final conversionDataStateProvider = StateProvider<Map<String, List<String>>?>(
+  (ref) => null,
+);
+
 // ignore: must_be_immutable
 class ConversionScreenBottomAppBar extends HookConsumerWidget {
-  ConversionScreenBottomAppBar({
+  const ConversionScreenBottomAppBar({
     Key? key,
   }) : super(key: key);
 
-  late CryptoCoinViewData cryptoLeft;
-  late CryptoCoinViewData cryptoRight;
-  late String controllerText;
-  late bool isValidBool;
-  String exchangedCurrency() {
-    if (controllerText.isEmpty ||
-        controllerText == '${cryptoLeft.symbol.toUpperCase()} ') {
-      return 'Valor não informado';
-    }
-
-    String quantity = controllerText.split(' ')[1];
-    quantity = quantity.replaceAll(',', '.');
-    Decimal decimalQuantity = Decimal.parse(quantity);
-    Decimal decimalValue = decimalQuantity * cryptoLeft.currentPrice;
-    Decimal actualAmount = (decimalValue / cryptoRight.currentPrice).toDecimal(
-      scaleOnInfinitePrecision: 8,
-      toBigInt: (p0) => p0.toBigInt(),
-    );
-    String symbol = cryptoRight.symbol.toUpperCase();
-    return '$actualAmount $symbol';
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    controllerText = ref.watch(conversionControllerTextStateProvider);
-    cryptoLeft = ref.watch(cryptoDropdownLeftProvider);
-    cryptoRight = ref.watch(cryptoDropdownRightProvider);
-    isValidBool = isValid(
+    final controllerText = ref.watch(conversionControllerTextStateProvider);
+    final cryptoLeft = ref.watch(cryptoDropdownLeftProvider);
+    final cryptoRight = ref.watch(cryptoDropdownRightProvider);
+    final isValidBool = isValid(
       ref.watch(portfolioProvider).value!,
       text: controllerText,
       cryptoLeft: cryptoLeft,
@@ -85,7 +69,11 @@ class ConversionScreenBottomAppBar extends HookConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 4.0),
                     child: Text(
-                      exchangedCurrency(),
+                      exchangedCurrency(
+                        controllerText: controllerText,
+                        cryptoLeft: cryptoLeft,
+                        cryptoRight: cryptoRight,
+                      ),
                       style: GoogleFonts.sourceSansPro(
                         fontSize: 19,
                         fontWeight: FontWeight.w700,
@@ -97,13 +85,29 @@ class ConversionScreenBottomAppBar extends HookConsumerWidget {
               ),
             ),
             FloatingActionButton(
+              elevation: 0,
               shape: const CircleBorder(),
               foregroundColor: Colors.white,
               disabledElevation: 0,
               backgroundColor: isValidBool
                   ? const Color.fromRGBO(224, 43, 87, 1)
                   : Colors.grey,
-              onPressed: isValidBool ? () {} : null,
+              onPressed: isValidBool
+                  ? () {
+                      ref.read(conversionDataStateProvider.state).state =
+                          getConversionData(
+                        controllerText,
+                        exchangedCurrency(
+                          controllerText: controllerText,
+                          cryptoLeft: cryptoLeft,
+                          cryptoRight: cryptoRight,
+                        ),
+                      );
+                      Navigator.of(context).pushNamed(
+                        ReviewScreen.route,
+                      );
+                    }
+                  : null,
               child: Container(
                 height: 50,
                 width: 50,
