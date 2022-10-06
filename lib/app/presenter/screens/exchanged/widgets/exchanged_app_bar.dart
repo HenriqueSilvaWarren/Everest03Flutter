@@ -1,28 +1,29 @@
+import 'package:card_02_listagem_crypto/app/presenter/screens/portfolio/portfolio_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_coin_based_on_portfolio_provider.dart';
-
-class ExchangedAppBar extends HookConsumerWidget
-    implements PreferredSizeWidget {
+class ExchangedAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ExchangedAppBar({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return AppBar(
       iconTheme: const IconThemeData(color: Colors.black),
-      backgroundColor: Colors.white,
-      elevation: 0,
       leading: IconButton(
         onPressed: () {
-          ref.refresh(cryptoCoinBasedOnPortfolioProvider);
-          Navigator.of(context).pop();
+          Navigator.popUntil(
+            context,
+            ModalRoute.withName(PortfolioScreen.route),
+          );
         },
-        icon: const Icon(Icons.close),
+        icon: const Icon(
+          Icons.close,
+        ),
       ),
+      backgroundColor: Colors.white,
+      elevation: 0,
       shape: Border(
         bottom: BorderSide(
           color: Colors.grey.shade300,

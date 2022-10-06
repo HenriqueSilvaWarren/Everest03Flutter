@@ -1,13 +1,11 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:card_02_listagem_crypto/core/converters/decimal_converter.dart';
 import 'package:decimal/decimal.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'get_crypto_coin_based_on_portfolio_response.g.dart';
 
 @JsonSerializable()
-@DecimalConverter()
 class GetCryptoCoinResponse {
   final String id;
   final String symbol;

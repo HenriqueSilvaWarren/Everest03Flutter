@@ -10,10 +10,7 @@ String getExchangeRate(List<String> convCrypto, List<String> recCrypto) {
           Decimal.parse(
             convCrypto[0].replaceAll(',', '.'),
           ))
-      .toDecimal(
-    scaleOnInfinitePrecision: 8,
-    toBigInt: (p0) => p0.toBigInt(),
-  );
+      .toDecimal();
 
   return '1 $convSymbol = $exchange $recSymbol';
 }

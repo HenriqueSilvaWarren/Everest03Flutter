@@ -8,4 +8,5 @@ abstract class CryptoCoinDatasource {
 
   Future<Response> getCryptoHistoricPriceById(String id);
   
+  // Future<Response> getCryptoCoinsFromApi();
 }
