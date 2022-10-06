@@ -1,16 +1,21 @@
+import 'package:card_02_listagem_crypto/app/presenter/screens/conversion/utils/get_conversion_data.dart';
+import 'package:card_02_listagem_crypto/app/presenter/screens/review/review_screen.dart';
+
+import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
+import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
+import '../utils/exchanged_currency.dart';
+import 'dropdown_button_right.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
-import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
-import '../../../riverpod/view/conversion_data_state_provider.dart';
 import '../../../riverpod/view/crypto_drop_down_left_provider.dart';
-import '../../../riverpod/view/crypto_drop_down_right_provider.dart';
-import '../../review/review_screen.dart';
-import '../utils/exchanged_currency.dart';
-import '../utils/get_conversion_data.dart';
 import '../utils/is_valid_method.dart';
+
+final conversionDataStateProvider = StateProvider<Map<String, List<String>>?>(
+  (ref) => null,
+);
 
 // ignore: must_be_immutable
 class ConversionScreenBottomAppBar extends HookConsumerWidget {

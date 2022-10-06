@@ -1,4 +1,4 @@
-import '../../../../domain/view_datas/crypto_coin_view_data.dart';
+import 'package:card_02_listagem_crypto/app/domain/view_datas/crypto_coin_view_data.dart';
 import 'package:decimal/decimal.dart';
 
 String exchangedCurrency({

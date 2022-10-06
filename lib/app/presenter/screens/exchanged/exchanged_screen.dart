@@ -9,10 +9,10 @@ class ExchangedScreen extends StatelessWidget {
 
   static String route = '/exchanged-screen';
 
+
   @override
   Widget build(BuildContext context) {
     timeDilation = 1;
-
     return const Scaffold(
       appBar: ExchangedAppBar(),
       body: BodyExchangedScreen(),

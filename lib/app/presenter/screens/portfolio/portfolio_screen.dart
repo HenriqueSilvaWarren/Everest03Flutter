@@ -15,19 +15,18 @@ class PortfolioScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     int curIndex = 0;
-
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: ref.watch(portfolioProvider).when(
-              data: (portfolio) {
-                return BodyPortfolioScreen(
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: ref.watch(portfolioProvider).when(
+                data: (portfolio) => BodyPortfolioScreen(
                   portfolio: portfolio,
-                );
-              },
-              error: (error, stackTrace) => const SizedBox.shrink(),
-              loading: () => const LoadingPortfolioScreen(),
-            ),
+                ),
+                error: (error, stackTrace) => const SizedBox.shrink(),
+                loading: () => const LoadingPortfolioScreen(),
+              ),
+        ),
       ),
       bottomNavigationBar: CustomBottomNavigationBar(
         curIndex: curIndex,

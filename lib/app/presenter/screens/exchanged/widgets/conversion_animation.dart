@@ -9,10 +9,7 @@ class ConversionAnimation extends StatelessWidget {
   })  : rotationX = Tween<double>(begin: 0, end: pi * 2).animate(
           CurvedAnimation(
             parent: controller,
-            curve: const Interval(
-              0.0,
-              0.5,
-            ),
+            curve: const Interval(0.0, 0.5),
           ),
         ),
         rotationZ = Tween<double>(begin: 0, end: pi).animate(
@@ -30,7 +27,6 @@ class ConversionAnimation extends StatelessWidget {
   final Animation<double> controller;
   final Animation<double> rotationX;
   final Animation<double> rotationZ;
-
   final List<Widget> stackChildren = [
     Transform(
       transform: Matrix4.identity()..rotateX(pi),

@@ -1,22 +1,56 @@
+import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_coin_from_api_provider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/view_datas/crypto_coin_view_data.dart';
-import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_coin_from_api_provider.dart';
-import '../../../riverpod/view/crypto_drop_down_right_provider.dart';
 
-class DropdownButtonRight extends HookConsumerWidget {
+import '../../../riverpod/view/crypto_drop_down_left_provider.dart';
+import '../../../riverpod/view/get_crypto_state_provider.dart';
+
+class DropdownButtonRight extends StatefulHookConsumerWidget {
   const DropdownButtonRight({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<DropdownButtonRight> createState() =>
+      _DropdownButtonRightState();
+}
+
+final cryptoDropdownRightProvider = StateProvider<CryptoCoinViewData>(
+  (ref) {
+    return ref.watch(cryptoCoinFromApiProvider).value!.listCrypto.firstWhere(
+          (coin) => coin.id != ref.watch(cryptoDropdownLeftProvider).id,
+        );
+  },
+);
+
+class _DropdownButtonRightState extends ConsumerState<DropdownButtonRight> {
+  late CryptoCoinViewData cryptoCoinFromDetails;
+
+  late CryptoCoinViewData currentItem;
+  @override
+  void initState() {
+    super.initState();
+    cryptoCoinFromDetails = ref.read(getCryptoStateProvider);
+  }
+
+  bool isEqualToLeftDropdown(CryptoCoinViewData crypto) {
+    return crypto.id == ref.watch(cryptoDropdownLeftProvider).id;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     List<CryptoCoinViewData> listCoins = [];
 
     for (CryptoCoinViewData crypto
         in ref.watch(cryptoCoinFromApiProvider).value!.listCrypto) {
       listCoins.add(crypto);
     }
+
+    currentItem = listCoins.firstWhere(
+      (coin) => !isEqualToLeftDropdown(coin),
+    );
 
     return SizedBox(
       height: 32,
@@ -47,7 +81,7 @@ class DropdownButtonRight extends HookConsumerWidget {
               ),
             )
             .toList(),
-        value: ref.watch(cryptoDropdownRightProvider),
+        value: currentItem,
         borderRadius: BorderRadius.circular(20),
         itemHeight: 48,
         hint: const Text('Selecione'),
@@ -96,7 +130,12 @@ class DropdownButtonRight extends HookConsumerWidget {
           },
         ).toList(),
         onChanged: (value) {
-          ref.read(cryptoDropdownRightProvider.state).state = value!;
+          setState(
+            () {
+              ref.read(cryptoDropdownRightProvider.state).state = value!;
+              currentItem = value;
+            },
+          );
         },
         style: GoogleFonts.sourceSansPro(
           fontSize: 14,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/custom_app_bar.dart';
 import 'widgets/body_details_screen.dart';
+import '../../../../core/utils/custom_app_bar.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({Key? key}) : super(key: key);
