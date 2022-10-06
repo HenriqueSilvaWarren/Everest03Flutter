@@ -15,7 +15,6 @@ class ConversionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       bottomSheet: ConversionScreenBottomAppBar(),
-      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
         text: 'Converter',
