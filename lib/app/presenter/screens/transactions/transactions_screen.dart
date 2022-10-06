@@ -15,7 +15,7 @@ class TransactionsScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     int curIndex = 1;
 
-    ref.watch(cryptoCoinFromApiProvider).whenData((value) => value);
+    
     return Scaffold(
       body: const BodyTransactionsScreen(),
       bottomNavigationBar: CustomBottomNavigationBar(

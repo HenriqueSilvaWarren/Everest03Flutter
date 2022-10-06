@@ -110,7 +110,10 @@ class CryptoAppStringsEn extends CryptoAppStrings {
   String get exchangedQuantity => 'Exchanged Quantity:';
 
   @override
-  String get receivedCoin => 'Received Quantity:';
+  String get receivedCoin => 'Received Coin:';
+
+  @override
+  String get receivedQuantity => 'Received Quantity:';
 
   @override
   String get monetaryValue => 'Monetary Value:';

@@ -306,8 +306,14 @@ abstract class CryptoAppStrings {
   /// No description provided for @receivedCoin.
   ///
   /// In en, this message translates to:
-  /// **'Received Quantity:'**
+  /// **'Received Coin:'**
   String get receivedCoin;
+
+  /// No description provided for @receivedQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Received Quantity:'**
+  String get receivedQuantity;
 
   /// No description provided for @monetaryValue.
   ///

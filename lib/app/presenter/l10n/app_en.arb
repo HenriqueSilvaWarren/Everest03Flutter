@@ -34,7 +34,8 @@
     "transactionDetails": "Transactions Details",
     "exchangedCoin": "Exchanged Coin:",
     "exchangedQuantity": "Exchanged Quantity:",
-    "receivedCoin": "Received Quantity:",
+    "receivedCoin": "Received Coin:",
+    "receivedQuantity": "Received Quantity:",
     "monetaryValue": "Monetary Value:",
     "transactionDate": "Transaction Date:"
 }

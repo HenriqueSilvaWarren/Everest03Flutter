@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

@@ -77,40 +77,43 @@ class CryptoAppStringsPt extends CryptoAppStrings {
   String get finishExchange => 'Concluir';
 
   @override
-  String get conversion => 'Conversion performed';
+  String get conversion => 'Conversão efetuada';
 
   @override
-  String get conversionSuccess => 'Currency conversion successfully performed!';
+  String get conversionSuccess => 'Conversão de moedas efetuada com successo!';
 
   @override
-  String get bankDetails => 'Bank Details';
+  String get bankDetails => 'Dados Bancários';
 
   @override
-  String get bank => 'Bank:';
+  String get bank => 'Banco:';
 
   @override
-  String get agency => 'Agency:';
+  String get agency => 'Agência:';
 
   @override
-  String get subAccount => 'Sub-account:';
+  String get subAccount => 'Sub-conta:';
 
   @override
-  String get account => 'Account:';
+  String get account => 'Conta:';
 
   @override
-  String get cd => 'CD:';
+  String get cd => 'DV:';
 
   @override
-  String get transactionDetails => 'Transactions Details';
+  String get transactionDetails => 'Detalhes da Transação';
 
   @override
-  String get exchangedCoin => 'Exchanged Coin:';
+  String get exchangedCoin => 'Moeda Convertida:';
 
   @override
-  String get exchangedQuantity => 'Exchanged Quantity:';
+  String get exchangedQuantity => 'Quantidade Convertida:';
 
   @override
-  String get receivedCoin => 'Received Quantity:';
+  String get receivedCoin => 'Moeda Recebida:';
+
+  @override
+  String get receivedQuantity => 'Quantidade Recebida:';
 
   @override
   String get monetaryValue => 'Monetary Value:';

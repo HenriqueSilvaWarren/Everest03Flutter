@@ -49,7 +49,7 @@ void buttonExchangeCoins(
       symbol: '',
       name: '',
       quantity: Decimal.zero,
-    ),
+    ),  
   );
   if (recCryptoFromPortfolio.symbol.isEmpty) {
     portfolio.coins.add(

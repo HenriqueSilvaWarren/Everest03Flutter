@@ -1,6 +1,5 @@
+import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -26,31 +25,31 @@ class DialogTransactionDetails extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     DateFormat formatter = ref.watch(dateTimeFormatterProvider('dd/MM/yyyy'));
     return DialogNamedSection(
-      title: 'Detalhes da Transação',
+      title: CryptoAppStrings.of(context)!.transactionDetails,
       child: Column(
         children: [
           DialogTransactionDetailsRow(
-            firstText: 'Moeda Convertida:',
+            firstText: CryptoAppStrings.of(context)!.exchangedCoin,
             secondText: leftCrypto.name,
           ),
           DialogTransactionDetailsRow(
-            firstText: 'Quantidade Convertida:',
+            firstText: CryptoAppStrings.of(context)!.exchangedQuantity,
             secondText: transaction.convertedCryptoAmount.split(' ')[0],
           ),
           DialogTransactionDetailsRow(
-            firstText: 'Moeda Recebida:',
+            firstText: CryptoAppStrings.of(context)!.receivedCoin,
             secondText: rightCrypto.name,
           ),
           DialogTransactionDetailsRow(
-            firstText: 'Quantidade Recebida:',
+            firstText: CryptoAppStrings.of(context)!.receivedQuantity,
             secondText: transaction.receivedCryptoAmount.split(' ')[0],
           ),
           DialogTransactionDetailsRow(
-            firstText: 'Valor Monetário:',
+            firstText: CryptoAppStrings.of(context)!.monetaryValue,
             secondText: transaction.valueOfTransaction,
           ),
           DialogTransactionDetailsRow(
-            firstText: 'Data da Transação',
+            firstText: CryptoAppStrings.of(context)!.transactionDate,
             secondText: formatter.format(transaction.dateOfExchange),
           ),
         ],
@@ -58,3 +57,5 @@ class DialogTransactionDetails extends HookConsumerWidget {
     );
   }
 }
+
+class AppLocalizations {}
