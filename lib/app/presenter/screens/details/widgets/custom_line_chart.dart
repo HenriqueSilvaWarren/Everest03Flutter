@@ -8,7 +8,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../core/utils/get_real.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../riverpod/view/get_price_from_chart.dart';
 import 'day_button.dart';

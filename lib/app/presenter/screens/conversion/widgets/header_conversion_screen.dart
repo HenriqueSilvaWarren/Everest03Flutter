@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,7 +7,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
 import '../../../riverpod/view/crypto_drop_down_left_provider.dart';
-import '../../../riverpod/view/locale_state_provider.dart';
 
 class HeaderConversionScreen extends HookConsumerWidget {
   const HeaderConversionScreen({
@@ -44,7 +45,7 @@ class HeaderConversionScreen extends HookConsumerWidget {
                     )
                     .quantity;
                 return Text(
-                  '${ref.watch(localeStateProvider) == Locale("en", "US") ? quantity : quantity.toString().replaceAll('.', ',')} ${cryptoFromLeftDropdown.symbol.toUpperCase()} ',
+                  '${Platform.localeName == 'en_US' ? quantity : quantity.toString().replaceAll('.', ',')} ${cryptoFromLeftDropdown.symbol.toUpperCase()} ',
                   style: GoogleFonts.sourceSansPro(
                     fontSize: 15,
                     fontWeight: FontWeight.w400,

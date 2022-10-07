@@ -20,7 +20,7 @@ class CryptoAppStringsPt extends CryptoAppStrings {
   String get crypto => 'Cripto';
 
   @override
-  String get changeLanguage => 'Mudar Língua';
+  String get changeLanguage => 'Mudar Idioma';
 
   @override
   String get amountOfCoin => 'Valor total de moedas em dinheiro';
