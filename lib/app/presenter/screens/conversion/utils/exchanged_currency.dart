@@ -1,14 +1,22 @@
+import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import '../../../../domain/view_datas/crypto_coin_view_data.dart';
 import 'package:decimal/decimal.dart';
+
+import '../../../riverpod/view/locale_state_provider.dart';
 
 String exchangedCurrency({
   required String controllerText,
   required CryptoCoinViewData cryptoLeft,
   required CryptoCoinViewData cryptoRight,
+  required BuildContext context,
+  required WidgetRef ref,
 }) {
   if (controllerText.isEmpty ||
       controllerText == '${cryptoLeft.symbol.toUpperCase()} ') {
-    return 'Valor não informado';
+    return CryptoAppStrings.of(context)!.valueWasntInformed;
   }
 
   String quantity = controllerText.split(' ')[1];
@@ -20,5 +28,5 @@ String exchangedCurrency({
     toBigInt: (p0) => p0.toBigInt(),
   );
   String symbol = cryptoRight.symbol.toUpperCase();
-  return '${actualAmount.toString().replaceAll('.', ',')} $symbol';
+  return '${ref.watch(localeStateProvider) == Locale("en", "US") ? actualAmount : actualAmount.toString().replaceAll('.', ',')} $symbol';
 }

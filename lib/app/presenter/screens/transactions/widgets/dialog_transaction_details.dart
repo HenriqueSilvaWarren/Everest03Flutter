@@ -23,7 +23,7 @@ class DialogTransactionDetails extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    DateFormat formatter = ref.watch(dateTimeFormatterProvider('dd/MM/yyyy'));
+    DateFormat formatter = ref.watch(dateTimeFormatterProvider(CryptoAppStrings.of(context)!.dateFormat));
     return DialogNamedSection(
       title: CryptoAppStrings.of(context)!.transactionDetails,
       child: Column(

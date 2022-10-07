@@ -5,10 +5,22 @@ class CryptoAppStringsPt extends CryptoAppStrings {
   CryptoAppStringsPt([String locale = 'pt']) : super(locale);
 
   @override
-  String get language => 'português';
+  String get language => 'pt-BR';
+
+  @override
+  String get currency => 'brl';
+
+  @override
+  String get currencySymbol => 'R\$';
+
+  @override
+  String get dateFormat => 'dd/MM/yyyy';
 
   @override
   String get crypto => 'Cripto';
+
+  @override
+  String get changeLanguage => 'Mudar Língua';
 
   @override
   String get amountOfCoin => 'Valor total de moedas em dinheiro';
@@ -44,6 +56,9 @@ class CryptoAppStringsPt extends CryptoAppStrings {
   String get conversionExchangeText => 'Quanto você gostaria de converter?';
 
   @override
+  String get conversionHintText => '0,00';
+
+  @override
   String get insertAAmount => 'Por favor insira algum valor';
 
   @override
@@ -57,6 +72,9 @@ class CryptoAppStringsPt extends CryptoAppStrings {
 
   @override
   String get estimatedTotal => 'Total Estimado';
+
+  @override
+  String get valueWasntInformed => 'Valor não foi informado';
 
   @override
   String get review => 'Revisar';
@@ -74,7 +92,7 @@ class CryptoAppStringsPt extends CryptoAppStrings {
   String get exchange => 'Câmbio';
 
   @override
-  String get finishExchange => 'Concluir';
+  String get finishExchange => 'Concluir Conversão';
 
   @override
   String get conversion => 'Conversão efetuada';

@@ -70,6 +70,8 @@ class ConversionScreenBottomAppBar extends HookConsumerWidget {
                         controllerText: controllerText,
                         cryptoLeft: cryptoLeft,
                         cryptoRight: cryptoRight,
+                        context: context,
+                        ref: ref,
                       ),
                       style: GoogleFonts.sourceSansPro(
                         fontSize: 19,
@@ -98,6 +100,8 @@ class ConversionScreenBottomAppBar extends HookConsumerWidget {
                           controllerText: controllerText,
                           cryptoLeft: cryptoLeft,
                           cryptoRight: cryptoRight,
+                          context: context,
+                          ref: ref,
                         ),
                       );
                       Navigator.of(context).pushNamed(

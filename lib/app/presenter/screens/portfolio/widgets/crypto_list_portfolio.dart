@@ -23,7 +23,6 @@ class CryptoListPortfolio extends StatelessWidget {
         itemBuilder: (context, index) {
           return CryptoListCard(
             cryptoCoinViewData: allCryptoFromPortfolio.listCrypto[index],
-            listCryptosFromPortfolio: allCryptoFromPortfolio,
           );
         },
       ),

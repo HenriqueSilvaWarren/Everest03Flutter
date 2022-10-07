@@ -96,14 +96,38 @@ abstract class CryptoAppStrings {
   /// No description provided for @language.
   ///
   /// In en, this message translates to:
-  /// **'english'**
+  /// **'en-US'**
   String get language;
+
+  /// No description provided for @currency.
+  ///
+  /// In en, this message translates to:
+  /// **'usd'**
+  String get currency;
+
+  /// No description provided for @currencySymbol.
+  ///
+  /// In en, this message translates to:
+  /// **'US\$ '**
+  String get currencySymbol;
+
+  /// No description provided for @dateFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'MM/dd/yyyy'**
+  String get dateFormat;
 
   /// No description provided for @crypto.
   ///
   /// In en, this message translates to:
   /// **'Crypto'**
   String get crypto;
+
+  /// No description provided for @changeLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Language'**
+  String get changeLanguage;
 
   /// No description provided for @amountOfCoin.
   ///
@@ -171,6 +195,12 @@ abstract class CryptoAppStrings {
   /// **'How much would you like to exchange?'**
   String get conversionExchangeText;
 
+  /// No description provided for @conversionHintText.
+  ///
+  /// In en, this message translates to:
+  /// **'0.00'**
+  String get conversionHintText;
+
   /// No description provided for @insertAAmount.
   ///
   /// In en, this message translates to:
@@ -200,6 +230,12 @@ abstract class CryptoAppStrings {
   /// In en, this message translates to:
   /// **'Estimated Total'**
   String get estimatedTotal;
+
+  /// No description provided for @valueWasntInformed.
+  ///
+  /// In en, this message translates to:
+  /// **'Value wasn\'t informed'**
+  String get valueWasntInformed;
 
   /// No description provided for @review.
   ///

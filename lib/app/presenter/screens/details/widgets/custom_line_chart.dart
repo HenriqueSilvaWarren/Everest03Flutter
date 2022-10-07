@@ -9,6 +9,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../core/utils/get_real.dart';
+import '../../../../../l10n/app_localizations.dart';
 import '../../../riverpod/view/get_price_from_chart.dart';
 import 'day_button.dart';
 
@@ -43,6 +44,10 @@ class _CustomLineChartState extends ConsumerState<CustomLineChart> {
 
   @override
   Widget build(BuildContext context) {
+    final currencyFormatter = NumberFormat.currency(
+      locale: CryptoAppStrings.of(context)!.language,
+      symbol: CryptoAppStrings.of(context)!.currencySymbol,
+    );
     var stateGetPrice = ref.read(getPriceFromChartStateProvider.state);
     List<DayButton> daysButtons = [
       DayButton(text: "5D", selectedIndex: selectedIndex[0]),
@@ -68,14 +73,16 @@ class _CustomLineChartState extends ConsumerState<CustomLineChart> {
                         if (!p0.isInterestedForInteractions) {
                           setState(
                             () {
-                              stateGetPrice.state = getReal(spotsList.last.y);
+                              stateGetPrice.state = currencyFormatter.format(
+                                spotsList.last.y,
+                              );
                             },
                           );
                         } else {
                           if (p1?.lineBarSpots?[0].spotIndex != null) {
                             setState(
                               () {
-                                stateGetPrice.state = getReal(
+                                stateGetPrice.state = currencyFormatter.format(
                                   spotsList[p1!.lineBarSpots![0].spotIndex].y,
                                 );
                               },

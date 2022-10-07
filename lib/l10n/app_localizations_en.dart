@@ -5,10 +5,22 @@ class CryptoAppStringsEn extends CryptoAppStrings {
   CryptoAppStringsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get language => 'english';
+  String get language => 'en-US';
+
+  @override
+  String get currency => 'usd';
+
+  @override
+  String get currencySymbol => 'US\$ ';
+
+  @override
+  String get dateFormat => 'MM/dd/yyyy';
 
   @override
   String get crypto => 'Crypto';
+
+  @override
+  String get changeLanguage => 'Change Language';
 
   @override
   String get amountOfCoin => 'Total amount of coins in cash';
@@ -44,6 +56,9 @@ class CryptoAppStringsEn extends CryptoAppStrings {
   String get conversionExchangeText => 'How much would you like to exchange?';
 
   @override
+  String get conversionHintText => '0.00';
+
+  @override
   String get insertAAmount => 'Please, enter the amount of the coin you want to exchange';
 
   @override
@@ -57,6 +72,9 @@ class CryptoAppStringsEn extends CryptoAppStrings {
 
   @override
   String get estimatedTotal => 'Estimated Total';
+
+  @override
+  String get valueWasntInformed => 'Value wasn\'t informed';
 
   @override
   String get review => 'Review';

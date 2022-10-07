@@ -27,11 +27,7 @@ class TransactionsListTile extends StatelessWidget {
         );
       },
       horizontalTitleGap: 8,
-      shape: const Border(
-        top: BorderSide(
-          color: Color.fromARGB(255, 227, 228, 235),
-        ),
-      ),
+     
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

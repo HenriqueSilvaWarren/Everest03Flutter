@@ -16,7 +16,7 @@ class BodyReviewScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dataFromConversion = ref.watch(conversionDataStateProvider)!;
-  
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: CustomScrollView(
@@ -42,6 +42,7 @@ class BodyReviewScreen extends HookConsumerWidget {
                       value: getExchangeRate(
                         dataFromConversion['convertingCrypto']!,
                         dataFromConversion['receivingCrypto']!,
+                        ref,
                       ),
                     ),
                     const FinishConversionButton(),

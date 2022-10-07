@@ -4,6 +4,7 @@ import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../core/utils/animated_hide_text_value.dart';
 import '../../../../../core/utils/get_real.dart';
@@ -29,6 +30,10 @@ class BodyDetailsScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currencyFormatter = NumberFormat.currency(
+      locale: CryptoAppStrings.of(context)!.language,
+      symbol: CryptoAppStrings.of(context)!.currencySymbol,
+    );
     final AsyncValue<CryptoHistoricPriceViewData> cryptoPrices = ref.watch(
       cryptoHistoricPriceByIdProvider(
         ref.read(getCryptoStateProvider).id,
@@ -61,7 +66,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
                 const DetailsTopCardWidget(),
                 AnimatedHideTextValue(
                   text: values == ""
-                      ? getReal(
+                      ? currencyFormatter.format(
                           cryptoCoin.currentPrice.toDouble(),
                         )
                       : values,

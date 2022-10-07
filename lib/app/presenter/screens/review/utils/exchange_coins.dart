@@ -1,7 +1,10 @@
 import 'package:decimal/decimal.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../core/utils/get_value_helper_text.dart';
+import '../../../../../l10n/app_localizations.dart';
 import '../../../../domain/view_datas/coin_in_portfolio_view_data.dart';
 import '../../../../domain/view_datas/crypto_coin_view_data.dart';
 import '../../../../domain/view_datas/list_crypto_view_data.dart';
@@ -16,7 +19,12 @@ import '../../../riverpod/view/crypto_drop_down_left_provider.dart';
 
 void buttonExchangeCoins(
   WidgetRef ref,
+  BuildContext context,
 ) {
+  final currencyFormatter = NumberFormat.currency(
+    locale: CryptoAppStrings.of(context)!.language,
+    symbol: CryptoAppStrings.of(context)!.currencySymbol,
+  );
   Map<String, List<String>> dataFromConversion =
       ref.watch(conversionDataStateProvider)!;
   PortfolioViewData portfolio = ref.watch(portfolioProvider).value!;
@@ -49,7 +57,7 @@ void buttonExchangeCoins(
       symbol: '',
       name: '',
       quantity: Decimal.zero,
-    ),  
+    ),
   );
   if (recCryptoFromPortfolio.symbol.isEmpty) {
     portfolio.coins.add(
@@ -70,9 +78,11 @@ void buttonExchangeCoins(
     convertedCryptoAmount: convCrypto.join(' '),
     receivedCryptoAmount: recCrypto.join(' '),
     dateOfExchange: DateTime.now(),
-    valueOfTransaction: getValueHelperText(
-      controllerText: ref.watch(conversionControllerTextStateProvider),
-      crypto: ref.watch(cryptoDropdownLeftProvider),
+    valueOfTransaction: currencyFormatter.format(
+      getValueHelperText(
+        controllerText: ref.watch(conversionControllerTextStateProvider),
+        crypto: ref.watch(cryptoDropdownLeftProvider),
+      ),
     ),
   );
   ref
