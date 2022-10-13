@@ -1,7 +1,9 @@
-import 'dart:io';
 
 import 'package:decimal/decimal.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../riverpod/view/locale_state_provider.dart';
 
 String getExchangeRate(
     List<String> convCrypto, List<String> recCrypto, WidgetRef ref) {
@@ -19,5 +21,5 @@ String getExchangeRate(
     toBigInt: (p0) => p0.toBigInt(),
   );
 
-  return '1 $convSymbol = ${Platform.localeName == 'en_US' ? exchange : exchange.toString().replaceAll('.', ',')} $recSymbol';
+  return '1 $convSymbol = ${ref.watch(localeStateProvider) == const Locale('en', 'US') ? exchange : exchange.toString().replaceAll('.', ',')} $recSymbol';
 }

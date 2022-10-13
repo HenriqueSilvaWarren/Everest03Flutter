@@ -22,18 +22,22 @@ class CustomBottomNavigationBar extends StatelessWidget {
         BottomNavigationBarItem(
           label: CryptoAppStrings.of(context)!.portfolio,
           icon: IconFromSvgWidget(
+            key: const Key('warrenInactive'),
             asset: warrenInactiveIcon,
           ),
           activeIcon: IconFromSvgWidget(
+            key: const Key('warrenActive'),
             asset: warrenActiveIcon,
           ),
         ),
         BottomNavigationBarItem(
           label: CryptoAppStrings.of(context)!.transactions,
           icon: IconFromSvgWidget(
+            key: const Key('movInactive'),
             asset: movInactiveIcon,
           ),
           activeIcon: IconFromSvgWidget(
+            key: const Key('movActive'),
             asset: movActiveIcon,
           ),
         ),

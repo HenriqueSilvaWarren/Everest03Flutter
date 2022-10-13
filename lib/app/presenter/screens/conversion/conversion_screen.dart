@@ -8,7 +8,7 @@ import 'widgets/conversion_screen_bottom_app_bar.dart';
 class ConversionScreen extends StatelessWidget {
   const ConversionScreen({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); // coverage:ignore-line
 
   static String route = '/conversion-screen';
 

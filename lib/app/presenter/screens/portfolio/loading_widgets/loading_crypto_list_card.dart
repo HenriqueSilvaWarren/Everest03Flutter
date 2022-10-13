@@ -4,7 +4,7 @@ import 'package:shimmer/shimmer.dart';
 class LoadingCryptoListCard extends StatelessWidget {
   const LoadingCryptoListCard({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); // coverage:ignore-line
 
   @override
   Widget build(BuildContext context) {

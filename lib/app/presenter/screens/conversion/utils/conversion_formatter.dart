@@ -1,7 +1,6 @@
-import 'dart:io';
-
-
+import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/locale_state_provider.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/view_datas/crypto_coin_view_data.dart';
@@ -36,7 +35,7 @@ class ConversionFormatter extends TextInputFormatter {
           );
       }
     }
-    if (Platform.localeName == 'en_US') {
+    if (ref.watch(localeStateProvider) == const Locale('en', 'US')) {
       if (text.contains('.', text.indexOf('.') + 1) || text.contains(',')) {
         return TextEditingValue(
           text: oldValue.text,

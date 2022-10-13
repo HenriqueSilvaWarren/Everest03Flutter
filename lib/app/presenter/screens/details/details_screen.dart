@@ -11,13 +11,17 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return  Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
+        key: const Key('detailsAppBar'),
         text: CryptoAppStrings.of(context)!.details,
         doesHide: true,
       ),
-      body: const BodyDetailsScreen(),
+      body: const BodyDetailsScreen(
+        key: Key('bodyDetailsScreen'),
+      ),
     );
   }
 }

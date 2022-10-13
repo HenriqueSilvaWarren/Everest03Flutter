@@ -17,23 +17,28 @@ class BodyPortfolioScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final coins = portfolio.coins;
+
     return ref.watch(cryptoCoinBasedOnPortfolioProvider).when(
-          data: (allCryptoFromPortfolio) {
-            return Column(
-              children: [
-                TotalCurrencyCard(
-                  cryptoList: allCryptoFromPortfolio,
-                  portfolio: portfolio,
-                ),
-                CryptoListPortfolio(
-                  coins: coins,
-                  allCryptoFromPortfolio: allCryptoFromPortfolio,
-                ),
-              ],
-            );
-          },
-          error: (error, stackTrace) => Text('$error'),
-          loading: () => const LoadingPortfolioScreen(),
+          data: (allCryptoFromPortfolio) => Column(
+            key: const Key('columnBodyPortfolio'),
+            children: [
+              TotalCurrencyCard(
+                key: const Key('totalCurrencyCard'),
+                cryptoList: allCryptoFromPortfolio,
+                portfolio: portfolio,
+              ),
+              CryptoListPortfolio(
+                coins: coins,
+                allCryptoFromPortfolio: allCryptoFromPortfolio,
+              ),
+            ],
+          ),
+          error: (error, stackTrace) => const SizedBox.shrink(
+            key: Key('errorBodyPortfolio'),
+          ),
+          loading: () => const LoadingPortfolioScreen(
+            key: Key('bodyLoadingScreen'),
+          ),
         );
   }
 }

@@ -3,8 +3,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../app/presenter/riverpod/view/hide_values.dart';
 
-
-
 class AnimatedHideTextValue extends HookConsumerWidget {
   const AnimatedHideTextValue({
     Key? key,

@@ -1,5 +1,3 @@
-import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/coin_gecko/screens/crypto_coin_based_on_portfolio_provider.dart';
-import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/get_currency_state_provider.dart';
 import 'package:card_02_listagem_crypto/core/app_assets.dart';
 import 'package:intl/intl.dart';
 
@@ -13,7 +11,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../core/utils/animated_hide_text_value.dart';
 import '../../../../../core/utils/hide_values_button.dart';
-import '../../../riverpod/view/locale_state_provider.dart';
+import 'change_language_button.dart';
 
 class TotalCurrencyCard extends HookConsumerWidget {
   const TotalCurrencyCard({
@@ -61,6 +59,7 @@ class TotalCurrencyCard extends HookConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               AnimatedHideTextValue(
+                key: const Key('hideTotalCurrencyValue'),
                 text: currencyFormatter.format(
                   cryptoList.listCrypto.fold<double>(
                     0,
@@ -84,7 +83,7 @@ class TotalCurrencyCard extends HookConsumerWidget {
                 ),
               ),
               Tooltip(
-                message:CryptoAppStrings.of(context)!.changeLanguage,
+                message: CryptoAppStrings.of(context)!.changeLanguage,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: Stack(
@@ -102,27 +101,11 @@ class TotalCurrencyCard extends HookConsumerWidget {
                               scale: 0.5),
                         ),
                       ),
-                      Positioned.fill(
+                      const Positioned.fill(
                         child: Material(
                           color: Colors.transparent,
-                          child: InkWell(
-                            onTap: () {
-                              switch (CryptoAppStrings.of(context)!.language) {
-                                case 'pt-BR':
-                                  ref.read(localeStateProvider.state).state =
-                                      const Locale('en', 'US');
-                                  ref.read(getCurrencyStateProvider.state).state =
-                                      'usd';
-                                  break;
-                                default:
-                                  ref.read(localeStateProvider.state).state =
-                                      const Locale('pt', 'BR');
-                                  ref.read(getCurrencyStateProvider.state).state =
-                                      'brl';
-                                  break;
-                              }
-                              ref.refresh(cryptoCoinBasedOnPortfolioProvider);
-                            },
+                          child: ChangeLanguageButton(
+                            key: Key('changeLanguageButton'),
                           ),
                         ),
                       ),

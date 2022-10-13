@@ -16,20 +16,27 @@ class PortfolioScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     int curIndex = 0;
 
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: ref.watch(portfolioProvider).when(
               data: (portfolio) {
                 return BodyPortfolioScreen(
+                  key: const Key('bodyPortfolioScreen'),
                   portfolio: portfolio,
                 );
               },
-              error: (error, stackTrace) => const SizedBox.shrink(),
-              loading: () => const LoadingPortfolioScreen(),
+              error: (error, stackTrace) => const SizedBox.shrink(
+                key: Key('errorPortfolio'),
+              ),
+              loading: () => const LoadingPortfolioScreen(
+                key: Key('loadingPortfolioScreen'),
+              ),
             ),
       ),
       bottomNavigationBar: CustomBottomNavigationBar(
+        key: const Key('bottomNavigationPortfolio'),
         curIndex: curIndex,
         onTap: (value) {
           switch (value) {

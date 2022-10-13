@@ -1,6 +1,5 @@
 import 'package:card_02_listagem_crypto/app/domain/view_datas/portfolio_view_data.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
 import '../crypto_coin_datasource.dart';
 
@@ -17,9 +16,6 @@ class CryptoCoinEndPoint implements CryptoCoinDatasource {
     PortfolioViewData portfolio,
     String currency,
   ) {
-    if (kDebugMode) {
-      print(++count);
-    }
     String? ids = portfolio.coins
         .map(
           (coin) => coin.name.toLowerCase(),
@@ -37,9 +33,6 @@ class CryptoCoinEndPoint implements CryptoCoinDatasource {
 
   @override
   Future<Response> getCryptoHistoricPriceById(String id, String currency) {
-    if (kDebugMode) {
-      print(++count);
-    }
     return _dio.get(
       '/coins/$id/market_chart',
       queryParameters: {
