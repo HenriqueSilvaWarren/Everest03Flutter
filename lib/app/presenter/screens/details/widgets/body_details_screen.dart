@@ -1,13 +1,10 @@
-import 'package:brasil_fields/brasil_fields.dart';
 import '../../../../../l10n/app_localizations.dart';
-import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../core/utils/animated_hide_text_value.dart';
-import '../../../../../core/utils/get_real.dart';
 import '../../../../../core/utils/screens_item.dart';
 import '../../../../domain/view_datas/coin_in_portfolio_view_data.dart';
 import '../../../../domain/view_datas/crypto_coin_view_data.dart';

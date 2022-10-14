@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import '../../../riverpod/view/locale_state_provider.dart';
 import 'package:flutter/material.dart';
