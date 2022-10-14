@@ -6,8 +6,6 @@ abstract class CryptoCoinRepository {
   Future<List<GetCryptoCoinResponse>> getCryptoCoinBasedOnPortfolio(
       PortfolioViewData portfolio);
 
-  // Future<List<GetCryptoCoinResponse>> getCryptoCoinsFromApi();
-
   Future<GetCryptoHistoricPriceByIdResponse> getCryptoHistoricPriceById(
       String id);
 }

@@ -3,12 +3,12 @@ import '../data_sources/get_portfolio_datasource.dart';
 import '../responses/get_portfolio_by_id_response.dart';
 
 class GetPortfolioRepositoryImp implements GetPortfolioRepository {
-  GetPortfolioDatasource database;
-  GetPortfolioRepositoryImp(this.database);
+  GetPortfolioDatasource datasource;
+  GetPortfolioRepositoryImp(this.datasource);
 
   @override
   Future<List<GetPortfolioByIdResponse>> getPortfolioById(int id) async {
-    final result = await database.getPortfolioById(id);
+    final result = await datasource.getPortfolioById(id);
 
     return List<GetPortfolioByIdResponse>.from(
       result.map(
