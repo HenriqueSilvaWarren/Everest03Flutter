@@ -1,5 +1,5 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
+import '../../../../../l10n/app_localizations.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,6 +16,7 @@ import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_historic_pri
 import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
 import '../../../riverpod/view/get_crypto_state_provider.dart';
 import '../../../riverpod/view/get_price_from_chart.dart';
+import '../../../riverpod/view/locale_state_provider.dart';
 import '../loading_widgets/loading_chart.dart';
 import '../loading_widgets/loading_details_variation.dart';
 import 'button_convert_currency.dart';
@@ -86,11 +87,8 @@ class BodyDetailsScreen extends HookConsumerWidget {
                 ),
                 ScreensItem(
                   title: CryptoAppStrings.of(context)!.currentPrice,
-                  value: UtilBrasilFields.obterReal(
-                    Decimal.parse(
-                      cryptoCoin.currentPrice.toString(),
-                    ).toDouble(),
-                  ),
+                  value: currencyFormatter
+                      .format(cryptoCoin.currentPrice.toDouble()),
                 ),
                 cryptoPrices.when(
                   data: (data) {
@@ -118,11 +116,12 @@ class BodyDetailsScreen extends HookConsumerWidget {
                 ),
                 ScreensItem(
                   title: CryptoAppStrings.of(context)!.quantity,
-                  value: '${coin.quantity} ${cryptoCoin.symbol.toUpperCase()}',
+                  value:
+                      '${ref.watch(localeStateProvider) == const Locale('pt', 'BR') ? coin.quantity.toString().replaceAll('.', ',') : coin.quantity} ${cryptoCoin.symbol.toUpperCase()}',
                 ),
                 ScreensItem(
                   title: CryptoAppStrings.of(context)!.value,
-                  value: getReal(
+                  value: currencyFormatter.format(
                     (cryptoCoin.currentPrice * coin.quantity).toDouble(),
                   ),
                 ),

@@ -1,4 +1,4 @@
-import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
+import '../../../../../l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';

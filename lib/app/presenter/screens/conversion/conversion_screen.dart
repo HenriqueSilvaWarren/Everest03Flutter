@@ -1,4 +1,4 @@
-import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
+import '../../../../l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/custom_app_bar.dart';

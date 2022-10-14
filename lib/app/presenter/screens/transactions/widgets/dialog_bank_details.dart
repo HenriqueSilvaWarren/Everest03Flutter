@@ -1,8 +1,8 @@
-import '../../../../../l10n/app_localizations.dart';
-import 'dialog_transaction_details_row.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../l10n/app_localizations.dart';
 import 'dialog_named_section.dart';
+import 'dialog_transaction_details_row.dart';
 import 'transactions_row_item.dart';
 
 class DialogBankDetails extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/get_currency_state_provider.dart';
+import '../../../../view/get_currency_state_provider.dart';
 
 import '../../../local/portfolio/screen/portfolio_provider.dart';
 

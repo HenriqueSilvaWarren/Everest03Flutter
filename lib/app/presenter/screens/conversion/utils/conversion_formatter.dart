@@ -1,6 +1,7 @@
 import 'dart:io';
 
-
+import '../../../riverpod/view/locale_state_provider.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -36,7 +37,7 @@ class ConversionFormatter extends TextInputFormatter {
           );
       }
     }
-    if (Platform.localeName == 'en_US') {
+    if (ref.watch(localeStateProvider) == const Locale('en', 'US')) {
       if (text.contains('.', text.indexOf('.') + 1) || text.contains(',')) {
         return TextEditingValue(
           text: oldValue.text,
