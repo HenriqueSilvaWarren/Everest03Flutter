@@ -1,3 +1,4 @@
+import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -38,14 +39,14 @@ class _BodyExchangedScreenState extends State<BodyExchangedScreen>
         children: [
           ConversionAnimation(controller: _animationController),
           Text(
-            'Conversão efetuada',
+            CryptoAppStrings.of(context)!.conversion,
             style: GoogleFonts.sourceSansPro(
               fontSize: 34,
               fontWeight: FontWeight.w700,
             ),
           ),
           Text(
-            'Conversão de moeda efetuada com sucesso!',
+            CryptoAppStrings.of(context)!.conversionSuccess,
             style: GoogleFonts.sourceSansPro(
                 fontSize: 17,
                 fontWeight: FontWeight.w400,

@@ -1,0 +1,8 @@
+arb-dir: lib/app/presenter/l10n
+template-arb-file: app_en.arb
+
+output-localizations-file: app_localizations.dart
+output-class: CryptoAppStrings
+
+output-dir: lib/l10n
+synthetic-package: false

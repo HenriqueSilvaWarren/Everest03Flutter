@@ -1,3 +1,4 @@
+import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/custom_app_bar.dart';
@@ -13,14 +14,15 @@ class ConversionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      bottomSheet: ConversionScreenBottomAppBar(),
+    return Scaffold(
+      bottomSheet: const ConversionScreenBottomAppBar(),
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
-        text: 'Converter',
+        text: CryptoAppStrings.of(context)!.convert,
         doesHide: false,
       ),
-      body: BodyConversionScreen(),
+      body: const BodyConversionScreen(),
     );
   }
 }

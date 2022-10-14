@@ -4,8 +4,12 @@ import '../view_datas/portfolio_view_data.dart';
 
 abstract class CryptoCoinRepository {
   Future<List<GetCryptoCoinResponse>> getCryptoCoinBasedOnPortfolio(
-      PortfolioViewData portfolio);
+    PortfolioViewData portfolio,
+    String currency,
+  );
 
   Future<GetCryptoHistoricPriceByIdResponse> getCryptoHistoricPriceById(
-      String id);
+    String id,
+    String currency,
+  );
 }
