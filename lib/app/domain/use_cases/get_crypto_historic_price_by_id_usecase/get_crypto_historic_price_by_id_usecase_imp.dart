@@ -10,8 +10,8 @@ class GetCryptoHistoricPriceByIdUsecaseImp
   GetCryptoHistoricPriceByIdUsecaseImp(this.repository);
 
   @override
-  Future<CryptoHistoricPriceViewData> execute(String id) async {
-    final response = await repository.getCryptoHistoricPriceById(id);
+  Future<CryptoHistoricPriceViewData> execute(String id, String currency) async {
+    final response = await repository.getCryptoHistoricPriceById(id, currency);
 
     return response.toViewData();
   }

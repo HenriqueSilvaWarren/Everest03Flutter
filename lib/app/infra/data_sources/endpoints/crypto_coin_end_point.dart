@@ -1,7 +1,6 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'package:card_02_listagem_crypto/app/domain/view_datas/portfolio_view_data.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 import '../crypto_coin_datasource.dart';
 
@@ -14,7 +13,13 @@ class CryptoCoinEndPoint implements CryptoCoinDatasource {
   int count = 0;
 
   @override
-  Future<Response> getCryptoCoinBasedOnPortfolio(PortfolioViewData portfolio) {
+  Future<Response> getCryptoCoinBasedOnPortfolio(
+    PortfolioViewData portfolio,
+    String currency,
+  ) {
+    if (kDebugMode) {
+      print(++count);
+    }
     String? ids = portfolio.coins
         .map(
           (coin) => coin.name.toLowerCase(),
@@ -24,18 +29,21 @@ class CryptoCoinEndPoint implements CryptoCoinDatasource {
     return _dio.get(
       '/coins/markets',
       queryParameters: {
-        'vs_currency': 'brl',
+        'vs_currency': currency,
         'ids': ids,
       },
     );
   }
 
   @override
-  Future<Response> getCryptoHistoricPriceById(String id) {
+  Future<Response> getCryptoHistoricPriceById(String id, String currency) {
+    if (kDebugMode) {
+      print(++count);
+    }
     return _dio.get(
       '/coins/$id/market_chart',
       queryParameters: {
-        "vs_currency": "brl",
+        "vs_currency": currency,
         "days": "90",
         "interval": 'daily',
       },

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/utils/animated_hide_text_value.dart';
-import '../../../../../core/utils/get_real.dart';
 import '../../../../../core/utils/hide_values_button.dart';
+
+import '../../../../../l10n/app_localizations.dart';
 
 class LoadingPortfolioTopCard extends StatelessWidget {
   const LoadingPortfolioTopCard({
@@ -13,6 +15,10 @@ class LoadingPortfolioTopCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currencyFormatter = NumberFormat.currency(
+      locale: CryptoAppStrings.of(context)!.language,
+      symbol: CryptoAppStrings.of(context)!.currencySymbol,
+    );
     return Container(
       margin: const EdgeInsets.only(
         top: 10,
@@ -29,7 +35,7 @@ class LoadingPortfolioTopCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Cripto",
+                  CryptoAppStrings.of(context)!.crypto,
                   style: GoogleFonts.montserrat(
                     fontSize: 32,
                     color: const Color.fromARGB(255, 224, 43, 87),
@@ -44,7 +50,7 @@ class LoadingPortfolioTopCard extends StatelessWidget {
             baseColor: Colors.grey.shade300,
             highlightColor: Colors.grey.shade200,
             child: AnimatedHideTextValue(
-              text: getReal(0),
+              text: currencyFormatter.format(0),
               style: GoogleFonts.montserrat(
                 fontSize: 32,
                 fontWeight: FontWeight.w700,
@@ -52,7 +58,7 @@ class LoadingPortfolioTopCard extends StatelessWidget {
             ),
           ),
           Text(
-            "Valor total de moedas",
+            CryptoAppStrings.of(context)!.amountOfCoin,
             style: GoogleFonts.sourceSansPro(
                 fontSize: 17,
                 fontWeight: FontWeight.w400,

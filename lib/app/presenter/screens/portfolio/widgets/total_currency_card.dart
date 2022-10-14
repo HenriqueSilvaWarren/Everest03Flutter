@@ -1,3 +1,9 @@
+import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/coin_gecko/screens/crypto_coin_based_on_portfolio_provider.dart';
+import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/get_currency_state_provider.dart';
+import 'package:card_02_listagem_crypto/core/app_assets.dart';
+import 'package:intl/intl.dart';
+
+import '../../../../../l10n/app_localizations.dart';
 import '../../../../domain/view_datas/list_crypto_view_data.dart';
 import '../../../../domain/view_datas/portfolio_view_data.dart';
 
@@ -6,8 +12,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../core/utils/animated_hide_text_value.dart';
-import '../../../../../core/utils/get_real.dart';
 import '../../../../../core/utils/hide_values_button.dart';
+import '../../../riverpod/view/locale_state_provider.dart';
 
 class TotalCurrencyCard extends HookConsumerWidget {
   const TotalCurrencyCard({
@@ -20,6 +26,10 @@ class TotalCurrencyCard extends HookConsumerWidget {
   final PortfolioViewData portfolio;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currencyFormatter = NumberFormat.currency(
+      locale: CryptoAppStrings.of(context)!.language,
+      symbol: CryptoAppStrings.of(context)!.currencySymbol,
+    );
     return Container(
       margin: const EdgeInsets.only(
         top: 10,
@@ -36,7 +46,7 @@ class TotalCurrencyCard extends HookConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Cripto",
+                  CryptoAppStrings.of(context)!.crypto,
                   style: GoogleFonts.montserrat(
                     fontSize: 32,
                     color: const Color.fromARGB(255, 224, 43, 87),
@@ -47,35 +57,88 @@ class TotalCurrencyCard extends HookConsumerWidget {
               ],
             ),
           ),
-          AnimatedHideTextValue(
-            text: getReal(
-              cryptoList.listCrypto.fold(
-                0,
-                (prevPrice, model) {
-                  return prevPrice +
-                      model.currentPrice.toDouble() *
-                          portfolio.coins
-                              .firstWhere(
-                                (coin) =>
-                                    coin.symbol.toLowerCase() ==
-                                    model.symbol.toLowerCase(),
-                              )
-                              .quantity
-                              .toDouble();
-                },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              AnimatedHideTextValue(
+                text: currencyFormatter.format(
+                  cryptoList.listCrypto.fold<double>(
+                    0,
+                    (prevPrice, model) {
+                      return prevPrice +
+                          model.currentPrice.toDouble() *
+                              portfolio.coins
+                                  .firstWhere(
+                                    (coin) =>
+                                        coin.symbol.toLowerCase() ==
+                                        model.symbol.toLowerCase(),
+                                  )
+                                  .quantity
+                                  .toDouble();
+                    },
+                  ),
+                ),
+                style: GoogleFonts.montserrat(
+                  fontSize: 32,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-            ),
-            style: GoogleFonts.montserrat(
-              fontSize: 32,
-              fontWeight: FontWeight.w700,
-            ),
+              Tooltip(
+                message:CryptoAppStrings.of(context)!.changeLanguage,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5),
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 40,
+                        width: 60,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(
+                                localeImage[
+                                    CryptoAppStrings.of(context)!.language]!,
+                              ),
+                              fit: BoxFit.cover,
+                              scale: 0.5),
+                        ),
+                      ),
+                      Positioned.fill(
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () {
+                              switch (CryptoAppStrings.of(context)!.language) {
+                                case 'pt-BR':
+                                  ref.read(localeStateProvider.state).state =
+                                      const Locale('en', 'US');
+                                  ref.read(getCurrencyStateProvider.state).state =
+                                      'usd';
+                                  break;
+                                default:
+                                  ref.read(localeStateProvider.state).state =
+                                      const Locale('pt', 'BR');
+                                  ref.read(getCurrencyStateProvider.state).state =
+                                      'brl';
+                                  break;
+                              }
+                              ref.refresh(cryptoCoinBasedOnPortfolioProvider);
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
           Text(
-            "Valor total de moedas",
+            CryptoAppStrings.of(context)!.amountOfCoin,
             style: GoogleFonts.sourceSansPro(
-                fontSize: 17,
-                fontWeight: FontWeight.w400,
-                color: const Color.fromARGB(255, 117, 118, 128)),
+              fontSize: 17,
+              fontWeight: FontWeight.w400,
+              color: const Color.fromARGB(255, 117, 118, 128),
+            ),
           )
         ],
       ),
