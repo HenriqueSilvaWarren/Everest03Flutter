@@ -14,9 +14,9 @@ class ConversionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomSheet: const ConversionScreenBottomAppBar(),
-      resizeToAvoidBottomInset: true,
+    return const Scaffold(
+      bottomSheet: ConversionScreenBottomAppBar(),
+
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
         text: CryptoAppStrings.of(context)!.convert,
