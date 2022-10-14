@@ -30,8 +30,9 @@ class ConversionFormatter extends TextInputFormatter {
         case '.':
           return TextEditingValue(
             text: '${crypto.symbol.toUpperCase()} ',
-            selection:
-                TextSelection.collapsed(offset: crypto.symbol.length + 1),
+            selection: TextSelection.collapsed(
+              offset: crypto.symbol.length + 1,
+            ),
           );
       }
     }

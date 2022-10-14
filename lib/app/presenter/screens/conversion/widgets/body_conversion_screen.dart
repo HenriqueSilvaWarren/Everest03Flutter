@@ -8,7 +8,7 @@ import 'text_conversion_question.dart';
 class BodyConversionScreen extends StatelessWidget {
   const BodyConversionScreen({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); // coverage:ignore-line
 
   @override
   Widget build(BuildContext context) {

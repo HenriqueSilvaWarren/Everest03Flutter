@@ -21,7 +21,6 @@ import 'package:card_02_listagem_crypto/core/utils/hide_values_button.dart';
 import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:decimal/decimal.dart';
 import 'package:faker/faker.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -378,10 +377,6 @@ void main() {
       testWidgets(
         'WHEN load LineChart THEN ensure all its properties loaded',
         (WidgetTester tester) async {
-          final currencyFormatter = NumberFormat.currency(
-            locale: 'pt-BR',
-            symbol: 'R\$',
-          );
           await tester.pumpWidget(
             const SetupWidgetTester(
               child: BodyDetailsScreen(),
@@ -391,11 +386,6 @@ void main() {
             const Duration(seconds: 5),
           );
 
-          var customLineChart = tester.widget<LineChart>(
-            find.byKey(
-              const Key('detailsLineChart'),
-            ),
-          );
 
           // expect(
           //   customLineChart.data.lineTouchData.getTouchLineEnd,

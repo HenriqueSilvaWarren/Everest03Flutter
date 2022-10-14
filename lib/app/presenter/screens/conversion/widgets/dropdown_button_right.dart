@@ -22,6 +22,7 @@ class DropdownButtonRight extends HookConsumerWidget {
       height: 32,
       width: 92,
       child: DropdownButtonFormField(
+        key: const Key('cryptoDropdownRight'),
         elevation: 0,
         dropdownColor: Colors.transparent,
         selectedItemBuilder: (context) => listCoins
@@ -54,10 +55,10 @@ class DropdownButtonRight extends HookConsumerWidget {
         items: listCoins.map(
           (CryptoCoinViewData cryptoCoin) {
             return DropdownMenuItem(
+              key: Key('rightDropdown${cryptoCoin.name}'),
               value: cryptoCoin,
               child: Container(
-                margin: const EdgeInsets.only(left: 5, bottom: 3),
-                width: 92,
+                width: 96,
                 height: 32,
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 decoration: BoxDecoration(

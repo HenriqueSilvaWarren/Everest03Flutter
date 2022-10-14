@@ -31,13 +31,22 @@ class _ConversionDropDownButtonsState
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
-          DropdownButtonLeft(),
-          Icon(
-            CupertinoIcons.arrow_right_arrow_left,
-            color: Color.fromRGBO(224, 43, 87, 1),
-            size: 18.45,
+          Expanded(
+            flex: 1,
+            child: DropdownButtonLeft(),
           ),
-          DropdownButtonRight(),
+          Expanded(
+            flex: 2,
+            child: Icon(
+              CupertinoIcons.arrow_right_arrow_left,
+              color: Color.fromRGBO(224, 43, 87, 1),
+              size: 18.45,
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: DropdownButtonRight(),
+          ),
         ],
       ),
     );

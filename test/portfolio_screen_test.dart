@@ -136,6 +136,7 @@ void main() {
             ),
             findsOneWidget,
           );
+          await tester.pump(const Duration(seconds: 4));
         },
       );
 
@@ -345,6 +346,7 @@ void main() {
             find.text('Crypto'),
             findsOneWidget,
           );
+          await tester.pump(const Duration(seconds: 4));
         },
       );
       testWidgets(

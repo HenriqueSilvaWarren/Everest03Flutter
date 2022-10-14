@@ -1,4 +1,3 @@
-import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/coin_gecko/screens/crypto_coin_from_api_provider.dart';
 import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -38,7 +37,6 @@ class BodyDetailsScreen extends HookConsumerWidget {
         ref.read(getCryptoStateProvider).id,
       ),
     );
-    ref.watch(cryptoCoinFromApiProvider).whenData((value) => value);
     String values = ref.watch(getPriceFromChartStateProvider);
     PortfolioViewData portfolio = ref.watch(portfolioProvider).value!;
     final CryptoCoinViewData cryptoCoin = ref.read(getCryptoStateProvider);

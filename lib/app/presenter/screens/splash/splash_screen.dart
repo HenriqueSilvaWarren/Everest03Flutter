@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../portfolio/portfolio_screen.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -16,12 +15,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+
     Future.delayed(const Duration(seconds: 3)).then(
       (value) {
-        Navigator.pushReplacementNamed(
-          context,
-          PortfolioScreen.route
-        );
+        Navigator.pushReplacementNamed(context, PortfolioScreen.route);
       },
     );
   }
