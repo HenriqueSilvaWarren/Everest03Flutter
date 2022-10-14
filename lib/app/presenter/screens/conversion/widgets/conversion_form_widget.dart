@@ -1,9 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../core/utils/get_value_helper_text.dart';
-import '../../../../../l10n/app_localizations.dart';
 import '../../../../domain/view_datas/crypto_coin_view_data.dart';
 import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
 import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
@@ -36,11 +35,6 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
     );
     crypto = ref.watch(cryptoDropdownLeftProvider);
 
-    final currencyFormatter = NumberFormat.currency(
-      locale: CryptoAppStrings.of(context)!.language,
-      symbol: CryptoAppStrings.of(context)!.currencySymbol,
-    );
-
     return Padding(
       padding: const EdgeInsets.only(
         left: 23.5,
@@ -71,7 +65,6 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
                     cryptoLeft: crypto,
                     cryptoRight: ref.watch(cryptoDropdownRightProvider),
                     isCalledFromTextField: true,
-                    context: context,
                   );
                 },
                 onFieldSubmitted: (value) {
@@ -88,17 +81,15 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
                   decimal: true,
                 ),
                 inputFormatters: [
-                  ConversionFormatter(crypto, ref),
+                  ConversionFormatter(crypto),
                 ],
                 decoration: InputDecoration(
-                    helperText: currencyFormatter.format(
-                      getValueHelperText(
-                        controllerText: controller.text,
-                        crypto: crypto,
-                      ),
-                    ),
-                    hintText:
-                        '${crypto.symbol.toUpperCase()} ${CryptoAppStrings.of(context)!.conversionHintText}'),
+                  helperText: getValueHelperText(
+                    controllerText: controller.text,
+                    crypto: crypto,
+                  ),
+                  hintText: '${crypto.symbol.toUpperCase()} 0,00',
+                ),
                 style: const TextStyle(),
               ),
               const SizedBox(

@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -28,7 +25,7 @@ class HeaderConversionScreen extends HookConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              CryptoAppStrings.of(context)!.balance,
+              'Saldo Disponível',
               style: GoogleFonts.sourceSansPro(
                 fontSize: 15,
                 fontWeight: FontWeight.w400,
@@ -45,7 +42,7 @@ class HeaderConversionScreen extends HookConsumerWidget {
                     )
                     .quantity;
                 return Text(
-                  '${Platform.localeName == 'en_US' ? quantity : quantity.toString().replaceAll('.', ',')} ${cryptoFromLeftDropdown.symbol.toUpperCase()} ',
+                  '${quantity.toString().replaceAll('.', ',')} ${cryptoFromLeftDropdown.symbol.toUpperCase()} ',
                   style: GoogleFonts.sourceSansPro(
                     fontSize: 15,
                     fontWeight: FontWeight.w400,

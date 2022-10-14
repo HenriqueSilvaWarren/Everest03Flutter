@@ -1,5 +1,6 @@
-import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+// ignore: unused_import
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -23,33 +24,33 @@ class DialogTransactionDetails extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    DateFormat formatter = ref.watch(dateTimeFormatterProvider(CryptoAppStrings.of(context)!.dateFormat));
+    DateFormat formatter = ref.watch(dateTimeFormatterProvider('dd/MM/yyyy'));
     return DialogNamedSection(
-      title: CryptoAppStrings.of(context)!.transactionDetails,
+      title: 'Detalhes da Transação',
       child: Column(
         children: [
           DialogTransactionDetailsRow(
-            firstText: CryptoAppStrings.of(context)!.exchangedCoin,
+            firstText: 'Moeda Convertida:',
             secondText: leftCrypto.name,
           ),
           DialogTransactionDetailsRow(
-            firstText: CryptoAppStrings.of(context)!.exchangedQuantity,
+            firstText: 'Quantidade Convertida:',
             secondText: transaction.convertedCryptoAmount.split(' ')[0],
           ),
           DialogTransactionDetailsRow(
-            firstText: CryptoAppStrings.of(context)!.receivedCoin,
+            firstText: 'Moeda Recebida:',
             secondText: rightCrypto.name,
           ),
           DialogTransactionDetailsRow(
-            firstText: CryptoAppStrings.of(context)!.receivedQuantity,
+            firstText: 'Quantidade Recebida:',
             secondText: transaction.receivedCryptoAmount.split(' ')[0],
           ),
           DialogTransactionDetailsRow(
-            firstText: CryptoAppStrings.of(context)!.monetaryValue,
+            firstText: 'Valor Monetário:',
             secondText: transaction.valueOfTransaction,
           ),
           DialogTransactionDetailsRow(
-            firstText: CryptoAppStrings.of(context)!.transactionDate,
+            firstText: 'Data da Transação',
             secondText: formatter.format(transaction.dateOfExchange),
           ),
         ],
@@ -57,5 +58,3 @@ class DialogTransactionDetails extends HookConsumerWidget {
     );
   }
 }
-
-class AppLocalizations {}

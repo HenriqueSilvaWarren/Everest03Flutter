@@ -1,4 +1,3 @@
-import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -16,7 +15,7 @@ class BodyReviewScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dataFromConversion = ref.watch(conversionDataStateProvider)!;
-
+  
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: CustomScrollView(
@@ -30,19 +29,18 @@ class BodyReviewScreen extends HookConsumerWidget {
                 Column(
                   children: [
                     ScreensItem(
-                      title: CryptoAppStrings.of(context)!.convert,
+                      title: 'Converter',
                       value: dataFromConversion['convertingCrypto']!.join(' '),
                     ),
                     ScreensItem(
-                      title: CryptoAppStrings.of(context)!.get,
+                      title: 'Receber',
                       value: dataFromConversion['receivingCrypto']!.join(' '),
                     ),
                     ScreensItem(
-                      title: CryptoAppStrings.of(context)!.exchange,
+                      title: 'Câmbio',
                       value: getExchangeRate(
                         dataFromConversion['convertingCrypto']!,
                         dataFromConversion['receivingCrypto']!,
-                        ref,
                       ),
                     ),
                     const FinishConversionButton(),

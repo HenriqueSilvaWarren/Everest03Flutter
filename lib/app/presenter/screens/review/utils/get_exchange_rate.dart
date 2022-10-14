@@ -1,10 +1,6 @@
-import 'dart:io';
-
 import 'package:decimal/decimal.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-String getExchangeRate(
-    List<String> convCrypto, List<String> recCrypto, WidgetRef ref) {
+String getExchangeRate(List<String> convCrypto, List<String> recCrypto) {
   String convSymbol = convCrypto[1];
   String recSymbol = recCrypto[1];
 
@@ -19,5 +15,5 @@ String getExchangeRate(
     toBigInt: (p0) => p0.toBigInt(),
   );
 
-  return '1 $convSymbol = ${Platform.localeName == 'en_US' ? exchange : exchange.toString().replaceAll('.', ',')} $recSymbol';
+  return '1 $convSymbol = $exchange $recSymbol';
 }

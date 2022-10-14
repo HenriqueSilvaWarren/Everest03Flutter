@@ -1,4 +1,3 @@
-import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,7 +16,7 @@ class TextConversionQuestion extends StatelessWidget {
         top: 8.0,
       ),
       child: Text(
-        CryptoAppStrings.of(context)!.conversionExchangeText,
+        'Quanto você gostaria de converter?',
         style: GoogleFonts.sourceSansPro(
           fontSize: 34,
           fontWeight: FontWeight.w700,

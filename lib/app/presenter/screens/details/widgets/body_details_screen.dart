@@ -1,10 +1,8 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../core/utils/animated_hide_text_value.dart';
 import '../../../../../core/utils/get_real.dart';
@@ -30,10 +28,6 @@ class BodyDetailsScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currencyFormatter = NumberFormat.currency(
-      locale: CryptoAppStrings.of(context)!.language,
-      symbol: CryptoAppStrings.of(context)!.currencySymbol,
-    );
     final AsyncValue<CryptoHistoricPriceViewData> cryptoPrices = ref.watch(
       cryptoHistoricPriceByIdProvider(
         ref.read(getCryptoStateProvider).id,
@@ -66,7 +60,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
                 const DetailsTopCardWidget(),
                 AnimatedHideTextValue(
                   text: values == ""
-                      ? currencyFormatter.format(
+                      ? getReal(
                           cryptoCoin.currentPrice.toDouble(),
                         )
                       : values,
@@ -85,7 +79,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
                   loading: () => const LoadingChart(),
                 ),
                 ScreensItem(
-                  title: CryptoAppStrings.of(context)!.currentPrice,
+                  title: 'Preço Atual:',
                   value: UtilBrasilFields.obterReal(
                     Decimal.parse(
                       cryptoCoin.currentPrice.toString(),
@@ -101,7 +95,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
                   error: (error, stackTrace) => const Text('Deu erro'),
                   loading: () => ListTile(
                     title: Text(
-                      CryptoAppStrings.of(context)!.variation24,
+                      'Variação 24H',
                       style: GoogleFonts.sourceSansPro(
                         fontSize: 19,
                         color: Colors.grey,
@@ -117,11 +111,11 @@ class BodyDetailsScreen extends HookConsumerWidget {
                   ),
                 ),
                 ScreensItem(
-                  title: CryptoAppStrings.of(context)!.quantity,
+                  title: "Quantidade",
                   value: '${coin.quantity} ${cryptoCoin.symbol.toUpperCase()}',
                 ),
                 ScreensItem(
-                  title: CryptoAppStrings.of(context)!.value,
+                  title: "Valor",
                   value: getReal(
                     (cryptoCoin.currentPrice * coin.quantity).toDouble(),
                   ),

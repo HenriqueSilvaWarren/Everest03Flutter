@@ -7,8 +7,5 @@ abstract class GetCryptoCoinBasedOnPortfolioUsecase {
   final CryptoCoinRepository repository;
   GetCryptoCoinBasedOnPortfolioUsecase({required this.repository});
 
-  Future<ListCryptoViewData> execute(
-    PortfolioViewData portfolio,
-    String currency,
-  );
+  Future<ListCryptoViewData> execute(PortfolioViewData portfolio);
 }

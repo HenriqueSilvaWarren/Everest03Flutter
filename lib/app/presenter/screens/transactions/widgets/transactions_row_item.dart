@@ -18,7 +18,7 @@ class TransactionRowItem extends StatelessWidget {
       children: [
         Text(
           firstText,
-          style: GoogleFonts.sourceSansPro(fontSize: 11),
+          style: GoogleFonts.sourceSansPro(fontSize: 13),
         ),
         const SizedBox(
           width: 5,
@@ -26,7 +26,7 @@ class TransactionRowItem extends StatelessWidget {
         Text(
           secondText,
           style: GoogleFonts.sourceSansPro(
-            fontSize: 11,
+            fontSize: 13,
             fontWeight: FontWeight.w600,
           ),
         ),

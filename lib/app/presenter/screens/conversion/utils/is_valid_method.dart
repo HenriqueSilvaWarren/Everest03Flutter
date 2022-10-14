@@ -1,6 +1,4 @@
-import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:decimal/decimal.dart';
-import 'package:flutter/cupertino.dart';
 
 import '../../../../domain/view_datas/crypto_coin_view_data.dart';
 import '../../../../domain/view_datas/portfolio_view_data.dart';
@@ -10,15 +8,12 @@ dynamic isValid(
   required String? text,
   required CryptoCoinViewData cryptoLeft,
   required CryptoCoinViewData cryptoRight,
-  required BuildContext context,
   bool isCalledFromTextField = false,
 }) {
   if (text == null ||
       text.isEmpty ||
       text == '${cryptoLeft.symbol.toUpperCase()} ') {
-    return isCalledFromTextField
-        ? CryptoAppStrings.of(context)!.insertAAmount
-        : false;
+    return isCalledFromTextField ? 'Por favor insira algum valor' : false;
   }
   if (text.length > cryptoLeft.symbol.length + 1) {
     var quantity = Decimal.parse(
@@ -32,19 +27,17 @@ dynamic isValid(
         .quantity;
     if (quantity == Decimal.zero) {
       return isCalledFromTextField
-          ? CryptoAppStrings.of(context)!.insertAAmountAboveZero
+          ? 'Por favor insira um valor acima de 0'
           : false;
     }
     if (quantity > quantityInPortfolio) {
       return isCalledFromTextField
-          ? CryptoAppStrings.of(context)!.insertAAmountAvailable
+          ? 'Por favor insira um valor abaixo ou igual a quantidade possuída'
           : false;
     }
   }
   if (cryptoLeft.id == cryptoRight.id) {
-    return isCalledFromTextField
-        ? 'Por favor escolha duas moedas diferentes'
-        : false;
+    return isCalledFromTextField ? 'Por favor escolha duas moedas diferentes' : false;
   }
   return isCalledFromTextField ? null : true;
 }

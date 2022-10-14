@@ -1,5 +1,3 @@
-import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
-
 import '../../riverpod/datasources/local/transactions/screen/transactions_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -17,12 +15,12 @@ class ReviewScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(transactionsProvider).whenData((value) => value);
-    return  Scaffold(
+    return const Scaffold(
       appBar: CustomAppBar(
-        text: CryptoAppStrings.of(context)!.review,
+        text: 'Revisar',
         doesHide: false,
       ),
-      body: const BodyReviewScreen(),
+      body: BodyReviewScreen(),
     );
   }
 }

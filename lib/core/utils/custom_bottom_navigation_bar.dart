@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../app/presenter/screens/portfolio/widgets/icon_from_svg_widget.dart';
-import '../../l10n/app_localizations.dart';
 import '../app_assets.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
@@ -20,7 +19,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
       currentIndex: curIndex,
       items: [
         BottomNavigationBarItem(
-          label: CryptoAppStrings.of(context)!.portfolio,
+          label: 'Portfólio',
           icon: IconFromSvgWidget(
             asset: warrenInactiveIcon,
           ),
@@ -29,7 +28,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
           ),
         ),
         BottomNavigationBarItem(
-          label: CryptoAppStrings.of(context)!.transactions,
+          label: "Movimentações",
           icon: IconFromSvgWidget(
             asset: movInactiveIcon,
           ),
@@ -41,3 +40,4 @@ class CustomBottomNavigationBar extends StatelessWidget {
     );
   }
 }
+

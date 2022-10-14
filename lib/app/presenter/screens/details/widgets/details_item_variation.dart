@@ -1,4 +1,3 @@
-import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -42,7 +41,7 @@ class _DetailsItemVariationState extends ConsumerState<DetailsItemVariation> {
     );
     return ListTile(
       title: Text(
-        CryptoAppStrings.of(context)!.variation24,
+        'Variação 24H',
         style: GoogleFonts.sourceSansPro(
           fontSize: 19,
           color: Colors.grey,
