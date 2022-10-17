@@ -8,9 +8,6 @@ class CryptoAppStringsPt extends CryptoAppStrings {
   String get language => 'pt-BR';
 
   @override
-  String get currency => 'brl';
-
-  @override
   String get currencySymbol => 'R\$';
 
   @override
@@ -134,8 +131,8 @@ class CryptoAppStringsPt extends CryptoAppStrings {
   String get receivedQuantity => 'Quantidade Recebida:';
 
   @override
-  String get monetaryValue => 'Monetary Value:';
+  String get monetaryValue => 'Valor Monetário:';
 
   @override
-  String get transactionDate => 'Transaction Date:';
+  String get transactionDate => 'Data de Transação:';
 }

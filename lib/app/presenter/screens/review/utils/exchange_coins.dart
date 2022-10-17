@@ -81,7 +81,7 @@ void buttonExchangeCoins(
     valueOfTransaction: currencyFormatter.format(
       getValueHelperText(
         controllerText: ref.watch(conversionControllerTextStateProvider),
-        crypto: ref.watch(cryptoDropdownLeftProvider),
+        crypto: ref.watch(cryptoDropdownLeftProvider)!,
       ),
     ),
   );

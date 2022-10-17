@@ -21,7 +21,7 @@ class HeaderConversionScreen extends HookConsumerWidget {
         .firstWhere(
           (coin) =>
               coin.symbol.toUpperCase() ==
-              cryptoFromLeftDropdown.symbol.toUpperCase(),
+              cryptoFromLeftDropdown!.symbol.toUpperCase(),
         )
         .quantity;
     return Container(
@@ -44,7 +44,7 @@ class HeaderConversionScreen extends HookConsumerWidget {
               ),
             ),
             Text(
-              '${ref.watch(localeStateProvider) == const Locale('en', 'US') ? quantity : quantity.toString().replaceAll('.', ',')} ${cryptoFromLeftDropdown.symbol.toUpperCase()} ',
+              '${ref.watch(localeStateProvider) == const Locale('en', 'US') ? quantity : quantity.toString().replaceAll('.', ',')} ${cryptoFromLeftDropdown!.symbol.toUpperCase()} ',
               style: GoogleFonts.sourceSansPro(
                 fontSize: 15,
                 fontWeight: FontWeight.w400,

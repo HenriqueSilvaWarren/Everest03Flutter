@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 class ReviewText extends StatelessWidget {
   const ReviewText({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); // coverage:ignore-line
 
   @override
   Widget build(BuildContext context) {

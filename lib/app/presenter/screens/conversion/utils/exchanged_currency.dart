@@ -1,5 +1,4 @@
-
-import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
+import '../../../../../l10n/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -26,7 +25,7 @@ String exchangedCurrency({
   Decimal decimalValue = decimalQuantity * cryptoLeft.currentPrice;
   Decimal actualAmount = (decimalValue / cryptoRight.currentPrice).toDecimal(
     scaleOnInfinitePrecision: 8,
-    toBigInt: (p0) => p0.toBigInt(),
+    toBigInt: (p0) => p0.toBigInt(), // coverage:ignore-line
   );
   String symbol = cryptoRight.symbol.toUpperCase();
   return '${ref.watch(localeStateProvider) == const Locale('en', 'US') ? actualAmount : actualAmount.toString().replaceAll('.', ',')} $symbol';

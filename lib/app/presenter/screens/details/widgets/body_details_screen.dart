@@ -34,12 +34,12 @@ class BodyDetailsScreen extends HookConsumerWidget {
     );
     final AsyncValue<CryptoHistoricPriceViewData> cryptoPrices = ref.watch(
       cryptoHistoricPriceByIdProvider(
-        ref.read(getCryptoStateProvider).id,
+        ref.read(getCryptoStateProvider)!.id,
       ),
     );
     String values = ref.watch(getPriceFromChartStateProvider);
     PortfolioViewData portfolio = ref.watch(portfolioProvider).value!;
-    final CryptoCoinViewData cryptoCoin = ref.read(getCryptoStateProvider);
+    final CryptoCoinViewData cryptoCoin = ref.read(getCryptoStateProvider)!;
     List<CoinInPortfolioViewData> coins = portfolio.coins;
 
     CoinInPortfolioViewData coin = coins.firstWhere(

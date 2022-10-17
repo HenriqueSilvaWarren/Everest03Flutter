@@ -50,6 +50,7 @@ class _ListViewTransactionsState extends ConsumerState<ListViewTransactions> {
         },
         error: (error, stackTrace) {
           return Column(
+            key: const Key('errorTransactions'),
             children: [
               Text('$error'),
               Text('$stackTrace'),

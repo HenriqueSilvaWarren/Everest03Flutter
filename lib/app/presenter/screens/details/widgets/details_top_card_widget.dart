@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -23,17 +22,24 @@ class DetailsTopCardWidget extends HookConsumerWidget {
             Row(
               children: [
                 Text(
-                  cryptoCoin.name,
+                  cryptoCoin!.name,
                   style: GoogleFonts.sourceSansPro(
                       fontWeight: FontWeight.w700, fontSize: 32),
                 ),
                 IconButton(
                   key: const Key('refreshButton'),
                   icon: const Icon(Icons.refresh),
-                  onPressed: () {
+                  onPressed: () async {
                     ref.refresh(
                       cryptoCoinBasedOnPortfolioProvider,
                     );
+                    // ref.read(getCryptoStateProvider.state).state = ref
+                    //     .watch(cryptoCoinBasedOnPortfolioProvider)
+                    //     .value!
+                    //     .listCrypto
+                    //     .firstWhere(
+                    //       (element) => cryptoCoin.id == element.id,
+                    //     );
                   },
                 ),
               ],

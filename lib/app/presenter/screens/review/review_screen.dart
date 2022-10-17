@@ -10,7 +10,7 @@ import 'widgets/body_review_screen.dart';
 class ReviewScreen extends HookConsumerWidget {
   const ReviewScreen({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); // coverage:ignore-line
 
   static String route = '/review-screen';
 

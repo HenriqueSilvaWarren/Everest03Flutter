@@ -6,7 +6,6 @@ import 'package:card_02_listagem_crypto/app/domain/view_datas/portfolio_view_dat
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/coin_gecko/screens/crypto_coin_from_api_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/coin_gecko/screens/crypto_historic_price_by_id_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
-import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/get_crypto_state_provider.dart';
 import 'package:card_02_listagem_crypto/core/utils/generate_route.dart';
 import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:decimal/decimal.dart';
@@ -36,18 +35,6 @@ class SetupWidgetTester extends ConsumerWidget {
                   quantity: Decimal.parse('0.94'),
                 ),
               ],
-            ),
-          ),
-        ),
-        getCryptoStateProvider.overrideWithValue(
-          StateController(
-            CryptoCoinViewData(
-              id: 'bitcoin',
-              symbol: 'btc',
-              name: 'Bitcoin',
-              image: Faker().image.image(),
-              currentPrice: Decimal.parse('102432'),
-              priceChangePercentage24h: Decimal.parse('7.2'),
             ),
           ),
         ),
@@ -105,12 +92,4 @@ class SetupWidgetTester extends ConsumerWidget {
       ),
     );
   }
-}
-
-class DummyTestRoute extends StatelessWidget {
-  final String routeName;
-  const DummyTestRoute({Key? key, required this.routeName}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) => Text(routeName);
 }

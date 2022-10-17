@@ -9,13 +9,14 @@ import '../utils/exchange_coins.dart';
 class FinishConversionButton extends ConsumerWidget {
   const FinishConversionButton({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); // coverage:ignore-line
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24.0),
       child: InkWell(
+        key: const Key('finishConversionButton'),
         onTap: () {
           buttonExchangeCoins(
             ref,

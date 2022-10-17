@@ -18,7 +18,7 @@ String getExchangeRate(
           ))
       .toDecimal(
     scaleOnInfinitePrecision: 8,
-    toBigInt: (p0) => p0.toBigInt(),
+    toBigInt: (p0) => p0.toBigInt(), // coverage:ignore-line
   );
 
   return '1 $convSymbol = ${ref.watch(localeStateProvider) == const Locale('en', 'US') ? exchange : exchange.toString().replaceAll('.', ',')} $recSymbol';

@@ -6,7 +6,9 @@ import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/c
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/coin_gecko/screens/crypto_coin_from_api_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/crypto_drop_down_left_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/crypto_drop_down_right_provider.dart';
+import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/locale_state_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/screens/conversion/conversion_screen.dart';
+import 'package:card_02_listagem_crypto/app/presenter/screens/conversion/widgets/conversion_screen_bottom_app_bar.dart';
 import 'package:decimal/decimal.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
@@ -40,39 +42,48 @@ void main() {
     currentPrice: Decimal.parse('102432'),
     priceChangePercentage24h: Decimal.parse('7.2'),
   );
+
+  List<Override> overrides = [
+    cryptoCoinBasedOnPortfolioProvider.overrideWithValue(
+      AsyncValue.data(
+        ListCryptoViewData(
+          listCrypto: [bitcoin, ethereum],
+        ),
+      ),
+    ),
+    cryptoDropdownLeftProvider.overrideWithValue(
+      StateController(
+        bitcoin,
+      ),
+    ),
+    cryptoCoinFromApiProvider.overrideWithValue(
+      AsyncValue.data(
+        ListCryptoViewData(
+          listCrypto: [bitcoin, ethereum, dogecoin],
+        ),
+      ),
+    ),
+    cryptoDropdownRightProvider.overrideWithValue(
+      StateController(ethereum),
+    ),
+  ];
   setUpAll(
     () => HttpOverrides.global = null,
   );
   testWidgets(
     'WHEN load ConversionScreen THEN ensure onChanged from Dropdowns work',
     (WidgetTester tester) async {
+      overrides.add(
+        localeStateProvider.overrideWithValue(
+          StateController(
+            const Locale('pt', 'BR'),
+          ),
+        ),
+      );
       await tester.pumpWidget(
         SetupWidgetTester(
           child: ProviderScope(
-            overrides: [
-              cryptoCoinBasedOnPortfolioProvider.overrideWithValue(
-                AsyncValue.data(
-                  ListCryptoViewData(
-                    listCrypto: [bitcoin, ethereum],
-                  ),
-                ),
-              ),
-              cryptoDropdownLeftProvider.overrideWithValue(
-                StateController(
-                  bitcoin,
-                ),
-              ),
-              cryptoCoinFromApiProvider.overrideWithValue(
-                AsyncValue.data(
-                  ListCryptoViewData(
-                    listCrypto: [bitcoin, ethereum, dogecoin],
-                  ),
-                ),
-              ),
-              cryptoDropdownRightProvider.overrideWithValue(
-                StateController(ethereum),
-              ),
-            ],
+            overrides: overrides,
             child: const ConversionScreen(),
           ),
         ),
@@ -118,49 +129,118 @@ void main() {
       await tester.pump(
         const Duration(seconds: 4),
       );
+
+      await tester.enterText(
+        find.byKey(
+          const Key('conversionTextField'),
+        ),
+        'BTC 0,1',
+      );
+
+      await tester.pumpAndSettle();
+      expect(
+        find.text('Por favor, escolha duas moedas diferentes'),
+        findsOneWidget,
+      );
     },
   );
 
   testWidgets(
     'WHEN load ConversionScreen THEN ensure TextFormField can be typed on and helper text is right',
     (WidgetTester tester) async {
+      overrides.add(
+        localeStateProvider.overrideWithValue(
+          StateController(
+            const Locale('pt', 'BR'),
+          ),
+        ),
+      );
       await tester.pumpWidget(
         SetupWidgetTester(
           child: ProviderScope(
-            overrides: [
-              cryptoCoinBasedOnPortfolioProvider.overrideWithValue(
-                AsyncValue.data(
-                  ListCryptoViewData(
-                    listCrypto: [bitcoin, ethereum],
-                  ),
-                ),
-              ),
-              cryptoDropdownLeftProvider.overrideWithValue(
-                StateController(
-                  bitcoin,
-                ),
-              ),
-              cryptoCoinFromApiProvider.overrideWithValue(
-                AsyncValue.data(
-                  ListCryptoViewData(
-                    listCrypto: [bitcoin, ethereum, dogecoin],
-                  ),
-                ),
-              ),
-              cryptoDropdownRightProvider.overrideWithValue(
-                StateController(ethereum),
-              ),
-            ],
+            overrides: overrides,
             child: const ConversionScreen(),
           ),
         ),
       );
 
-      expect(find.text('Por favor insira algum valor'), findsOneWidget);
-
       await tester.tap(
         find.byKey(
           const Key('conversionTextField'),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      await tester.enterText(
+        find.byKey(
+          const Key('conversionTextField'),
+        ),
+        '',
+      );
+      await tester.pumpAndSettle();
+      await tester.enterText(
+        find.byKey(
+          const Key('conversionTextField'),
+        ),
+        'BTC ,',
+      );
+      await tester.pumpAndSettle();
+
+      await tester.enterText(
+        find.byKey(
+          const Key('conversionTextField'),
+        ),
+        'BTC .',
+      );
+      expect(find.text('Por favor insira algum valor'), findsOneWidget);
+      await tester.pumpAndSettle();
+      await tester.enterText(
+        find.byKey(
+          const Key('conversionTextField'),
+        ),
+        'BTC 0,..',
+      );
+      await tester.pumpAndSettle();
+      await tester.enterText(
+        find.byKey(
+          const Key('conversionTextField'),
+        ),
+        'BTC 0',
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Por favor insira um valor acima de 0'), findsOneWidget);
+
+      await tester.enterText(
+        find.byKey(
+          const Key('conversionTextField'),
+        ),
+        'BTC 10',
+      );
+      await tester.pumpAndSettle();
+      expect(
+        find.text(
+          'Por favor insira um valor abaixo ou igual a quantidade possuída',
+        ),
+        findsOneWidget,
+      );
+    },
+  );
+  testWidgets(
+    'WHEN load ConversionScreen in english THEN ensure TExtFormField is formatted correctly',
+    (WidgetTester tester) async {
+      overrides.add(
+        localeStateProvider.overrideWithValue(
+          StateController(
+            const Locale('en', 'US'),
+          ),
+        ),
+      );
+      await tester.pumpWidget(
+        SetupWidgetTester(
+          child: ProviderScope(
+            overrides: overrides,
+            child: const ConversionScreen(),
+          ),
         ),
       );
 
@@ -168,12 +248,108 @@ void main() {
         find.byKey(
           const Key('conversionTextField'),
         ),
-        ',',
+        'BTC 0,..',
       );
-      
-      
-      // await tester.testTextInput.receiveAction(TextInputAction.done);
       await tester.pumpAndSettle();
+    },
+  );
+  testWidgets(
+    'WHEN load ConversionScreen and in english THEN ensure TExtFormField is formatted correctly',
+    (WidgetTester tester) async {
+      overrides.add(
+        localeStateProvider.overrideWithValue(
+          StateController(
+            const Locale('pt', 'BR'),
+          ),
+        ),
+      );
+      await tester.pumpWidget(
+        SetupWidgetTester(
+          child: ProviderScope(
+            overrides: overrides,
+            child: const ConversionScreen(),
+          ),
+        ),
+      );
+
+      await tester.enterText(
+        find.byKey(
+          const Key('conversionTextField'),
+        ),
+        'BTC ',
+      );
+      await tester.pumpAndSettle();
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+      await tester.pump();
+    },
+  );
+  testWidgets(
+    'WHEN load ConversionScreen THEN ensure conversion button is disabled',
+    (WidgetTester tester) async {
+      overrides.add(
+        localeStateProvider.overrideWithValue(
+          StateController(
+            const Locale('pt', 'BR'),
+          ),
+        ),
+      );
+
+      await tester.pumpWidget(
+        SetupWidgetTester(
+          child: ProviderScope(
+            overrides: overrides,
+            child: const ConversionScreen(),
+          ),
+        ),
+      );
+
+      var convertBar = tester.widget<ConversionScreenBottomAppBar>(
+        find.byKey(
+          const Key('conversionBottomBar'),
+        ),
+      );
+
+      expect(convertBar.isValidBool, false);
+      await tester.pump();
+
+      await tester.enterText(
+        find.byKey(
+          const Key('conversionTextField'),
+        ),
+        'BTC 0,4',
+      );
+
+      await tester.pumpAndSettle();
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+      await tester.pump();
+
+      await tester.tap(
+        find.byKey(
+          const Key('cryptoDropdownRight'),
+        ),
+      );
+      await tester.pumpAndSettle();
+      var rightLocation = tester.getCenter(
+        find.byKey(
+          const Key('rightDropdownEthereum'),
+        ),
+      );
+      var rightGesture = await tester.startGesture(
+        rightLocation.translate(-20, 0),
+      );
+      await rightGesture.up();
+      await tester.pump();
+
+      convertBar = tester.widget<ConversionScreenBottomAppBar>(
+        find.byKey(
+          const Key('conversionBottomBar'),
+        ),
+      );
+
+      await tester.tap(
+        find.byType(FloatingActionButton),
+      );
+      await tester.pump();
     },
   );
 }

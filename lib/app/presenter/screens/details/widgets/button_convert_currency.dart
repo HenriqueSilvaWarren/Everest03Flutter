@@ -28,11 +28,11 @@ class ButtonConvertCurrency extends HookConsumerWidget {
         padding: EdgeInsets.zero,
         onPressed: () {
           ref.read(cryptoDropdownLeftProvider.state).state =
-              ref.read(getCryptoStateProvider);
+              ref.read(getCryptoStateProvider)!;
           ref.read(cryptoDropdownRightProvider.state).state =
               ref.watch(cryptoCoinFromApiProvider).value!.listCrypto.firstWhere(
                     (coin) =>
-                        coin.id != ref.watch(cryptoDropdownLeftProvider).id,
+                        coin.id != ref.watch(cryptoDropdownLeftProvider)!.id,
                   );
           ref.read(conversionControllerTextStateProvider.state).state = '';
           Navigator.of(context).pushNamed(

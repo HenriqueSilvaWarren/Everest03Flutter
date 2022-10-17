@@ -2,9 +2,12 @@ import 'dart:io';
 
 import 'package:card_02_listagem_crypto/app/domain/view_datas/coin_in_portfolio_view_data.dart';
 import 'package:card_02_listagem_crypto/app/domain/view_datas/crypto_coin_view_data.dart';
+import 'package:card_02_listagem_crypto/app/domain/view_datas/list_crypto_view_data.dart';
 import 'package:card_02_listagem_crypto/app/domain/view_datas/portfolio_view_data.dart';
+import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/coin_gecko/screens/crypto_coin_based_on_portfolio_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/coin_gecko/screens/crypto_historic_price_by_id_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
+import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/crypto_drop_down_left_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/get_crypto_state_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/screens/conversion/conversion_screen.dart';
 import 'package:card_02_listagem_crypto/app/presenter/screens/details/details_screen.dart';
@@ -33,6 +36,34 @@ void main() {
   setUpAll(
     () => HttpOverrides.global = null,
   );
+
+  List<Override> overrides = [
+    portfolioProvider.overrideWithValue(
+      AsyncValue.data(
+        PortfolioViewData(
+          coins: [
+            CoinInPortfolioViewData(
+              symbol: 'BTC',
+              name: 'Bitcoin',
+              quantity: Decimal.parse('0.94'),
+            ),
+          ],
+        ),
+      ),
+    ),
+    getCryptoStateProvider.overrideWithValue(
+      StateController(
+        CryptoCoinViewData(
+          id: 'bitcoin',
+          symbol: 'btc',
+          name: 'Bitcoin',
+          image: Faker().image.image(),
+          currentPrice: Decimal.parse('102432'),
+          priceChangePercentage24h: Decimal.parse('7.2'),
+        ),
+      ),
+    ),
+  ];
   group(
     'loading details widgets',
     () {
@@ -42,31 +73,7 @@ void main() {
           await tester.pumpWidget(
             ProviderScope(
               overrides: [
-                portfolioProvider.overrideWithValue(
-                  AsyncValue.data(
-                    PortfolioViewData(
-                      coins: [
-                        CoinInPortfolioViewData(
-                          symbol: 'BTC',
-                          name: 'Bitcoin',
-                          quantity: Decimal.parse('0.94'),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                getCryptoStateProvider.overrideWithValue(
-                  StateController(
-                    CryptoCoinViewData(
-                      id: 'bitcoin',
-                      symbol: 'btc',
-                      name: 'Bitcoin',
-                      image: Faker().image.image(),
-                      currentPrice: Decimal.parse('102432'),
-                      priceChangePercentage24h: Decimal.parse('7.2'),
-                    ),
-                  ),
-                ),
+                ...overrides,
                 cryptoHistoricPriceByIdProvider.overrideWithProvider(
                   (argument) => Provider(
                     (ref) => const AsyncValue.loading(),
@@ -125,31 +132,7 @@ void main() {
           await tester.pumpWidget(
             ProviderScope(
               overrides: [
-                portfolioProvider.overrideWithValue(
-                  AsyncValue.data(
-                    PortfolioViewData(
-                      coins: [
-                        CoinInPortfolioViewData(
-                          symbol: 'BTC',
-                          name: 'Bitcoin',
-                          quantity: Decimal.parse('0.94'),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                getCryptoStateProvider.overrideWithValue(
-                  StateController(
-                    CryptoCoinViewData(
-                      id: 'bitcoin',
-                      symbol: 'btc',
-                      name: 'Bitcoin',
-                      image: Faker().image.image(),
-                      currentPrice: Decimal.parse('102432'),
-                      priceChangePercentage24h: Decimal.parse('7.2'),
-                    ),
-                  ),
-                ),
+                ...overrides,
                 cryptoHistoricPriceByIdProvider.overrideWithProvider(
                   (argument) => Provider((ref) => const AsyncValue.error('')),
                 ),
@@ -201,8 +184,11 @@ void main() {
         'WHEN load DetailsScreen THEN ensure has CustomAppBar has text and HideValueButton and Body exists',
         (WidgetTester tester) async {
           await tester.pumpWidget(
-            const SetupWidgetTester(
-              child: DetailsScreen(),
+            SetupWidgetTester(
+              child: ProviderScope(
+                overrides: overrides,
+                child: const DetailsScreen(),
+              ),
             ),
           );
           await tester.pump(const Duration(seconds: 5));
@@ -215,8 +201,11 @@ void main() {
         'WHEN load BodyDetailsScreen THEN ensure has CustomLineChart and DetailsItemVariation',
         (WidgetTester tester) async {
           await tester.pumpWidget(
-            const SetupWidgetTester(
-              child: BodyDetailsScreen(),
+            SetupWidgetTester(
+              child: ProviderScope(
+                overrides: overrides,
+                child: const BodyDetailsScreen(),
+              ),
             ),
           );
           await tester.pump(const Duration(seconds: 5));
@@ -230,8 +219,11 @@ void main() {
         'WHEN tap DayButton THEN ensure isSelected',
         (WidgetTester tester) async {
           await tester.pumpWidget(
-            const SetupWidgetTester(
-              child: BodyDetailsScreen(),
+            SetupWidgetTester(
+              child: ProviderScope(
+                overrides: overrides,
+                child: const BodyDetailsScreen(),
+              ),
             ),
           );
 
@@ -266,8 +258,39 @@ void main() {
         'WHEN tap RefreshButton THEN ensure refresh',
         (WidgetTester tester) async {
           await tester.pumpWidget(
-            const SetupWidgetTester(
-              child: BodyDetailsScreen(),
+            SetupWidgetTester(
+              child: ProviderScope(
+                overrides: [
+                  ...overrides,
+                  cryptoCoinBasedOnPortfolioProvider.overrideWithProvider(
+                    Provider(
+                      (ref) => AsyncData(
+                        ListCryptoViewData(
+                          listCrypto: [
+                            CryptoCoinViewData(
+                              id: 'bitcoin',
+                              symbol: 'btc',
+                              name: 'Bitcoin',
+                              image: Faker().image.image(),
+                              currentPrice: Decimal.parse('102432'),
+                              priceChangePercentage24h: Decimal.parse('7.2'),
+                            ),
+                            CryptoCoinViewData(
+                              id: 'ethereum',
+                              symbol: 'eth',
+                              name: 'Ethereum',
+                              image: Faker().image.image(),
+                              currentPrice: Decimal.parse('102432'),
+                              priceChangePercentage24h: Decimal.parse('7.2'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+                child: const BodyDetailsScreen(),
+              ),
             ),
           );
           await tester.pump(
@@ -294,7 +317,24 @@ void main() {
           await tester.pumpWidget(
             SetupWidgetTester(
               navigatorObserver: navigatorObserver,
-              child: const BodyDetailsScreen(),
+              child: ProviderScope(
+                overrides: [
+                  ...overrides,
+                  cryptoDropdownLeftProvider.overrideWithValue(
+                    StateController(
+                      CryptoCoinViewData(
+                        id: 'bitcoin',
+                        symbol: 'btc',
+                        name: 'Bitcoin',
+                        image: Faker().image.image(),
+                        currentPrice: Decimal.parse('102432'),
+                        priceChangePercentage24h: Decimal.parse('7.2'),
+                      ),
+                    ),
+                  )
+                ],
+                child: const BodyDetailsScreen(),
+              ),
             ),
           );
           await tester.scrollUntilVisible(
@@ -316,88 +356,88 @@ void main() {
         },
       );
       testWidgets(
-        'WHEN drag LineChart THEN ensure monetary values on top has changed',
-        (WidgetTester tester) async {
-          final currencyFormatter = NumberFormat.currency(
-            locale: 'pt-BR',
-            symbol: 'R\$',
-          );
-          await tester.pumpWidget(
-            const SetupWidgetTester(
-              child: BodyDetailsScreen(),
+          'WHEN drag LineChart THEN ensure monetary values on top has changed',
+          (WidgetTester tester) async {
+        final currencyFormatter = NumberFormat.currency(
+          locale: 'pt-BR',
+          symbol: 'R\$',
+        );
+        await tester.pumpWidget(
+          SetupWidgetTester(
+            child: ProviderScope(
+              overrides: overrides,
+              child: const BodyDetailsScreen(),
             ),
-          );
+          ),
+        );
 
-          var cryptoPrice = tester.widget<AnimatedHideTextValue>(
-            find.byKey(
-              const Key('cryptoPrice'),
-            ),
-          );
+        var cryptoPrice = tester.widget<AnimatedHideTextValue>(
+          find.byKey(
+            const Key('cryptoPrice'),
+          ),
+        );
 
-          expect(
-            cryptoPrice.text,
-            currencyFormatter.format(102432),
-          );
+        expect(
+          cryptoPrice.text,
+          currencyFormatter.format(102432),
+        );
 
-          final Offset firstLocation = tester.getCenter(
-            find.byKey(
-              const Key('detailsLineChart'),
-            ),
-          );
+        final Offset firstLocation = tester.getCenter(
+          find.byKey(
+            const Key('detailsLineChart'),
+          ),
+        );
 
-          final TestGesture gesture = await tester.startGesture(
-            firstLocation,
-          );
+        final TestGesture gesture = await tester.startGesture(
+          firstLocation,
+        );
 
-          await tester.pump();
+        await tester.pump();
 
-          final Offset secondLocation = firstLocation.translate(100, 0);
-          await gesture.moveTo(
-            secondLocation,
-          );
+        final Offset secondLocation = firstLocation.translate(100, 0);
+        await gesture.moveTo(
+          secondLocation,
+        );
 
-          await tester.pump();
+        await tester.pump();
 
-          cryptoPrice = tester.widget<AnimatedHideTextValue>(
-            find.byKey(
-              const Key('cryptoPrice'),
-            ),
-          );
+        cryptoPrice = tester.widget<AnimatedHideTextValue>(
+          find.byKey(
+            const Key('cryptoPrice'),
+          ),
+        );
 
-          expect(cryptoPrice.text, currencyFormatter.format(87));
+        expect(cryptoPrice.text, currencyFormatter.format(87));
 
-          await gesture.up();
-          await tester.pump(
-            const Duration(
-              seconds: 5,
-            ),
-          );
-        },
-      );
-      testWidgets(
-        'WHEN load LineChart THEN ensure all its properties loaded',
-        (WidgetTester tester) async {
-          await tester.pumpWidget(
-            const SetupWidgetTester(
-              child: BodyDetailsScreen(),
-            ),
-          );
-          await tester.pump(
-            const Duration(seconds: 5),
-          );
+        await gesture.up();
+        await tester.pump(
+          const Duration(
+            seconds: 5,
+          ),
+        );
+      });
+      // testWidgets(
+      //   'WHEN load LineChart THEN ensure all its properties loaded',
+      //   (WidgetTester tester) async {
+      //     await tester.pumpWidget(
+      //       SetupWidgetTester(
+      //         child: ProviderScope(
+      //           overrides: overrides,
+      //           child: const BodyDetailsScreen(),
+      //         ),
+      //       ),
+      //     );
+      //     await tester.pump(
+      //       const Duration(seconds: 5),
+      //     );
 
-
-          // expect(
-          //   customLineChart.data.lineTouchData.getTouchLineEnd,
-          // );
-
-          await tester.pump(
-            const Duration(
-              seconds: 5,
-            ),
-          );
-        },
-      );
+      //     await tester.pump(
+      //       const Duration(
+      //         seconds: 5,
+      //       ),
+      //     );
+      //   },
+      // );
     },
   );
 }

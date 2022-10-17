@@ -20,9 +20,6 @@ class TransactionDialog extends HookConsumerWidget {
   final TransactionsViewData transaction;
   final Curve curve;
 
-  double shake(double value) =>
-      20 + 20 * (0.5 - (0.5 - curve.transform(value)).abs());
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final leftCrypto =

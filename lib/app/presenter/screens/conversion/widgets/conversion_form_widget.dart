@@ -34,7 +34,7 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
     controller.selection = TextSelection.collapsed(
       offset: ref.read(conversionControllerTextStateProvider).length,
     );
-    crypto = ref.watch(cryptoDropdownLeftProvider);
+    crypto = ref.watch(cryptoDropdownLeftProvider)!;
 
     final currencyFormatter = NumberFormat.currency(
       locale: CryptoAppStrings.of(context)!.language,

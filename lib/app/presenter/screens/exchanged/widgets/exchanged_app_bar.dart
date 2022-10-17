@@ -10,7 +10,7 @@ class ExchangedAppBar extends HookConsumerWidget
     implements PreferredSizeWidget {
   const ExchangedAppBar({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); // coverage:ignore-line
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -11,7 +11,7 @@ import 'review_text.dart';
 class BodyReviewScreen extends HookConsumerWidget {
   const BodyReviewScreen({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); // coverage:ignore-line
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -28,7 +28,7 @@ class ConversionScreenBottomAppBar extends HookConsumerWidget {
     final isValidBool = isValid(
       ref.watch(portfolioProvider).value!,
       text: controllerText,
-      cryptoLeft: cryptoLeft,
+      cryptoLeft: cryptoLeft!,
       cryptoRight: cryptoRight,
       context: context,
     );
