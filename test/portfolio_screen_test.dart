@@ -69,13 +69,13 @@ void main() {
         'WHEN error BodyPortfolioScreen return SizedBox.shrink()',
         (WidgetTester tester) async {
           await tester.pumpWidget(
-            ProviderScope(
-              overrides: [
-                cryptoCoinBasedOnPortfolioProvider.overrideWithValue(
-                  const AsyncValue.error(''),
-                )
-              ],
-              child: SetupWidgetTester(
+            SetupWidgetTester(
+              child: ProviderScope(
+                overrides: [
+                  cryptoCoinBasedOnPortfolioProvider.overrideWithValue(
+                    const AsyncValue.error(''),
+                  )
+                ],
                 child: BodyPortfolioScreen(
                   portfolio: PortfolioViewData(
                     coins: [
@@ -144,13 +144,13 @@ void main() {
         'WHEN loading BodyPortfolioScreen return LoadingPortfolioScreen',
         (WidgetTester tester) async {
           await tester.pumpWidget(
-            ProviderScope(
-              overrides: [
-                cryptoCoinBasedOnPortfolioProvider.overrideWithValue(
-                  const AsyncValue.loading(),
-                )
-              ],
-              child: SetupWidgetTester(
+            SetupWidgetTester(
+              child: ProviderScope(
+                overrides: [
+                  cryptoCoinBasedOnPortfolioProvider.overrideWithValue(
+                    const AsyncValue.loading(),
+                  )
+                ],
                 child: BodyPortfolioScreen(
                   portfolio: PortfolioViewData(
                     coins: [
@@ -356,7 +356,7 @@ void main() {
 
           await tester.pumpWidget(
             SetupWidgetTester(
-              // navigatorObserver: navigatorObserver,
+              navigatorObserver: navigatorObserver,
               child: ProviderScope(
                 overrides: [
                   portfolioProvider.overrideWithValue(
@@ -403,6 +403,9 @@ void main() {
 
           await tester.tap(find.byType(ListTile));
 
+          await tester.pumpAndSettle();
+          
+          expect(find.byType(DetailsScreen), findsOneWidget);
           // expect(isPushed, true);
         },
       );

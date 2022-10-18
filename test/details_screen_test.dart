@@ -37,33 +37,7 @@ void main() {
     () => HttpOverrides.global = null,
   );
 
-  List<Override> overrides = [
-    portfolioProvider.overrideWithValue(
-      AsyncValue.data(
-        PortfolioViewData(
-          coins: [
-            CoinInPortfolioViewData(
-              symbol: 'BTC',
-              name: 'Bitcoin',
-              quantity: Decimal.parse('0.94'),
-            ),
-          ],
-        ),
-      ),
-    ),
-    getCryptoStateProvider.overrideWithValue(
-      StateController(
-        CryptoCoinViewData(
-          id: 'bitcoin',
-          symbol: 'btc',
-          name: 'Bitcoin',
-          image: Faker().image.image(),
-          currentPrice: Decimal.parse('102432'),
-          priceChangePercentage24h: Decimal.parse('7.2'),
-        ),
-      ),
-    ),
-  ];
+  List<Override> overrides = [];
   group(
     'loading details widgets',
     () {
@@ -71,27 +45,16 @@ void main() {
         'WHEN loading DetailsScreen THEN ensure has LoadingChart and LoadingDetailsItemVariation',
         (WidgetTester tester) async {
           await tester.pumpWidget(
-            ProviderScope(
-              overrides: [
-                ...overrides,
-                cryptoHistoricPriceByIdProvider.overrideWithProvider(
-                  (argument) => Provider(
-                    (ref) => const AsyncValue.loading(),
+            SetupWidgetTester(
+              child: ProviderScope(
+                overrides: [
+                  cryptoHistoricPriceByIdProvider.overrideWithProvider(
+                    (argument) => Provider(
+                      (ref) => const AsyncValue.loading(),
+                    ),
                   ),
-                ),
-              ],
-              child: MaterialApp(
-                navigatorObservers: [TestNavigatorObserver()],
-                home: const Material(
-                  child: MediaQuery(
-                    data: MediaQueryData(),
-                    child: BodyDetailsScreen(),
-                  ),
-                ),
-                localizationsDelegates: CryptoAppStrings.localizationsDelegates,
-                supportedLocales: CryptoAppStrings.supportedLocales,
-                locale: const Locale('pt', 'BR'),
-                onGenerateRoute: generateRoute,
+                ],
+                child: BodyDetailsScreen(),
               ),
             ),
           );
@@ -130,25 +93,14 @@ void main() {
         'WHEN error DetailsScreen THEN ensure has key "errorLineChart","errorVariation"',
         (WidgetTester tester) async {
           await tester.pumpWidget(
-            ProviderScope(
-              overrides: [
-                ...overrides,
-                cryptoHistoricPriceByIdProvider.overrideWithProvider(
-                  (argument) => Provider((ref) => const AsyncValue.error('')),
-                ),
-              ],
-              child: MaterialApp(
-                navigatorObservers: [TestNavigatorObserver()],
-                home: const Material(
-                  child: MediaQuery(
-                    data: MediaQueryData(),
-                    child: BodyDetailsScreen(),
+            SetupWidgetTester(
+              child: ProviderScope(
+                overrides: [
+                  cryptoHistoricPriceByIdProvider.overrideWithProvider(
+                    (argument) => Provider((ref) => const AsyncValue.error('')),
                   ),
-                ),
-                localizationsDelegates: CryptoAppStrings.localizationsDelegates,
-                supportedLocales: CryptoAppStrings.supportedLocales,
-                locale: const Locale('pt', 'BR'),
-                onGenerateRoute: generateRoute,
+                ],
+                child: const BodyDetailsScreen(),
               ),
             ),
           );
@@ -184,11 +136,8 @@ void main() {
         'WHEN load DetailsScreen THEN ensure has CustomAppBar has text and HideValueButton and Body exists',
         (WidgetTester tester) async {
           await tester.pumpWidget(
-            SetupWidgetTester(
-              child: ProviderScope(
-                overrides: overrides,
-                child: const DetailsScreen(),
-              ),
+            const SetupWidgetTester(
+              child: DetailsScreen(),
             ),
           );
           await tester.pump(const Duration(seconds: 5));
@@ -201,11 +150,8 @@ void main() {
         'WHEN load BodyDetailsScreen THEN ensure has CustomLineChart and DetailsItemVariation',
         (WidgetTester tester) async {
           await tester.pumpWidget(
-            SetupWidgetTester(
-              child: ProviderScope(
-                overrides: overrides,
-                child: const BodyDetailsScreen(),
-              ),
+            const SetupWidgetTester(
+              child: BodyDetailsScreen(),
             ),
           );
           await tester.pump(const Duration(seconds: 5));
@@ -219,11 +165,8 @@ void main() {
         'WHEN tap DayButton THEN ensure isSelected',
         (WidgetTester tester) async {
           await tester.pumpWidget(
-            SetupWidgetTester(
-              child: ProviderScope(
-                overrides: overrides,
-                child: const BodyDetailsScreen(),
-              ),
+            const SetupWidgetTester(
+              child: BodyDetailsScreen(),
             ),
           );
 
@@ -261,7 +204,6 @@ void main() {
             SetupWidgetTester(
               child: ProviderScope(
                 overrides: [
-                  ...overrides,
                   cryptoCoinBasedOnPortfolioProvider.overrideWithProvider(
                     Provider(
                       (ref) => AsyncData(
@@ -317,25 +259,11 @@ void main() {
           await tester.pumpWidget(
             SetupWidgetTester(
               navigatorObserver: navigatorObserver,
-              child: ProviderScope(
-                overrides: [
-                  ...overrides,
-                  cryptoDropdownLeftProvider.overrideWithValue(
-                    StateController(
-                      CryptoCoinViewData(
-                        id: 'bitcoin',
-                        symbol: 'btc',
-                        name: 'Bitcoin',
-                        image: Faker().image.image(),
-                        currentPrice: Decimal.parse('102432'),
-                        priceChangePercentage24h: Decimal.parse('7.2'),
-                      ),
-                    ),
-                  )
-                ],
-                child: const BodyDetailsScreen(),
-              ),
+              child: const BodyDetailsScreen(),
             ),
+          );
+          await tester.pump(
+            const Duration(seconds: 5),
           );
           await tester.scrollUntilVisible(
             find.byType(ButtonConvertCurrency),
@@ -351,6 +279,8 @@ void main() {
           await tester.tap(
             find.byType(ButtonConvertCurrency),
           );
+
+          await tester.pumpAndSettle();
 
           expect(isPushed, true);
         },
@@ -416,28 +346,6 @@ void main() {
           ),
         );
       });
-      // testWidgets(
-      //   'WHEN load LineChart THEN ensure all its properties loaded',
-      //   (WidgetTester tester) async {
-      //     await tester.pumpWidget(
-      //       SetupWidgetTester(
-      //         child: ProviderScope(
-      //           overrides: overrides,
-      //           child: const BodyDetailsScreen(),
-      //         ),
-      //       ),
-      //     );
-      //     await tester.pump(
-      //       const Duration(seconds: 5),
-      //     );
-
-      //     await tester.pump(
-      //       const Duration(
-      //         seconds: 5,
-      //       ),
-      //     );
-      //   },
-      // );
     },
   );
 }

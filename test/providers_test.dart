@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'helpers/setup_providers.dart';
-import 'helpers/setup_widget_tester.dart';
 
 void main() {
   testWidgets(
@@ -17,6 +16,7 @@ void main() {
         ),
       );
 
+      await tester.pump(const Duration(seconds: 4));
       await tester.pump(const Duration(seconds: 4));
     },
   );

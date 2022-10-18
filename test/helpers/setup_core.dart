@@ -23,7 +23,7 @@ class SetupCore extends StatelessWidget {
 
     routeDefinitions[DetailsScreen.route];
     routeDefinitions[ConversionScreen.route];
-    
-    return SizedBox.shrink();
+
+    return const SizedBox.shrink();
   }
 }

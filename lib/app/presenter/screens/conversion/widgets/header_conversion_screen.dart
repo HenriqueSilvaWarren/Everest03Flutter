@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 import 'package:card_02_listagem_crypto/app/domain/view_datas/portfolio_view_data.dart';
 import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
-=======
-
-import '../../../../../l10n/app_localizations.dart';
->>>>>>> f66103ec2549608871c26fc9c9f7d80b4e46d90a
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -48,38 +43,12 @@ class HeaderConversionScreen extends HookConsumerWidget {
                 color: const Color.fromRGBO(117, 118, 128, 1),
               ),
             ),
-<<<<<<< HEAD
             Text(
               '${ref.watch(localeStateProvider) == const Locale('en', 'US') ? quantity : quantity.toString().replaceAll('.', ',')} ${cryptoFromLeftDropdown!.symbol.toUpperCase()} ',
               style: GoogleFonts.sourceSansPro(
                 fontSize: 15,
                 fontWeight: FontWeight.w400,
               ),
-=======
-            ref.watch(portfolioProvider).when(
-              data: (portfolio) {
-                final quantity = portfolio.coins
-                    .firstWhere(
-                      (coin) =>
-                          coin.symbol.toUpperCase() ==
-                          cryptoFromLeftDropdown.symbol.toUpperCase(),
-                    )
-                    .quantity;
-                return Text(
-                  '${ref.watch(localeStateProvider) == const Locale('en', 'US') ? quantity : quantity.toString().replaceAll('.', ',')} ${cryptoFromLeftDropdown.symbol.toUpperCase()} ',
-                  style: GoogleFonts.sourceSansPro(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400,
-                  ),
-                );
-              },
-              error: (error, stackTrace) {
-                return const SizedBox.shrink();
-              },
-              loading: () {
-                return const SizedBox.shrink();
-              },
->>>>>>> f66103ec2549608871c26fc9c9f7d80b4e46d90a
             ),
           ],
         ),

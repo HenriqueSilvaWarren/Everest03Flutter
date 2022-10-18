@@ -3,9 +3,12 @@ import 'package:card_02_listagem_crypto/app/domain/view_datas/crypto_coin_view_d
 import 'package:card_02_listagem_crypto/app/domain/view_datas/crypto_historic_price_view_data.dart';
 import 'package:card_02_listagem_crypto/app/domain/view_datas/list_crypto_view_data.dart';
 import 'package:card_02_listagem_crypto/app/domain/view_datas/portfolio_view_data.dart';
+import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/coin_gecko/screens/crypto_coin_based_on_portfolio_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/coin_gecko/screens/crypto_coin_from_api_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/coin_gecko/screens/crypto_historic_price_by_id_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
+import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/crypto_drop_down_left_provider.dart';
+import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/get_crypto_state_provider.dart';
 import 'package:card_02_listagem_crypto/core/utils/generate_route.dart';
 import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:decimal/decimal.dart';
@@ -18,11 +21,32 @@ import 'test_navigator_observer.dart';
 class SetupWidgetTester extends ConsumerWidget {
   final Widget child;
   final NavigatorObserver? navigatorObserver;
-  const SetupWidgetTester(
-      {Key? key, required this.child, this.navigatorObserver})
-      : super(key: key);
+  final List<CryptoCoinViewData> listCryptoCoinViewData;
+  const SetupWidgetTester({
+    Key? key,
+    required this.child,
+    this.navigatorObserver,
+    this.listCryptoCoinViewData = const [],
+  }) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var bitcoin = CryptoCoinViewData(
+      id: 'bitcoin',
+      symbol: 'btc',
+      name: 'Bitcoin',
+      image: Faker().image.image(),
+      currentPrice: Decimal.parse('102432'),
+      priceChangePercentage24h: Decimal.parse('7.2'),
+    );
+    var ethereum = CryptoCoinViewData(
+      id: 'ethereum',
+      symbol: 'eth',
+      name: 'Ethereum',
+      image: Faker().image.image(),
+      currentPrice: Decimal.parse('92432'),
+      priceChangePercentage24h: Decimal.parse('5'),
+    );
+
     return ProviderScope(
       overrides: [
         portfolioProvider.overrideWithValue(
@@ -35,6 +59,18 @@ class SetupWidgetTester extends ConsumerWidget {
                   quantity: Decimal.parse('0.94'),
                 ),
               ],
+            ),
+          ),
+        ),
+        getCryptoStateProvider.overrideWithValue(
+          StateController(
+            bitcoin,
+          ),
+        ),
+        cryptoCoinBasedOnPortfolioProvider.overrideWithValue(
+          AsyncData(
+            ListCryptoViewData(
+              listCrypto: [bitcoin],
             ),
           ),
         ),
@@ -55,25 +91,13 @@ class SetupWidgetTester extends ConsumerWidget {
         cryptoCoinFromApiProvider.overrideWithValue(
           AsyncValue.data(
             ListCryptoViewData(
-              listCrypto: [
-                CryptoCoinViewData(
-                  id: 'bitcoin',
-                  symbol: 'btc',
-                  name: 'Bitcoin',
-                  image: Faker().image.image(),
-                  currentPrice: Decimal.parse('102432'),
-                  priceChangePercentage24h: Decimal.parse('7.2'),
-                ),
-                CryptoCoinViewData(
-                  id: 'ethereum',
-                  symbol: 'eth',
-                  name: 'Ethereum',
-                  image: Faker().image.image(),
-                  currentPrice: Decimal.parse('92432'),
-                  priceChangePercentage24h: Decimal.parse('5'),
-                ),
-              ],
+              listCrypto: [bitcoin, ethereum],
             ),
+          ),
+        ),
+        cryptoDropdownLeftProvider.overrideWithValue(
+          StateController(
+            bitcoin,
           ),
         )
       ],

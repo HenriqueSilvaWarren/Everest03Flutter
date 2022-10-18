@@ -8,7 +8,7 @@ import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/crypto_drop_
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/crypto_drop_down_right_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/locale_state_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/screens/conversion/conversion_screen.dart';
-import 'package:card_02_listagem_crypto/app/presenter/screens/conversion/widgets/conversion_screen_bottom_app_bar.dart';
+import 'package:card_02_listagem_crypto/app/presenter/screens/review/review_screen.dart';
 import 'package:decimal/decimal.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,7 @@ void main() {
     symbol: 'eth',
     name: 'Ethereum',
     image: Faker().image.image(),
-    currentPrice: Decimal.parse('102432'),
+    currentPrice: Decimal.parse('7254'),
     priceChangePercentage24h: Decimal.parse('7.2'),
   );
   var dogecoin = CryptoCoinViewData(
@@ -39,7 +39,7 @@ void main() {
     symbol: 'doge',
     name: 'Dogecoin',
     image: Faker().image.image(),
-    currentPrice: Decimal.parse('102432'),
+    currentPrice: Decimal.parse('0.3'),
     priceChangePercentage24h: Decimal.parse('7.2'),
   );
 
@@ -254,7 +254,7 @@ void main() {
     },
   );
   testWidgets(
-    'WHEN load ConversionScreen and in english THEN ensure TExtFormField is formatted correctly',
+    'WHEN load ConversionScreen THEN ensure TextFormField can be submitted',
     (WidgetTester tester) async {
       overrides.add(
         localeStateProvider.overrideWithValue(
@@ -303,14 +303,9 @@ void main() {
         ),
       );
 
-      var convertBar = tester.widget<ConversionScreenBottomAppBar>(
-        find.byKey(
-          const Key('conversionBottomBar'),
-        ),
-      );
+      var finderButton = find.byType(FloatingActionButton);
 
-      expect(convertBar.isValidBool, false);
-      await tester.pump();
+      await tester.tap(finderButton);
 
       await tester.enterText(
         find.byKey(
@@ -340,16 +335,12 @@ void main() {
       await rightGesture.up();
       await tester.pump();
 
-      convertBar = tester.widget<ConversionScreenBottomAppBar>(
-        find.byKey(
-          const Key('conversionBottomBar'),
-        ),
-      );
-
       await tester.tap(
         find.byType(FloatingActionButton),
       );
-      await tester.pump();
+      await tester.pumpAndSettle();
+
+      expect(find.byType(ReviewScreen), findsOneWidget);
     },
   );
 }

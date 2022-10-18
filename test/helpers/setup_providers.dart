@@ -1,3 +1,4 @@
+import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/coin_gecko/screens/crypto_coin_based_on_portfolio_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/coin_gecko/screens/crypto_historic_price_by_id_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/coin_gecko/usecases/get_crypto_historic_price_by_id_use_case_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/local/portfolio/database_provider.dart';
@@ -18,6 +19,7 @@ class SetupProviders extends ConsumerWidget {
     ref.watch(getPortfolioByIdUseCaseProvider);
     ref.watch(cryptoHistoricPriceByIdProvider('bitcoin'));
     ref.watch(getCryptoHistoricPriceByIdUseCaseProvider);
+    ref.watch(cryptoCoinBasedOnPortfolioProvider);
     return const SizedBox.shrink();
   }
 }

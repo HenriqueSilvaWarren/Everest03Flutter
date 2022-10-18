@@ -9,7 +9,7 @@ class ListDecimalConverter
   List<Decimal> fromJson(List<dynamic> json) {
     return json
         .map<Decimal>(
-          (e) => e,
+          (e) => e, // coverage:ignore-line
         )
         .toList();
   }
