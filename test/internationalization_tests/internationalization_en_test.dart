@@ -17,8 +17,6 @@ void main() {
 
       expect(find.text('en-US'), findsOneWidget);
 
-      expect(find.text('usd'), findsOneWidget);
-
       expect(find.text('US\$ '), findsOneWidget);
 
       expect(find.text('MM/dd/yyyy'), findsOneWidget);
