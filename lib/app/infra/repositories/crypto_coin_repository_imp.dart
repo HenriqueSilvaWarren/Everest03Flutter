@@ -17,7 +17,11 @@ class CryptoCoinRepositoryImp implements CryptoCoinRepository {
     String currency,
   ) async {
     final result = await cryptoCoinDatasource.getCryptoCoinBasedOnPortfolio(
-        portfolio, currency);
+      portfolio,
+      currency,
+    );
+
+    
 
     return List<GetCryptoCoinResponse>.from(
       result.data.map((item) => GetCryptoCoinResponse.fromJson(item)),
@@ -29,7 +33,8 @@ class CryptoCoinRepositoryImp implements CryptoCoinRepository {
     String id,
     String currency,
   ) async {
-    final result = await cryptoCoinDatasource.getCryptoHistoricPriceById(id, currency);
+    final result =
+        await cryptoCoinDatasource.getCryptoHistoricPriceById(id, currency);
 
     List<Decimal> cryptoPricesList = result.data!['prices']!
         .map<Decimal>((price) => Decimal.parse('${price[1]}'))
@@ -39,4 +44,6 @@ class CryptoCoinRepositoryImp implements CryptoCoinRepository {
 
     return GetCryptoHistoricPriceByIdResponse.fromJson(json);
   }
+  
+
 }

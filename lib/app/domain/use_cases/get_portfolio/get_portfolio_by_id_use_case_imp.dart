@@ -4,7 +4,6 @@ import '../../view_datas/portfolio_view_data.dart';
 import 'get_porfolio_by_id_use_case.dart';
 
 class GetPortfolioUseCaseImp implements GetPortfolioUseCase {
-  @override
   GetPortfolioRepository repository;
   GetPortfolioUseCaseImp(this.repository);
 

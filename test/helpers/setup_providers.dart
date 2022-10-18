@@ -5,6 +5,8 @@ import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/local
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/local/portfolio/repository_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/local/portfolio/usecases/get_portfolio_by_id_use_case_provider.dart';
+import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/crypto_drop_down_left_provider.dart';
+import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/get_crypto_state_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -20,6 +22,8 @@ class SetupProviders extends ConsumerWidget {
     ref.watch(cryptoHistoricPriceByIdProvider('bitcoin'));
     ref.watch(getCryptoHistoricPriceByIdUseCaseProvider);
     ref.watch(cryptoCoinBasedOnPortfolioProvider);
+    ref.watch(cryptoDropdownLeftProvider);
+    ref.watch(getCryptoStateProvider);
     return const SizedBox.shrink();
   }
 }
