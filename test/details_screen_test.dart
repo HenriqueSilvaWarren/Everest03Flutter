@@ -1,14 +1,9 @@
 import 'dart:io';
 
-import 'package:card_02_listagem_crypto/app/domain/view_datas/coin_in_portfolio_view_data.dart';
 import 'package:card_02_listagem_crypto/app/domain/view_datas/crypto_coin_view_data.dart';
 import 'package:card_02_listagem_crypto/app/domain/view_datas/list_crypto_view_data.dart';
-import 'package:card_02_listagem_crypto/app/domain/view_datas/portfolio_view_data.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/coin_gecko/screens/crypto_coin_based_on_portfolio_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/api/coin_gecko/screens/crypto_historic_price_by_id_provider.dart';
-import 'package:card_02_listagem_crypto/app/presenter/riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
-import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/crypto_drop_down_left_provider.dart';
-import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/get_crypto_state_provider.dart';
 import 'package:card_02_listagem_crypto/app/presenter/screens/conversion/conversion_screen.dart';
 import 'package:card_02_listagem_crypto/app/presenter/screens/details/details_screen.dart';
 import 'package:card_02_listagem_crypto/app/presenter/screens/details/loading_widgets/loading_chart.dart';
@@ -19,9 +14,7 @@ import 'package:card_02_listagem_crypto/app/presenter/screens/details/widgets/da
 import 'package:card_02_listagem_crypto/app/presenter/screens/details/widgets/details_item_variation.dart';
 import 'package:card_02_listagem_crypto/core/utils/animated_hide_text_value.dart';
 import 'package:card_02_listagem_crypto/core/utils/custom_app_bar.dart';
-import 'package:card_02_listagem_crypto/core/utils/generate_route.dart';
 import 'package:card_02_listagem_crypto/core/utils/hide_values_button.dart';
-import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
 import 'package:decimal/decimal.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +47,7 @@ void main() {
                     ),
                   ),
                 ],
-                child: BodyDetailsScreen(),
+                child: const BodyDetailsScreen(),
               ),
             ),
           );

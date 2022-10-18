@@ -6,7 +6,6 @@ import 'get_crypto_coin_based_on_portfolio_usecase.dart';
 
 class GetCryptoCoinBasedOnPortfolioUsecaseImp
     implements GetCryptoCoinBasedOnPortfolioUsecase {
-  @override
   final CryptoCoinRepository repository;
   GetCryptoCoinBasedOnPortfolioUsecaseImp(this.repository);
 
