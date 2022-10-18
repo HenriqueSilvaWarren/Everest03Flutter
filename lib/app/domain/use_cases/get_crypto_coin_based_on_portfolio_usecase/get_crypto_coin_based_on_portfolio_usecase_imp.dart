@@ -11,8 +11,12 @@ class GetCryptoCoinBasedOnPortfolioUsecaseImp
   GetCryptoCoinBasedOnPortfolioUsecaseImp(this.repository);
 
   @override
-  Future<ListCryptoViewData> execute(PortfolioViewData portfolio) async {
-      final response = await repository.getCryptoCoinBasedOnPortfolio(portfolio);
+  Future<ListCryptoViewData> execute(
+      PortfolioViewData portfolio, String currency) async {
+    final response = await repository.getCryptoCoinBasedOnPortfolio(
+      portfolio,
+      currency,
+    );
 
     return response.toViewData();
   }

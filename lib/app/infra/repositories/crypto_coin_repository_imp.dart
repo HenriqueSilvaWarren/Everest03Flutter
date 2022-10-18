@@ -13,10 +13,11 @@ class CryptoCoinRepositoryImp implements CryptoCoinRepository {
 
   @override
   Future<List<GetCryptoCoinResponse>> getCryptoCoinBasedOnPortfolio(
-      PortfolioViewData portfolio) async {
+    PortfolioViewData portfolio,
+    String currency,
+  ) async {
     final result = await cryptoCoinDatasource.getCryptoCoinBasedOnPortfolio(
-      portfolio,
-    );
+        portfolio, currency);
 
     return List<GetCryptoCoinResponse>.from(
       result.data.map((item) => GetCryptoCoinResponse.fromJson(item)),
@@ -26,8 +27,9 @@ class CryptoCoinRepositoryImp implements CryptoCoinRepository {
   @override
   Future<GetCryptoHistoricPriceByIdResponse> getCryptoHistoricPriceById(
     String id,
+    String currency,
   ) async {
-    final result = await cryptoCoinDatasource.getCryptoHistoricPriceById(id);
+    final result = await cryptoCoinDatasource.getCryptoHistoricPriceById(id, currency);
 
     List<Decimal> cryptoPricesList = result.data!['prices']!
         .map<Decimal>((price) => Decimal.parse('${price[1]}'))

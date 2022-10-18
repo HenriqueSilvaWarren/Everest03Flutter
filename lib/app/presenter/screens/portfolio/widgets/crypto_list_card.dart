@@ -1,12 +1,12 @@
+import '../../../../../l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../core/utils/animated_hide_text_value.dart';
-import '../../../../../core/utils/get_real.dart';
 import '../../../../domain/view_datas/coin_in_portfolio_view_data.dart';
 import '../../../../domain/view_datas/crypto_coin_view_data.dart';
-import '../../../../domain/view_datas/list_crypto_view_data.dart';
 import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
 import '../../../riverpod/view/get_crypto_state_provider.dart';
 import '../../../riverpod/view/get_price_from_chart.dart';
@@ -16,14 +16,18 @@ class CryptoListCard extends HookConsumerWidget {
   const CryptoListCard({
     Key? key,
     required this.cryptoCoinViewData,
-    required this.listCryptosFromPortfolio,
+
   }) : super(key: key);
 
-  final ListCryptoViewData listCryptosFromPortfolio;
+
   final CryptoCoinViewData cryptoCoinViewData;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currencyFormatter = NumberFormat.currency(
+      locale: CryptoAppStrings.of(context)!.language,
+      symbol: CryptoAppStrings.of(context)!.currencySymbol,
+    );
     return ref.watch(portfolioProvider).when(
       data: (portfolio) {
         CoinInPortfolioViewData coin = portfolio.coins.firstWhere(
@@ -67,7 +71,7 @@ class CryptoListCard extends HookConsumerWidget {
                     ),
                   ),
                   AnimatedHideTextValue(
-                    text: getReal(
+                    text: currencyFormatter.format(
                       (cryptoCoinViewData.currentPrice * coin.quantity)
                           .toDouble(),
                     ),

@@ -1,4 +1,3 @@
-import '../../riverpod/datasources/api/coin_gecko/screens/crypto_coin_from_api_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -15,7 +14,7 @@ class TransactionsScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     int curIndex = 1;
 
-    ref.watch(cryptoCoinFromApiProvider).whenData((value) => value);
+    
     return Scaffold(
       body: const BodyTransactionsScreen(),
       bottomNavigationBar: CustomBottomNavigationBar(

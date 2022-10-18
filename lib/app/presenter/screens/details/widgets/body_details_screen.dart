@@ -1,11 +1,10 @@
-import 'package:brasil_fields/brasil_fields.dart';
-import 'package:decimal/decimal.dart';
+import '../../../../../l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../core/utils/animated_hide_text_value.dart';
-import '../../../../../core/utils/get_real.dart';
 import '../../../../../core/utils/screens_item.dart';
 import '../../../../domain/view_datas/coin_in_portfolio_view_data.dart';
 import '../../../../domain/view_datas/crypto_coin_view_data.dart';
@@ -14,6 +13,7 @@ import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_historic_pri
 import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
 import '../../../riverpod/view/get_crypto_state_provider.dart';
 import '../../../riverpod/view/get_price_from_chart.dart';
+import '../../../riverpod/view/locale_state_provider.dart';
 import '../loading_widgets/loading_chart.dart';
 import '../loading_widgets/loading_details_variation.dart';
 import 'button_convert_currency.dart';
@@ -28,6 +28,10 @@ class BodyDetailsScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currencyFormatter = NumberFormat.currency(
+      locale: CryptoAppStrings.of(context)!.language,
+      symbol: CryptoAppStrings.of(context)!.currencySymbol,
+    );
     final AsyncValue<CryptoHistoricPriceViewData> cryptoPrices = ref.watch(
       cryptoHistoricPriceByIdProvider(
         ref.read(getCryptoStateProvider).id,
@@ -60,7 +64,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
                 const DetailsTopCardWidget(),
                 AnimatedHideTextValue(
                   text: values == ""
-                      ? getReal(
+                      ? currencyFormatter.format(
                           cryptoCoin.currentPrice.toDouble(),
                         )
                       : values,
@@ -79,12 +83,9 @@ class BodyDetailsScreen extends HookConsumerWidget {
                   loading: () => const LoadingChart(),
                 ),
                 ScreensItem(
-                  title: 'Preço Atual:',
-                  value: UtilBrasilFields.obterReal(
-                    Decimal.parse(
-                      cryptoCoin.currentPrice.toString(),
-                    ).toDouble(),
-                  ),
+                  title: CryptoAppStrings.of(context)!.currentPrice,
+                  value: currencyFormatter
+                      .format(cryptoCoin.currentPrice.toDouble()),
                 ),
                 cryptoPrices.when(
                   data: (data) {
@@ -95,7 +96,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
                   error: (error, stackTrace) => const Text('Deu erro'),
                   loading: () => ListTile(
                     title: Text(
-                      'Variação 24H',
+                      CryptoAppStrings.of(context)!.variation24,
                       style: GoogleFonts.sourceSansPro(
                         fontSize: 19,
                         color: Colors.grey,
@@ -111,12 +112,13 @@ class BodyDetailsScreen extends HookConsumerWidget {
                   ),
                 ),
                 ScreensItem(
-                  title: "Quantidade",
-                  value: '${coin.quantity} ${cryptoCoin.symbol.toUpperCase()}',
+                  title: CryptoAppStrings.of(context)!.quantity,
+                  value:
+                      '${ref.watch(localeStateProvider) == const Locale('pt', 'BR') ? coin.quantity.toString().replaceAll('.', ',') : coin.quantity} ${cryptoCoin.symbol.toUpperCase()}',
                 ),
                 ScreensItem(
-                  title: "Valor",
-                  value: getReal(
+                  title: CryptoAppStrings.of(context)!.value,
+                  value: currencyFormatter.format(
                     (cryptoCoin.currentPrice * coin.quantity).toDouble(),
                   ),
                 ),

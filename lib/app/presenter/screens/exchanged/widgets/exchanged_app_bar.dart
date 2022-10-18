@@ -1,3 +1,5 @@
+import '../../portfolio/portfolio_screen.dart';
+import '../../transactions/transactions_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -19,7 +21,10 @@ class ExchangedAppBar extends HookConsumerWidget
       leading: IconButton(
         onPressed: () {
           ref.refresh(cryptoCoinBasedOnPortfolioProvider);
-          Navigator.of(context).pop();
+          Navigator.of(context).pushNamedAndRemoveUntil(
+            TransactionsScreen.route,
+            ModalRoute.withName(PortfolioScreen.route)
+          );
         },
         icon: const Icon(Icons.close),
       ),

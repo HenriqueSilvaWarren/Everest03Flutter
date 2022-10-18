@@ -1,3 +1,4 @@
+import '../../../../view/get_currency_state_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../../domain/view_datas/list_crypto_view_data.dart';
@@ -10,6 +11,7 @@ final cryptoCoinFromApiProvider = FutureProvider<ListCryptoViewData>(
           PortfolioViewData(
             coins: [],
           ),
+          ref.watch(getCurrencyStateProvider),
         );
   },
 );

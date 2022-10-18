@@ -1,3 +1,4 @@
+import '../../../../l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/custom_app_bar.dart';
@@ -10,13 +11,13 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
-        text: 'Detalhes',
+        text: CryptoAppStrings.of(context)!.details,
         doesHide: true,
       ),
-      body: BodyDetailsScreen(),
+      body: const BodyDetailsScreen(),
     );
   }
 }

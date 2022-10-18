@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../domain/view_datas/transactions_view_data.dart';
 import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_coin_from_api_provider.dart';
 import '../../../riverpod/view/bank_details_provider.dart';
-import 'bank_details.dart';
+import 'dialog_bank_details.dart';
 import 'dialog_title.dart';
 import 'dialog_transaction_details.dart';
 
@@ -51,7 +51,7 @@ class TransactionDialog extends HookConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            BankDetails(bankDetails: bankDetails),
+            DialogBankDetails(bankDetails: bankDetails),
             const SizedBox(
               height: 10,
             ),
