@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/locale_state_provider.dart';
+=======
+
+import '../../../riverpod/view/locale_state_provider.dart';
+import 'package:flutter/material.dart';
+>>>>>>> f66103ec2549608871c26fc9c9f7d80b4e46d90a
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

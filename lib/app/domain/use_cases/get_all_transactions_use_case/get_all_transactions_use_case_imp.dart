@@ -1,7 +1,6 @@
 
 import '../../repositories/transactions_repository.dart';
 import '../../view_datas/list_transactions_view_data.dart';
-
 import 'get_all_transactions_use_case.dart';
 
 class GetAllTransactionsUseCaseImp implements GetAllTransactionsUseCase {

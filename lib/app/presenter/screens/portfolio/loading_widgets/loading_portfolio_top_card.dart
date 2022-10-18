@@ -5,7 +5,6 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/utils/animated_hide_text_value.dart';
 import '../../../../../core/utils/hide_values_button.dart';
-
 import '../../../../../l10n/app_localizations.dart';
 
 class LoadingPortfolioTopCard extends StatelessWidget {

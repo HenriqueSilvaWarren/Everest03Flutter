@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
+=======
+import '../../../../../l10n/app_localizations.dart';
+>>>>>>> f66103ec2549608871c26fc9c9f7d80b4e46d90a
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -14,6 +18,7 @@ import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_historic_pri
 import '../../../riverpod/datasources/local/portfolio/screen/portfolio_provider.dart';
 import '../../../riverpod/view/get_crypto_state_provider.dart';
 import '../../../riverpod/view/get_price_from_chart.dart';
+import '../../../riverpod/view/locale_state_provider.dart';
 import '../loading_widgets/loading_chart.dart';
 import '../loading_widgets/loading_details_variation.dart';
 import 'button_convert_currency.dart';
@@ -50,6 +55,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
 
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
+<<<<<<< HEAD
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -67,6 +73,90 @@ class BodyDetailsScreen extends HookConsumerWidget {
                 fontSize: 40,
                 fontWeight: FontWeight.w700,
               ),
+=======
+      child: ref.watch(portfolioProvider).when(
+        data: (portfolio) {
+          final CryptoCoinViewData cryptoCoin =
+              ref.read(getCryptoStateProvider);
+
+          List<CoinInPortfolioViewData> coins = portfolio.coins;
+
+          CoinInPortfolioViewData coin = coins.firstWhere(
+            (coin) {
+              return coin.symbol.toLowerCase() ==
+                  cryptoCoin.symbol.toLowerCase();
+            },
+          );
+
+          return Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const DetailsTopCardWidget(),
+                AnimatedHideTextValue(
+                  text: values == ""
+                      ? currencyFormatter.format(
+                          cryptoCoin.currentPrice.toDouble(),
+                        )
+                      : values,
+                  style: GoogleFonts.sourceSansPro(
+                    fontSize: 40,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                cryptoPrices.when(
+                  data: (data) {
+                    return CustomLineChart(
+                      cryptoPricesList: data.cryptoPricesList,
+                    );
+                  },
+                  error: (error, stackTrace) => const Text('Deu erro'),
+                  loading: () => const LoadingChart(),
+                ),
+                ScreensItem(
+                  title: CryptoAppStrings.of(context)!.currentPrice,
+                  value: currencyFormatter
+                      .format(cryptoCoin.currentPrice.toDouble()),
+                ),
+                cryptoPrices.when(
+                  data: (data) {
+                    return DetailsItemVariation(
+                      cryptoPricesList: data.cryptoPricesList,
+                    );
+                  },
+                  error: (error, stackTrace) => const Text('Deu erro'),
+                  loading: () => ListTile(
+                    title: Text(
+                      CryptoAppStrings.of(context)!.variation24,
+                      style: GoogleFonts.sourceSansPro(
+                        fontSize: 19,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    trailing: const LoadingDetailsItemVariation(),
+                    contentPadding: EdgeInsets.zero,
+                    shape: const Border(
+                      top: BorderSide(
+                        color: Color.fromRGBO(227, 228, 235, 1),
+                      ),
+                    ),
+                  ),
+                ),
+                ScreensItem(
+                  title: CryptoAppStrings.of(context)!.quantity,
+                  value:
+                      '${ref.watch(localeStateProvider) == const Locale('pt', 'BR') ? coin.quantity.toString().replaceAll('.', ',') : coin.quantity} ${cryptoCoin.symbol.toUpperCase()}',
+                ),
+                ScreensItem(
+                  title: CryptoAppStrings.of(context)!.value,
+                  value: currencyFormatter.format(
+                    (cryptoCoin.currentPrice * coin.quantity).toDouble(),
+                  ),
+                ),
+                const ButtonConvertCurrency(),
+              ],
+>>>>>>> f66103ec2549608871c26fc9c9f7d80b4e46d90a
             ),
             cryptoPrices.when(
               data: (data) {

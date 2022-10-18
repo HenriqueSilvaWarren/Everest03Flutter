@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 import 'package:card_02_listagem_crypto/core/app_assets.dart';
+=======
+import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_coin_based_on_portfolio_provider.dart';
+import '../../../riverpod/view/get_currency_state_provider.dart';
+import '../../../../../core/app_assets.dart';
+>>>>>>> f66103ec2549608871c26fc9c9f7d80b4e46d90a
 import 'package:intl/intl.dart';
 
 import '../../../../../l10n/app_localizations.dart';

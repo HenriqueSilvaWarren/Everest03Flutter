@@ -1,5 +1,5 @@
-import 'package:card_02_listagem_crypto/app/presenter/screens/transactions/loading_widgets/loading_transaction_list.dart';
-import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
+import '../loading_widgets/loading_transaction_list.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

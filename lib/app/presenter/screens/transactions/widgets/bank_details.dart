@@ -1,12 +1,11 @@
+import 'dialog_transaction_details_row.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../l10n/app_localizations.dart';
 import 'dialog_named_section.dart';
-import 'dialog_transaction_details_row.dart';
 import 'transactions_row_item.dart';
 
-class DialogBankDetails extends StatelessWidget {
-  const DialogBankDetails({
+class BankDetails extends StatelessWidget {
+  const BankDetails({
     Key? key,
     required this.bankDetails,
   }) : super(key: key);
@@ -16,31 +15,31 @@ class DialogBankDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DialogNamedSection(
-      title: CryptoAppStrings.of(context)!.bankDetails,
+      title: 'Dados Bancários',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           DialogTransactionDetailsRow(
-            firstText: CryptoAppStrings.of(context)!.bank,
+            firstText: 'Banco:',
             secondText: bankDetails['bank']!,
           ),
           DialogTransactionDetailsRow(
-            firstText: CryptoAppStrings.of(context)!.agency,
+            firstText: 'Agência:',
             secondText: bankDetails['agency']!,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               TransactionRowItem(
-                firstText: CryptoAppStrings.of(context)!.subAccount,
+                firstText: 'Sub-conta:',
                 secondText: bankDetails['subAccount']!,
               ),
               TransactionRowItem(
-                firstText: CryptoAppStrings.of(context)!.account,
+                firstText: 'Conta:',
                 secondText: bankDetails['account']!,
               ),
               TransactionRowItem(
-                firstText: CryptoAppStrings.of(context)!.cd,
+                firstText: 'DV:',
                 secondText: bankDetails['dv']!,
               ),
             ],

@@ -1,5 +1,5 @@
-import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/locale_state_provider.dart';
-import 'package:card_02_listagem_crypto/l10n/app_localizations.dart';
+import 'app/presenter/riverpod/view/locale_state_provider.dart';
+import 'l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
