@@ -6,7 +6,7 @@ import '../../../../../l10n/app_localizations.dart';
 class HeaderTransactionsScreen extends StatelessWidget {
   const HeaderTransactionsScreen({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); // coverage:ignore-line
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,6 @@ import '../../../../domain/view_datas/crypto_coin_view_data.dart';
 import '../../../riverpod/datasources/api/coin_gecko/screens/crypto_coin_based_on_portfolio_provider.dart';
 import '../../../riverpod/view/conversion_controller_text_state_provider.dart';
 import '../../../riverpod/view/crypto_drop_down_left_provider.dart';
-import '../../../riverpod/view/get_crypto_state_provider.dart';
 
 class DropdownButtonLeft extends StatefulHookConsumerWidget {
   const DropdownButtonLeft({Key? key}) : super(key: key);
@@ -16,13 +15,6 @@ class DropdownButtonLeft extends StatefulHookConsumerWidget {
 }
 
 class _DropdownButtonLeftState extends ConsumerState<DropdownButtonLeft> {
-  late CryptoCoinViewData cryptoCoinFromDetails;
-  @override
-  void initState() {
-    super.initState();
-    cryptoCoinFromDetails = ref.read(getCryptoStateProvider);
-  }
-
   @override
   Widget build(BuildContext context) {
     List<CryptoCoinViewData> listCoins = [];
@@ -31,10 +23,12 @@ class _DropdownButtonLeftState extends ConsumerState<DropdownButtonLeft> {
         in ref.watch(cryptoCoinBasedOnPortfolioProvider).value!.listCrypto) {
       listCoins.add(crypto);
     }
+
     return SizedBox(
       height: 32,
       width: 92,
       child: DropdownButtonFormField(
+        key: const Key('cryptoDropdownLeft'),
         itemHeight: 48,
         selectedItemBuilder: (context) => listCoins
             .map(
@@ -65,6 +59,7 @@ class _DropdownButtonLeftState extends ConsumerState<DropdownButtonLeft> {
         items: listCoins
             .map(
               (CryptoCoinViewData cryptoCoin) => DropdownMenuItem(
+                key: Key('leftDropdown${cryptoCoin.name}'),
                 value: cryptoCoin,
                 child: Container(
                   width: 92,

@@ -43,7 +43,7 @@ dynamic isValid(
   }
   if (cryptoLeft.id == cryptoRight.id) {
     return isCalledFromTextField
-        ? 'Por favor escolha duas moedas diferentes'
+        ? CryptoAppStrings.of(context)!.chooseTwoDifferentCoins
         : false;
   }
   return isCalledFromTextField ? null : true;

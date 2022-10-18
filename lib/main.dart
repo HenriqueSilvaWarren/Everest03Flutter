@@ -7,18 +7,22 @@ import 'app/presenter/screens/splash/splash_screen.dart';
 import 'core/route_definitions.dart';
 import 'core/utils/generate_route.dart';
 
-
+// coverage:ignore-start
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
+// coverage:ignore-end
 
 class MyApp extends HookConsumerWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     return MaterialApp(
       localizationsDelegates: CryptoAppStrings.localizationsDelegates,
       supportedLocales: CryptoAppStrings.supportedLocales,

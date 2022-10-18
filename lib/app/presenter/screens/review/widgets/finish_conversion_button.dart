@@ -6,23 +6,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../exchanged/exchanged_screen.dart';
 import '../utils/exchange_coins.dart';
 
-class FinishConversionButton extends StatefulHookConsumerWidget {
+class FinishConversionButton extends ConsumerWidget {
   const FinishConversionButton({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); // coverage:ignore-line
 
   @override
-  ConsumerState<FinishConversionButton> createState() =>
-      _FinishConversionButtonState();
-}
-
-class _FinishConversionButtonState
-    extends ConsumerState<FinishConversionButton> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24.0),
       child: InkWell(
+        key: const Key('finishConversionButton'),
         onTap: () {
           buttonExchangeCoins(
             ref,

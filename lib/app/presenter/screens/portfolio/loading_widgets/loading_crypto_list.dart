@@ -5,7 +5,7 @@ import 'loading_crypto_list_card.dart';
 class LoadingCryptoList extends StatelessWidget {
   const LoadingCryptoList({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); // coverage:ignore-line
 
   @override
   Widget build(BuildContext context) {

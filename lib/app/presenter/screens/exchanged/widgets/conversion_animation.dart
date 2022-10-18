@@ -73,16 +73,17 @@ class ConversionAnimation extends StatelessWidget {
   ];
 
   Widget _buildAnimation(BuildContext context, Widget? child) {
+   
     return Transform(
       transform: Matrix4.rotationX(rotationX.value)..rotateZ(rotationZ.value),
       alignment: Alignment.center,
       child: Transform(
         transform: Matrix4.rotationZ(rotationZ.value),
         alignment: Alignment.center,
-        child: stackChildren[controller.value >= 0.50 * 0.26666666666 &&
+        child: controller.value >= 0.50 * 0.26666666666 &&
                 controller.value <= 0.50 * 0.73333333333
-            ? 0
-            : 1],
+            ? stackChildren[0]
+            : stackChildren[1],
       ),
     );
   }

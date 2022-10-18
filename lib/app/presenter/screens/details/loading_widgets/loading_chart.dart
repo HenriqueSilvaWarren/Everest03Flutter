@@ -7,7 +7,7 @@ import '../widgets/day_button.dart';
 class LoadingChart extends StatelessWidget {
   const LoadingChart({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); // coverage:ignore-line
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,6 @@ class LoadingChart extends StatelessWidget {
                   fillColor: Colors.transparent,
                   selectedColor: Colors.black,
                   splashColor: Colors.transparent,
-                  onPressed: (index) {},
                   renderBorder: false,
                   borderRadius: BorderRadius.circular(20),
                   isSelected: selectedIndex,

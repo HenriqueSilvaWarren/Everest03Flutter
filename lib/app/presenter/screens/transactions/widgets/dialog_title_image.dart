@@ -12,17 +12,12 @@ class DialogTitleImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      width: 40,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        image: DecorationImage(
-          image: NetworkImage(crypto.image, scale: 1),
-          fit: BoxFit.cover,
-        ),
+    return ClipRRect(
+      child: Image.network(
+        crypto.image,
+        height: 40,
+        width: 40,
       ),
-      child: null,
     );
   }
 }

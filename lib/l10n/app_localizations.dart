@@ -99,12 +99,6 @@ abstract class CryptoAppStrings {
   /// **'en-US'**
   String get language;
 
-  /// No description provided for @currency.
-  ///
-  /// In en, this message translates to:
-  /// **'usd'**
-  String get currency;
-
   /// No description provided for @currencySymbol.
   ///
   /// In en, this message translates to:

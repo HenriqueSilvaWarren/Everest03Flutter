@@ -17,8 +17,9 @@ import '../utils/is_valid_method.dart';
 class ConversionScreenBottomAppBar extends HookConsumerWidget {
   const ConversionScreenBottomAppBar({
     Key? key,
-  }) : super(key: key);
-
+    this.isValidBool = false,
+  }) : super(key: key); // coverage:ignore-line
+  final bool isValidBool;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controllerText = ref.watch(conversionControllerTextStateProvider);
@@ -27,7 +28,7 @@ class ConversionScreenBottomAppBar extends HookConsumerWidget {
     final isValidBool = isValid(
       ref.watch(portfolioProvider).value!,
       text: controllerText,
-      cryptoLeft: cryptoLeft,
+      cryptoLeft: cryptoLeft!,
       cryptoRight: cryptoRight,
       context: context,
     );

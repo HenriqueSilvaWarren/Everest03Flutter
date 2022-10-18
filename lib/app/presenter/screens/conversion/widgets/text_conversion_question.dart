@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 class TextConversionQuestion extends StatelessWidget {
   const TextConversionQuestion({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); // coverage:ignore-line
 
   @override
   Widget build(BuildContext context) {

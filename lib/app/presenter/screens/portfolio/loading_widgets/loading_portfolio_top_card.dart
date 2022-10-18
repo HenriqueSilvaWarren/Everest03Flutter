@@ -9,8 +9,8 @@ import '../../../../../l10n/app_localizations.dart';
 
 class LoadingPortfolioTopCard extends StatelessWidget {
   const LoadingPortfolioTopCard({
-    Key? key,
-  }) : super(key: key);
+    Key? key
+  }) : super(key: key); // coverage:ignore-line
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +34,7 @@ class LoadingPortfolioTopCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
+                  key: const Key('cryptoLoadingPortfolioText'),
                   CryptoAppStrings.of(context)!.crypto,
                   style: GoogleFonts.montserrat(
                     fontSize: 32,

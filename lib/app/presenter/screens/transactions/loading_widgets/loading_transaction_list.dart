@@ -7,7 +7,7 @@ import 'loading_transaction_list_tile.dart';
 class LoadingTransactionList extends HookConsumerWidget {
   const LoadingTransactionList({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); // coverage:ignore-line
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

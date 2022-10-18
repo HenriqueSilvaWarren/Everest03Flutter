@@ -1,6 +1,5 @@
 {
     "language": "pt-BR",
-    "currency": "brl",
     "currencySymbol": "R$",
     "dateFormat": "dd/MM/yyyy",
     "crypto": "Cripto",
@@ -42,6 +41,6 @@
     "exchangedQuantity": "Quantidade Convertida:",
     "receivedCoin": "Moeda Recebida:",
     "receivedQuantity": "Quantidade Recebida:",
-    "monetaryValue": "Monetary Value:",
-    "transactionDate": "Transaction Date:"
+    "monetaryValue": "Valor Monetário:",
+    "transactionDate": "Data de Transação:"
 }

@@ -7,7 +7,7 @@ import 'conversion_animation.dart';
 class BodyExchangedScreen extends StatefulWidget {
   const BodyExchangedScreen({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); // coverage:ignore-line
 
   @override
   State<BodyExchangedScreen> createState() => _BodyExchangedScreenState();

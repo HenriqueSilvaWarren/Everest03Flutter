@@ -12,7 +12,7 @@ import 'transactions_list_tile.dart';
 class ListViewTransactions extends StatefulHookConsumerWidget {
   const ListViewTransactions({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); // coverage:ignore-line
   @override
   ConsumerState<ListViewTransactions> createState() =>
       _ListViewTransactionsState();
@@ -50,6 +50,7 @@ class _ListViewTransactionsState extends ConsumerState<ListViewTransactions> {
         },
         error: (error, stackTrace) {
           return Column(
+            key: const Key('errorTransactions'),
             children: [
               Text('$error'),
               Text('$stackTrace'),

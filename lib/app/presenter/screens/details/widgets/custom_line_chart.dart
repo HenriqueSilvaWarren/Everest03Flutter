@@ -66,6 +66,7 @@ class _CustomLineChartState extends ConsumerState<CustomLineChart> {
               AspectRatio(
                 aspectRatio: 16 / 9,
                 child: LineChart(
+                  key: const Key('detailsLineChart'),
                   LineChartData(
                     lineTouchData: LineTouchData(
                       touchCallback: (p0, p1) {
@@ -89,7 +90,9 @@ class _CustomLineChartState extends ConsumerState<CustomLineChart> {
                           }
                         }
                       },
-                      getTouchLineEnd: (barData, spotIndex) => double.infinity,
+                      getTouchLineEnd:
+                          (LineChartBarData barData, int spotIndex) =>
+                              double.infinity,
                       getTouchedSpotIndicator:
                           (LineChartBarData barData, List<int> indicators) {
                         return indicators.map(

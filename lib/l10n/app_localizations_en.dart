@@ -8,9 +8,6 @@ class CryptoAppStringsEn extends CryptoAppStrings {
   String get language => 'en-US';
 
   @override
-  String get currency => 'usd';
-
-  @override
   String get currencySymbol => 'US\$ ';
 
   @override

@@ -1,6 +1,6 @@
 {
     "language": "en-US",
-    "currency": "usd",
+
     "currencySymbol": "US$ ",
     "dateFormat": "MM/dd/yyyy",
     "crypto": "Crypto",

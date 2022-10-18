@@ -15,7 +15,7 @@ import '../utils/is_valid_method.dart';
 class ConversionFormWidget extends StatefulHookConsumerWidget {
   const ConversionFormWidget({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); // coverage:ignore-line
 
   @override
   ConsumerState<ConversionFormWidget> createState() {
@@ -34,7 +34,7 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
     controller.selection = TextSelection.collapsed(
       offset: ref.read(conversionControllerTextStateProvider).length,
     );
-    crypto = ref.watch(cryptoDropdownLeftProvider);
+    crypto = ref.watch(cryptoDropdownLeftProvider)!;
 
     final currencyFormatter = NumberFormat.currency(
       locale: CryptoAppStrings.of(context)!.language,
@@ -54,6 +54,7 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextFormField(
+                key: const Key('conversionTextField'),
                 autovalidateMode: AutovalidateMode.always,
                 onChanged: (value) {
                   ref.read(conversionControllerTextStateProvider.state).state =
@@ -91,14 +92,15 @@ class _ConversionFormWidgetState extends ConsumerState<ConversionFormWidget> {
                   ConversionFormatter(crypto, ref),
                 ],
                 decoration: InputDecoration(
-                    helperText: currencyFormatter.format(
-                      getValueHelperText(
-                        controllerText: controller.text,
-                        crypto: crypto,
-                      ),
+                  helperText: currencyFormatter.format(
+                    getValueHelperText(
+                      controllerText: controller.text,
+                      crypto: crypto,
                     ),
-                    hintText:
-                        '${crypto.symbol.toUpperCase()} ${CryptoAppStrings.of(context)!.conversionHintText}'),
+                  ),
+                  hintText:
+                      '${crypto.symbol.toUpperCase()} ${CryptoAppStrings.of(context)!.conversionHintText}',
+                ),
                 style: const TextStyle(),
               ),
               const SizedBox(

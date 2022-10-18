@@ -1,5 +1,5 @@
 
-import '../../../riverpod/view/locale_state_provider.dart';
+import 'package:card_02_listagem_crypto/app/presenter/riverpod/view/locale_state_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -31,8 +31,9 @@ class ConversionFormatter extends TextInputFormatter {
         case '.':
           return TextEditingValue(
             text: '${crypto.symbol.toUpperCase()} ',
-            selection:
-                TextSelection.collapsed(offset: crypto.symbol.length + 1),
+            selection: TextSelection.collapsed(
+              offset: crypto.symbol.length + 1,
+            ),
           );
       }
     }
